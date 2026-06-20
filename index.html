@@ -9,21 +9,309 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       text-align: center;
-      padding: 80px 24px;
+      padding: 60px 24px;
       background: #f8f9fa;
       color: #333;
     }
-    .icon { font-size: 64px; margin-bottom: 20px; }
-    h1 { color: #4CAF50; font-size: 32px; margin-bottom: 12px; }
-    p { font-size: 18px; color: #666; line-height: 1.5; }
-    .container { max-width: 480px; margin: 0 auto; }
+    .container { max-width: 420px; margin: 0 auto; }
+    .icon { font-size: 64px; margin-bottom: 16px; }
+    h1 { color: #4CAF50; font-size: 28px; margin-bottom: 8px; }
+    h2 { color: #333; font-size: 22px; margin-bottom: 12px; }
+    p { font-size: 16px; color: #666; line-height: 1.5; margin-bottom: 12px; }
+    .success-icon { font-size: 56px; margin-bottom: 16px; }
+    .success-msg { color: #4CAF50; font-weight: 600; font-size: 18px; }
+    .error-msg { color: #d32f2f; font-weight: 500; font-size: 16px; }
+    .open-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 32px;
+      background: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+    .open-btn:active { background: #388E3C; }
+    .open-btn:disabled { background: #ccc; cursor: not-allowed; }
+    .secondary { font-size: 14px; color: #999; margin-top: 16px; }
+    .hidden { display: none; }
+    .form-group {
+      text-align: left;
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus {
+      border-color: #4CAF50;
+    }
+    .form-group .input-error {
+      border-color: #d32f2f;
+    }
+    .validation-msg {
+      font-size: 13px;
+      color: #d32f2f;
+      margin-top: 4px;
+      text-align: left;
+    }
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 0.8s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="icon">🏠</div>
     <h1>HomeFitly</h1>
-    <p>Smart home maintenance, simplified.</p>
+
+    <!-- Default homepage content -->
+    <div id="default-content">
+      <p>Smart home maintenance, simplified.</p>
+    </div>
+
+    <!-- Loading state -->
+    <div id="loading-state" class="hidden">
+      <p>Verifying...</p>
+    </div>
+
+    <!-- Email confirmed successfully -->
+    <div id="confirmed-state" class="hidden">
+      <div class="success-icon">&#10003;</div>
+      <p class="success-msg">Your email has been confirmed!</p>
+      <p>You can now return to the HomeFitly app and sign in.</p>
+      <a id="open-app-btn" class="open-btn" href="#">Open HomeFitly</a>
+      <p class="secondary">If the button doesn't work, open the HomeFitly app on your device and sign in.</p>
+    </div>
+
+    <!-- Password reset form -->
+    <div id="reset-state" class="hidden">
+      <h2>Reset Your Password</h2>
+      <p>Enter your new password below.</p>
+      <form id="reset-form" style="margin-top: 20px;">
+        <div class="form-group">
+          <label for="new-password">New Password</label>
+          <input type="password" id="new-password" placeholder="At least 6 characters" autocomplete="new-password">
+          <div id="password-error" class="validation-msg hidden"></div>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" placeholder="Re-enter your password" autocomplete="new-password">
+          <div id="confirm-error" class="validation-msg hidden"></div>
+        </div>
+        <button type="submit" id="reset-btn" class="open-btn" style="width:100%;">Update Password</button>
+      </form>
+    </div>
+
+    <!-- Password reset success -->
+    <div id="reset-success-state" class="hidden">
+      <div class="success-icon">&#10003;</div>
+      <p class="success-msg">Password updated successfully!</p>
+      <p>You can now return to the HomeFitly app and sign in with your new password.</p>
+      <a id="open-app-after-reset-btn" class="open-btn" href="homefitly://auth/callback">Open HomeFitly</a>
+      <p class="secondary">If the button doesn't work, open the HomeFitly app on your device and sign in.</p>
+    </div>
+
+    <!-- Error state -->
+    <div id="error-state" class="hidden">
+      <p class="error-msg" id="error-message">Something went wrong.</p>
+      <p>Please try again or request a new link from the app.</p>
+    </div>
   </div>
+
+  <script>
+    var SUPABASE_URL = 'https://ahuuloxcpdcjciaqstok.supabase.co';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFodXVsb3hjcGRjamNpYXFzdG9rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyNzIyOTIsImV4cCI6MjA5NTg0ODI5Mn0.3Bq0ckjwlXxEOzuPsqn_WOjuCb6NW3BaCmZdqD8JeY4';
+
+    // Store access token for password update
+    var currentAccessToken = null;
+
+    function show(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+    function hide(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    // Collect all params from query string AND hash fragment
+    function getAllParams() {
+      var params = {};
+      // Query params
+      var search = new URLSearchParams(window.location.search);
+      search.forEach(function(val, key) { params[key] = val; });
+      // Hash fragment params
+      if (window.location.hash && window.location.hash.length > 1) {
+        var hash = window.location.hash.substring(1);
+        var hashParts = hash.split('&');
+        hashParts.forEach(function(part) {
+          var kv = part.split('=');
+          if (kv.length === 2) {
+            params[kv[0]] = decodeURIComponent(kv[1]);
+          }
+        });
+      }
+      return params;
+    }
+
+    // Verify token_hash with Supabase (PKCE flow)
+    function verifyTokenHash(tokenHash, type) {
+      hide('default-content');
+      show('loading-state');
+
+      fetch(SUPABASE_URL + '/auth/v1/verify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY
+        },
+        body: JSON.stringify({ token_hash: tokenHash, type: type })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        hide('loading-state');
+        if (data.access_token) {
+          currentAccessToken = data.access_token;
+          if (type === 'recovery') {
+            show('reset-state');
+          } else {
+            show('confirmed-state');
+            var appURL = 'homefitly://auth/callback?access_token=' + encodeURIComponent(data.access_token)
+              + '&refresh_token=' + encodeURIComponent(data.refresh_token)
+              + '&type=' + encodeURIComponent(type);
+            document.getElementById('open-app-btn').href = appURL;
+          }
+        } else {
+          var msg = data.msg || data.error_description || 'Verification failed. The link may have expired.';
+          document.getElementById('error-message').textContent = msg;
+          show('error-state');
+        }
+      })
+      .catch(function() {
+        hide('loading-state');
+        document.getElementById('error-message').textContent = 'Network error. Please check your connection.';
+        show('error-state');
+      });
+    }
+
+    // Handle access_token in fragment (non-PKCE / implicit flow)
+    function handleTokenFragment(params) {
+      hide('default-content');
+      currentAccessToken = params['access_token'];
+      var type = params['type'] || '';
+
+      if (type === 'recovery') {
+        show('reset-state');
+      } else {
+        show('confirmed-state');
+        var appURL = 'homefitly://auth/callback?access_token=' + encodeURIComponent(params['access_token'])
+          + '&refresh_token=' + encodeURIComponent(params['refresh_token'] || '')
+          + '&type=' + encodeURIComponent(type);
+        document.getElementById('open-app-btn').href = appURL;
+      }
+    }
+
+    // Handle error in fragment
+    function handleErrorFragment(params) {
+      hide('default-content');
+      var desc = params['error_description'] || params['error'] || 'An error occurred.';
+      document.getElementById('error-message').textContent = desc.replace(/\+/g, ' ');
+      show('error-state');
+    }
+
+    // Password reset form
+    document.getElementById('reset-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var pw = document.getElementById('new-password').value;
+      var confirm = document.getElementById('confirm-password').value;
+      var btn = document.getElementById('reset-btn');
+
+      // Reset errors
+      hide('password-error');
+      hide('confirm-error');
+      document.getElementById('new-password').classList.remove('input-error');
+      document.getElementById('confirm-password').classList.remove('input-error');
+
+      // Validate
+      if (pw.length < 6) {
+        document.getElementById('password-error').textContent = 'Password must be at least 6 characters.';
+        show('password-error');
+        document.getElementById('new-password').classList.add('input-error');
+        return;
+      }
+      if (pw !== confirm) {
+        document.getElementById('confirm-error').textContent = 'Passwords do not match.';
+        show('confirm-error');
+        document.getElementById('confirm-password').classList.add('input-error');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span> Updating...';
+
+      fetch(SUPABASE_URL + '/auth/v1/user', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + currentAccessToken
+        },
+        body: JSON.stringify({ password: pw })
+      })
+      .then(function(r) {
+        if (r.ok) return r.json();
+        return r.json().then(function(d) { throw new Error(d.msg || 'Update failed'); });
+      })
+      .then(function() {
+        hide('reset-state');
+        show('reset-success-state');
+      })
+      .catch(function(err) {
+        btn.disabled = false;
+        btn.textContent = 'Update Password';
+        document.getElementById('password-error').textContent = err.message || 'Failed to update password. Try again.';
+        show('password-error');
+      });
+    });
+
+    // Main routing logic
+    var params = getAllParams();
+    var hasAuthParams = params['token_hash'] || params['access_token'] || params['error'];
+
+    if (params['token_hash'] && params['type']) {
+      // PKCE flow: verify token_hash
+      verifyTokenHash(params['token_hash'], params['type']);
+    } else if (params['access_token']) {
+      // Implicit/non-PKCE flow: tokens in fragment
+      handleTokenFragment(params);
+    } else if (params['error']) {
+      // Error from Supabase
+      handleErrorFragment(params);
+    }
+    // else: show default homepage content (no auth params)
+  </script>
 </body>
 </html>
