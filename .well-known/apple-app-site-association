@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "25Y5XSVWV4.com.homefitly.app",
+        "paths": ["/auth/*"]
+      }
+    ]
+  }
+}
