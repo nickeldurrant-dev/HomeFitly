@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help Center | HomeFitly</title>
+  <meta name="description" content="HomeFitly Help Center - Get answers to common questions about your home maintenance app." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-50: #eff6ff;
+      --blue-100: #dbeafe;
+      --blue-200: #bfdbfe;
+      --blue-500: #3b82f6;
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      --blue-800: #1e40af;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --white: #ffffff;
+      --red-50: #fef2f2;
+      --red-600: #dc2626;
+      --green-50: #f0fdf4;
+      --green-600: #16a34a;
+      --yellow-50: #fefce8;
+      --yellow-600: #ca8a04;
+      --purple-50: #faf5ff;
+      --purple-600: #9333ea;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--gray-800);
+      line-height: 1.6;
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--blue-600); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ---- NAV ---- */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--blue-600);
+      text-decoration: none;
+    }
+    .nav-brand:hover { text-decoration: none; }
+    .nav-brand svg { flex-shrink: 0; }
+    .nav-back {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-back:hover { color: var(--blue-600); text-decoration: none; }
+
+    /* ---- HERO ---- */
+    .hero {
+      background: linear-gradient(135deg, var(--blue-600) 0%, var(--blue-800) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 64px 24px;
+    }
+    .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+    .hero p { font-size: 18px; opacity: 0.9; max-width: 560px; margin: 0 auto; }
+
+    /* ---- SECTION ---- */
+    .section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 56px 24px;
+    }
+    .section-alt { background: var(--gray-50); }
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+      color: var(--gray-900);
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--gray-500);
+      margin-bottom: 40px;
+      font-size: 16px;
+    }
+
+    /* ---- CARD GRID ---- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .card-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 16px; }
+      .hero { padding: 48px 20px; }
+      .section { padding: 40px 16px; }
+    }
+
+    /* ---- ACCORDION CARD ---- */
+    .help-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .help-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+
+    .help-card details { }
+    .help-card summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--gray-900);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .help-card summary::-webkit-details-marker { display: none; }
+    .help-card summary::after {
+      content: "";
+      margin-left: auto;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: transform 0.2s;
+    }
+    .help-card details[open] summary::after { transform: rotate(180deg); }
+
+    .icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .icon-circle svg { width: 20px; height: 20px; }
+
+    .help-card .card-body {
+      padding: 0 24px 20px 78px;
+      color: var(--gray-600);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .help-card .card-body p { margin-bottom: 8px; }
+    .help-card .card-body ul { padding-left: 18px; margin-bottom: 8px; }
+    .help-card .card-body li { margin-bottom: 4px; }
+
+    /* icon color helpers */
+    .ic-blue   { background: var(--blue-50);   color: var(--blue-600); }
+    .ic-green  { background: var(--green-50);  color: var(--green-600); }
+    .ic-yellow { background: var(--yellow-50); color: var(--yellow-600); }
+    .ic-purple { background: var(--purple-50); color: var(--purple-600); }
+    .ic-red    { background: var(--red-50);    color: var(--red-600); }
+    .ic-gray   { background: var(--gray-100);  color: var(--gray-600); }
+
+    /* ---- FAQ ---- */
+    .faq-list { max-width: 800px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 20px 0;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--gray-900);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--gray-400);
+      transition: transform 0.2s;
+    }
+    .faq-item[open] summary::after { content: "\2212"; }
+    .faq-answer {
+      padding: 0 0 20px 0;
+      color: var(--gray-600);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ---- CONTACT ---- */
+    .contact-box {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      background: var(--blue-50);
+      border: 1px solid var(--blue-200);
+      border-radius: 16px;
+      padding: 40px 32px;
+    }
+    .contact-box h2 { font-size: 24px; font-weight: 700; margin-bottom: 12px; color: var(--gray-900); }
+    .contact-box p { color: var(--gray-600); font-size: 15px; margin-bottom: 8px; }
+    .contact-email {
+      display: inline-block;
+      margin-top: 12px;
+      background: var(--blue-600);
+      color: var(--white) !important;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .contact-email:hover { background: var(--blue-700); text-decoration: none; }
+    .contact-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--gray-400);
+    }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      background: var(--gray-900);
+      color: var(--gray-400);
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 14px;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .footer-links a { color: var(--gray-300); }
+    .footer-links a:hover { color: var(--white); }
+  </style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://homefitly.com" class="nav-brand">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      HomeFitly
+    </a>
+    <a href="https://homefitly.com" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to HomeFitly
+    </a>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <h1>How can we help?</h1>
+  <p>Welcome to the HomeFitly Help Center. Find answers to common questions, learn how to get the most out of your home maintenance companion, or reach out to our support team.</p>
+</section>
+
+<!-- ========== HELP TOPICS ========== -->
+<section class="section">
+  <h2 class="section-title">Help Topics</h2>
+  <p class="section-subtitle">Tap a topic to expand and learn more.</p>
+
+  <div class="card-grid">
+
+    <!-- Getting Started -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+          </span>
+          Getting Started
+        </summary>
+        <div class="card-body">
+          <p>New to HomeFitly? Here's how to get up and running:</p>
+          <ul>
+            <li><strong>Create an account</strong> using your email address or sign in with Apple.</li>
+            <li><strong>Set up your home profile</strong> by entering your address, home type, size, and key features (e.g., pool, garden, HVAC system).</li>
+            <li><strong>Get personalized tasks</strong> &mdash; HomeFitly automatically generates a maintenance schedule tailored to your home and lifestyle.</li>
+            <li>Browse the <strong>Task Catalog</strong> to add additional tasks that matter to you.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Account & Login -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          Account &amp; Login
+        </summary>
+        <div class="card-body">
+          <ul>
+            <li><strong>Signing in:</strong> Use the email and password you registered with, or use Sign in with Apple if that's how you created your account.</li>
+            <li><strong>Forgot your password?</strong> Tap "Forgot Password" on the login screen. We'll send a reset link to your email.</li>
+            <li><strong>Managing your account:</strong> Go to <em>Settings</em> within the app to update your name, email, or other account details.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Home Profile -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </span>
+          Home Profile
+        </summary>
+        <div class="card-body">
+          <p>Your home profile helps HomeFitly deliver the right maintenance tasks at the right time.</p>
+          <ul>
+            <li><strong>Address:</strong> Add or update your home address during onboarding or in Settings.</li>
+            <li><strong>Home details:</strong> Specify your home type (house, apartment, condo, etc.), square footage, year built, and number of bedrooms/bathrooms.</li>
+            <li><strong>Features:</strong> Tell us about features like a pool, garden, fireplace, or specific HVAC systems so we can recommend relevant tasks.</li>
+            <li><strong>Household info:</strong> Add household members to enable family task management.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Tasks & Maintenance -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14l2 2 4-4"/></svg>
+          </span>
+          Tasks &amp; Maintenance
+        </summary>
+        <div class="card-body">
+          <ul>
+            <li><strong>Creating tasks:</strong> Tap the "+" button on the Tasks screen or browse the Task Catalog to add pre-built maintenance tasks.</li>
+            <li><strong>Reminders:</strong> Each task can have a due date and notification reminder so you never miss a maintenance window.</li>
+            <li><strong>Recurring schedules:</strong> Set tasks to repeat daily, weekly, monthly, quarterly, or annually.</li>
+            <li><strong>Completing tasks:</strong> Mark a task as complete and optionally add notes, photos, or cost information for your records.</li>
+            <li><strong>Task history:</strong> View your completion history to track your home maintenance over time.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Projects, Quotes & Contractors -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-yellow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </span>
+          Projects, Quotes &amp; Contractors
+        </summary>
+        <div class="card-body">
+          <ul>
+            <li><strong>Managing projects:</strong> Create home improvement projects to organize larger jobs like kitchen remodels, roof repairs, or landscaping.</li>
+            <li><strong>Adding quotes:</strong> Attach contractor quotes to any project so you can keep everything in one place.</li>
+            <li><strong>Comparing bids:</strong> Use the quote comparison view to evaluate contractors side-by-side on price, timeline, and scope.</li>
+            <li><strong>Tracking progress:</strong> Move projects through stages (idea, planning, in-progress, completed) and add photos to document your progress.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Receipts & Documents -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1z"/><path d="M8 10h8"/><path d="M8 14h4"/></svg>
+          </span>
+          Receipts &amp; Documents
+        </summary>
+        <div class="card-body">
+          <ul>
+            <li><strong>Scanning receipts:</strong> Use the built-in scanner to photograph and store receipts for home purchases and repairs.</li>
+            <li><strong>Warranty documents:</strong> Attach warranty paperwork to keep all your coverage details organized.</li>
+            <li><strong>Home records:</strong> Store important home documents like inspection reports, insurance documents, and manuals in one convenient location.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Family Management -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          Family Management
+        </summary>
+        <div class="card-body">
+          <ul>
+            <li><strong>Setting up a household:</strong> Create a household and invite family members by sharing your unique household code.</li>
+            <li><strong>Assigning tasks:</strong> Assign tasks to specific family members so everyone knows their responsibilities.</li>
+            <li><strong>Task rotation:</strong> Set up automatic task rotation so chores are shared fairly among household members.</li>
+            <li><strong>Kid task approval (Premium):</strong> Enable approval mode for younger family members &mdash; their completed tasks come to you for review before being marked done.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Warranties -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </span>
+          Warranties
+        </summary>
+        <div class="card-body">
+          <ul>
+            <li><strong>Adding warranties:</strong> Store warranty details for appliances, systems, and home components including purchase date, coverage period, and provider information.</li>
+            <li><strong>Expiration tracking:</strong> HomeFitly tracks all your warranty expiration dates in one place so nothing slips through the cracks.</li>
+            <li><strong>Warranty alerts:</strong> Receive notifications before a warranty expires so you can take action &mdash; whether that means filing a claim or renewing coverage.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Premium Subscription -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-yellow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 12h14l3-12-5.5 6L12 2l-4.5 8L2 4z"/><path d="M5 16l-1.5 6h17L19 16"/></svg>
+          </span>
+          Premium Subscription
+        </summary>
+        <div class="card-body">
+          <p><strong>Free plan includes:</strong> Core task management, home profile, basic reminders, and up to 5 active tasks.</p>
+          <p><strong>Premium unlocks:</strong></p>
+          <ul>
+            <li>Unlimited tasks and projects</li>
+            <li>Family household management with task assignment and rotation</li>
+            <li>Kid task approval workflows</li>
+            <li>Receipt and document scanning</li>
+            <li>Warranty tracking with expiration alerts</li>
+            <li>Contractor quote comparison</li>
+            <li>Advanced task recommendations</li>
+          </ul>
+          <p><strong>Pricing:</strong> $4.99/month or $49.99/year (save over 15% with annual billing).</p>
+          <p>Subscribe from within the app by going to <em>Settings &gt; Subscription</em>.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Restore Purchases -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"/></svg>
+          </span>
+          Restore Purchases
+        </summary>
+        <div class="card-body">
+          <p>If you've previously purchased a Premium subscription and need to restore it on a new device or after reinstalling the app:</p>
+          <ul>
+            <li>Open HomeFitly and sign in with your account.</li>
+            <li>Go to <strong>Settings &gt; Subscription &gt; Restore Purchases</strong>.</li>
+            <li>Your Premium access will be restored automatically if an active subscription is found linked to your Apple ID.</li>
+          </ul>
+          <p>If the restore doesn't work, make sure you're signed in with the same Apple ID you originally used to subscribe.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Manage or Cancel Subscription -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-gray">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1.08-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1.08 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1.08z"/></svg>
+          </span>
+          Manage or Cancel Subscription
+        </summary>
+        <div class="card-body">
+          <p>Your HomeFitly Premium subscription is managed through Apple. You can manage or cancel it in two ways:</p>
+          <ul>
+            <li><strong>From your iPhone/iPad:</strong> Open the <em>Settings</em> app &gt; tap your <em>Apple ID</em> (your name at the top) &gt; <em>Subscriptions</em> &gt; select <em>HomeFitly</em> to manage or cancel.</li>
+            <li><strong>From the HomeFitly app:</strong> Go to <em>Settings &gt; Subscription &gt; Manage Subscription</em>. This will take you directly to your Apple subscription settings.</li>
+          </ul>
+          <p>If you cancel, your Premium features will remain active until the end of your current billing period.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Reporting a Problem -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          </span>
+          Reporting a Problem
+        </summary>
+        <div class="card-body">
+          <p>Found a bug or experiencing an issue? We'd love to help.</p>
+          <ul>
+            <li>Send an email to <a href="mailto:support@homefitly.com">support@homefitly.com</a> describing the problem.</li>
+            <li>Please include your <strong>device model</strong>, <strong>iOS version</strong>, and <strong>HomeFitly app version</strong> (found in Settings) to help us investigate faster.</li>
+            <li>Screenshots or screen recordings are always helpful if the issue is visual.</li>
+          </ul>
+          <p>We take every report seriously and will work to resolve the issue as quickly as possible.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Account & Data Deletion -->
+    <div class="help-card">
+      <details>
+        <summary>
+          <span class="icon-circle ic-red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+          </span>
+          Account &amp; Data Deletion
+        </summary>
+        <div class="card-body">
+          <p>You can delete your account and all associated data at any time.</p>
+          <ul>
+            <li><strong>From the app:</strong> Go to <em>Settings &gt; Account &gt; Delete Account</em>. Follow the confirmation prompts to permanently delete your account.</li>
+            <li>This action removes all your data including your home profile, tasks, projects, receipts, and household information.</li>
+            <li>Account deletion is <strong>permanent and cannot be undone</strong>.</li>
+          </ul>
+          <p>For more information, visit our <a href="https://homefitly.com/account-deletion">Account Deletion page</a>.</p>
+        </div>
+      </details>
+    </div>
+
+  </div><!-- /card-grid -->
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="section-alt">
+  <div class="section" style="padding-top:56px;padding-bottom:56px;">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-subtitle">Quick answers to common questions.</p>
+
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>Is HomeFitly free to use?</summary>
+        <div class="faq-answer">
+          Yes! HomeFitly offers a free plan that includes core task management, a home profile, basic reminders, and up to 5 active tasks. You can upgrade to Premium at any time to unlock unlimited tasks, family management, receipt scanning, warranty tracking, and more.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What's included in Premium?</summary>
+        <div class="faq-answer">
+          Premium gives you unlimited tasks and projects, family household management with task assignment and rotation, kid task approval, receipt and document scanning, warranty tracking with expiration alerts, contractor quote comparison, and advanced task recommendations. It's available for $4.99/month or $49.99/year.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How do I cancel my subscription?</summary>
+        <div class="faq-answer">
+          Since subscriptions are processed through Apple, you'll need to cancel through your Apple ID settings. Open the <em>Settings</em> app on your device, tap your name at the top, then go to <em>Subscriptions</em> and select HomeFitly. You can also go to <em>Settings &gt; Subscription &gt; Manage Subscription</em> within the HomeFitly app. Your Premium access will continue until the end of your current billing period.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I use HomeFitly on multiple devices?</summary>
+        <div class="faq-answer">
+          Yes. Simply sign in with the same account on any device. Your data syncs across all your devices automatically. If you have a Premium subscription, use the <em>Restore Purchases</em> option in Settings to activate Premium on additional devices.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How do I delete my account and data?</summary>
+        <div class="faq-answer">
+          You can delete your account from within the app by navigating to <em>Settings &gt; Account &gt; Delete Account</em>. This permanently removes all your data, including your home profile, tasks, projects, receipts, and household information. This action cannot be undone. For more details, visit our <a href="https://homefitly.com/account-deletion">Account Deletion page</a>.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is my data secure?</summary>
+        <div class="faq-answer">
+          Absolutely. HomeFitly takes your privacy and data security seriously. We use industry-standard encryption for data in transit and at rest. Your personal information is never sold to third parties. For full details, please review our <a href="/privacy">Privacy Policy</a>.
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section class="section">
+  <div class="contact-box">
+    <h2>Still need help?</h2>
+    <p>Our support team is here for you. Send us a message and we'll get back to you as soon as we can.</p>
+    <p style="margin-top:4px;">When contacting us, please include your <strong>device model</strong> and <strong>HomeFitly app version</strong> to help us assist you faster.</p>
+    <a href="mailto:support@homefitly.com" class="contact-email">Email support@homefitly.com</a>
+    <p class="contact-note">We typically respond within 24&ndash;48 hours.</p>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Use</a>
+    <a href="/account-deletion">Account Deletion</a>
+  </div>
+  <p>&copy; 2025 HomeFitly. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

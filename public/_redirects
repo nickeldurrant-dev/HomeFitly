@@ -1,0 +1,5 @@
+# Static pages served directly (these exist as real files)
+# /help/index.html, /privacy/index.html, /terms/index.html, /account-deletion/index.html
+
+# SPA fallback for all other routes (React app)
+/*    /index.html   200

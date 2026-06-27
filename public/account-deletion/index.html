@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account &amp; Data Deletion — HomeFitly</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --blue-50: #eff6ff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --red-50: #fef2f2;
+            --red-600: #dc2626;
+            --red-700: #b91c1c;
+            --amber-50: #fffbeb;
+            --amber-600: #d97706;
+            --amber-700: #b45309;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--gray-800);
+            background: var(--gray-50);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Header ── */
+        header {
+            background: #fff;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--gray-900);
+        }
+
+        .logo svg {
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .back-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--blue-600);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.15s;
+        }
+
+        .back-link:hover {
+            color: var(--blue-700);
+            text-decoration: underline;
+        }
+
+        /* ── Main ── */
+        main {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 24px 64px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+        }
+
+        .intro {
+            font-size: 17px;
+            color: var(--gray-600);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        /* ── Section cards ── */
+        .section {
+            background: #fff;
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 28px 28px 24px;
+            margin-bottom: 24px;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 .icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 15px;
+        }
+
+        .icon-blue  { background: var(--blue-50);  color: var(--blue-600); }
+        .icon-red   { background: var(--red-50);    color: var(--red-600);  }
+        .icon-amber { background: var(--amber-50);  color: var(--amber-600); }
+
+        .section p,
+        .section li {
+            font-size: 15px;
+            color: var(--gray-700);
+            line-height: 1.7;
+        }
+
+        /* ── Numbered steps ── */
+        .steps {
+            list-style: none;
+            counter-reset: step;
+            padding: 0;
+            margin: 0 0 16px;
+        }
+
+        .steps li {
+            counter-increment: step;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .steps li:last-child {
+            border-bottom: none;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--blue-600);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 1px;
+        }
+
+        .note {
+            background: var(--red-50);
+            border-left: 3px solid var(--red-600);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            font-size: 14px;
+            color: var(--gray-700);
+            margin-top: 4px;
+        }
+
+        .note strong {
+            color: var(--red-700);
+        }
+
+        /* ── Bullet lists ── */
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding: 6px 0 6px 22px;
+        }
+
+        .bullet-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 15px;
+            width: 6px;
+            height: 6px;
+            background: var(--blue-600);
+            border-radius: 50%;
+        }
+
+        /* ── Warning box ── */
+        .warning-box {
+            background: var(--amber-50);
+            border-left: 3px solid var(--amber-600);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            font-size: 14px;
+            color: var(--gray-700);
+        }
+
+        .warning-box strong {
+            color: var(--amber-700);
+        }
+
+        .warning-box p {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .warning-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── Contact card ── */
+        .contact-card {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .contact-card a {
+            color: var(--blue-600);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--gray-200);
+            background: #fff;
+        }
+
+        .footer-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: var(--gray-500);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-links a:hover {
+            color: var(--blue-600);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .header-inner {
+                padding: 14px 16px;
+            }
+
+            .logo-text {
+                font-size: 18px;
+            }
+
+            main {
+                padding: 28px 16px 48px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .intro {
+                font-size: 15px;
+                margin-bottom: 28px;
+            }
+
+            .section {
+                padding: 20px 18px 18px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            }
+
+            .section h2 {
+                font-size: 17px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                gap: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ── Header ── -->
+    <header>
+        <div class="header-inner">
+            <a href="/" class="logo" aria-label="HomeFitly home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="#2563eb"/>
+                    <path d="M16 7L6 15h3v9h6v-6h2v6h6v-9h3L16 7z" fill="#fff"/>
+                </svg>
+                <span class="logo-text">HomeFitly</span>
+            </a>
+            <a href="/" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                    <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Back to HomeFitly
+            </a>
+        </div>
+    </header>
+
+    <!-- ── Main ── -->
+    <main>
+        <h1>Account &amp; Data Deletion</h1>
+        <p class="intro">HomeFitly respects your right to delete your account and all associated data. This page explains how to permanently remove your account and what happens when you do.</p>
+
+        <!-- 1 · How to Delete (In-App) -->
+        <div class="section">
+            <h2>
+                <span class="icon icon-blue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 2a1 1 0 011 1v4a1 1 0 01-2 0V4a1 1 0 011-1zm0 8a1 1 0 100-2 1 1 0 000 2z" fill="currentColor"/></svg>
+                </span>
+                How to Delete Your Account (In-App)
+            </h2>
+            <p style="margin-bottom:12px;font-size:15px;color:var(--gray-600);">The quickest way to delete your account is directly from the app:</p>
+            <ol class="steps">
+                <li>Open the <strong>HomeFitly</strong> app</li>
+                <li>Go to the <strong>Settings</strong> tab</li>
+                <li>Scroll to the <strong>Account</strong> section</li>
+                <li>Tap <strong>"Delete Account"</strong></li>
+                <li>Confirm the deletion when prompted</li>
+            </ol>
+            <div class="note">
+                <strong>Important:</strong> This permanently deletes your account and all associated data, including tasks, warranties, receipts, contacts, projects, household information, and home profile data.
+            </div>
+        </div>
+
+        <!-- 2 · What Gets Deleted -->
+        <div class="section">
+            <h2>
+                <span class="icon icon-red">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M5.5 2a.5.5 0 00-.5.5V3H2.5a.5.5 0 000 1h.553l.612 9.18A1.5 1.5 0 005.163 14h5.674a1.5 1.5 0 001.498-1.32L12.947 4h.553a.5.5 0 000-1H11v-.5a.5.5 0 00-.5-.5h-5zM6 3h4v-.5 .5H6zm-2.44 1h8.88l-.6 9.06a.5.5 0 01-.5.44H5.16a.5.5 0 01-.5-.44L4.06 4H3.56z" fill="currentColor"/></svg>
+                </span>
+                What Gets Deleted
+            </h2>
+            <ul class="bullet-list">
+                <li>Your account and login credentials</li>
+                <li>Home profile information (address, home details, features)</li>
+                <li>All tasks and maintenance records</li>
+                <li>Warranty records and uploaded documents</li>
+                <li>Receipt data and scanned images</li>
+                <li>Service contact information</li>
+                <li>Home project details, quotes, and photos</li>
+                <li>Household and family member information</li>
+                <li>Notification preferences and app settings</li>
+            </ul>
+        </div>
+
+        <!-- 3 · Subscription -->
+        <div class="section">
+            <h2>
+                <span class="icon icon-amber">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M8 1.5l1.76 3.57 3.94.57-2.85 2.78.67 3.93L8 10.5l-3.52 1.85.67-3.93L2.3 5.64l3.94-.57L8 1.5z" fill="currentColor"/></svg>
+                </span>
+                What Happens to Your Subscription
+            </h2>
+            <p style="margin-bottom:12px;">If you have an active Premium subscription, please be aware:</p>
+            <div class="warning-box">
+                <p><strong>Deleting your account does NOT automatically cancel your Apple subscription.</strong></p>
+                <p>You must separately cancel your subscription through Apple: open the <strong>Settings</strong> app &gt; tap your <strong>Apple&nbsp;ID</strong> &gt; <strong>Subscriptions</strong>.</p>
+                <p>You can also manage it through the <strong>App Store</strong> app.</p>
+            </div>
+        </div>
+
+        <!-- 4 · Can't Access the App -->
+        <div class="section">
+            <h2>
+                <span class="icon icon-blue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M2 3a1 1 0 011-1h10a1 1 0 011 1v8a1 1 0 01-1 1H9l-2.4 2.4A.5.5 0 016 14v-2H3a1 1 0 01-1-1V3zm1 0v8h3.5v1.793L8.293 11H13V3H3z" fill="currentColor"/></svg>
+                </span>
+                Can't Access the App?
+            </h2>
+            <p style="margin-bottom:12px;">If you are unable to delete your account through the app, you can request deletion by email:</p>
+            <ul class="bullet-list">
+                <li>Email <a href="mailto:support@homefitly.com" style="color:var(--blue-600);font-weight:500;">support@homefitly.com</a> with the subject line <strong>"Account Deletion Request"</strong></li>
+                <li>Include the email address associated with your HomeFitly account</li>
+                <li>We will process your request within <strong>30 days</strong></li>
+                <li>You will receive confirmation when your account has been deleted</li>
+            </ul>
+        </div>
+
+        <!-- 5 · Data Retention -->
+        <div class="section">
+            <h2>
+                <span class="icon icon-blue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zM2 8a6 6 0 1112 0A6 6 0 012 8zm6-3a.5.5 0 01.5.5V8h2a.5.5 0 010 1H8a.5.5 0 01-.5-.5v-3A.5.5 0 018 5z" fill="currentColor"/></svg>
+                </span>
+                Data Retention After Deletion
+            </h2>
+            <ul class="bullet-list">
+                <li>Account data is deleted from our servers</li>
+                <li>Some data may persist in encrypted backups for up to <strong>90 days</strong> before automatic purging</li>
+                <li>We may retain anonymized, aggregated data that cannot be linked back to you</li>
+            </ul>
+        </div>
+
+        <!-- 6 · Contact Us -->
+        <div class="section">
+            <h2>
+                <span class="icon icon-blue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M2 4a1 1 0 011-1h10a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V4zm1 0l5 3.5L13 4H3zm10 1.04L8.32 8.32a.5.5 0 01-.64 0L3 5.04V12h10V5.04z" fill="currentColor"/></svg>
+                </span>
+                Contact Us
+            </h2>
+            <div class="contact-card">
+                <p>Email: <a href="mailto:support@homefitly.com">support@homefitly.com</a></p>
+                <p>For questions about data deletion, please reference our <a href="/privacy">Privacy Policy</a>.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- ── Footer ── -->
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2025 HomeFitly. All rights reserved.</span>
+            <ul class="footer-links">
+                <li><a href="/help">Help Center</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Use</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

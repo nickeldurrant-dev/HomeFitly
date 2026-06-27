@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — HomeFitly</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --blue-50: #eff6ff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--gray-800);
+            line-height: 1.7;
+            background-color: var(--gray-50);
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--gray-900);
+        }
+
+        .logo-group svg {
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .back-link {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--blue-600);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.15s;
+        }
+
+        .back-link:hover {
+            color: var(--blue-700);
+            text-decoration: underline;
+        }
+
+        /* Main content */
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .effective-date {
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--blue-600);
+            background-color: var(--blue-50);
+            padding: 4px 14px;
+            border-radius: 9999px;
+            margin-bottom: 32px;
+        }
+
+        .intro-text {
+            font-size: 1.05rem;
+            color: var(--gray-600);
+            margin-bottom: 40px;
+            max-width: 720px;
+        }
+
+        /* Sections */
+        .policy-section {
+            margin-bottom: 40px;
+        }
+
+        .policy-section h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--blue-600);
+            display: inline-block;
+        }
+
+        .policy-section h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        .policy-section p {
+            margin-bottom: 12px;
+            color: var(--gray-700);
+        }
+
+        .policy-section ul {
+            margin: 8px 0 16px 24px;
+            color: var(--gray-700);
+        }
+
+        .policy-section ul li {
+            margin-bottom: 6px;
+            padding-left: 4px;
+        }
+
+        .policy-section ul li::marker {
+            color: var(--blue-600);
+        }
+
+        .policy-section a {
+            color: var(--blue-600);
+            text-decoration: none;
+        }
+
+        .policy-section a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-box {
+            background-color: #ffffff;
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 12px;
+        }
+
+        .contact-box p {
+            margin-bottom: 4px;
+        }
+
+        .contact-box a {
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .footer-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-links a:hover {
+            color: var(--blue-600);
+        }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .header-inner {
+                padding: 12px 16px;
+            }
+
+            main {
+                padding: 28px 16px 60px;
+            }
+
+            .page-title {
+                font-size: 1.6rem;
+            }
+
+            .policy-section h2 {
+                font-size: 1.2rem;
+            }
+
+            .footer-links {
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a href="/" class="logo-group" aria-label="HomeFitly home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="#2563eb"/>
+                    <path d="M16 7L6 15.5H9V24H13.5V19H18.5V24H23V15.5H26L16 7Z" fill="white"/>
+                </svg>
+                <span class="logo-text">HomeFitly</span>
+            </a>
+            <a href="/" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                    <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M10 12L6 8l4-4"/>
+                </svg>
+                Back to HomeFitly
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="page-title">Privacy Policy</h1>
+        <span class="effective-date">Effective Date: June 27, 2025</span>
+
+        <p class="intro-text">
+            HomeFitly is committed to protecting your privacy. This Privacy Policy explains what information we collect, how we use it, how it is stored, and the choices you have regarding your data. By using HomeFitly, you agree to the practices described in this policy.
+        </p>
+
+        <!-- 1. Introduction -->
+        <section class="policy-section">
+            <h2>1. Introduction</h2>
+            <p>
+                HomeFitly is a home maintenance and management application designed to help homeowners stay on top of tasks, warranties, projects, and household organization. We built HomeFitly with a privacy-first mindset: we do not serve advertisements, we do not embed analytics tracking SDKs, and we never sell your personal data to third parties.
+            </p>
+            <p>
+                This policy applies to the HomeFitly mobile application available on the Apple App Store and any associated services. If you have questions about this policy, you can reach us at <a href="mailto:support@homefitly.com">support@homefitly.com</a>.
+            </p>
+        </section>
+
+        <!-- 2. Information We Collect -->
+        <section class="policy-section">
+            <h2>2. Information We Collect</h2>
+            <p>We collect information you provide directly when you create an account and use the app. We do not collect data passively through analytics or advertising frameworks.</p>
+
+            <h3>Account Information</h3>
+            <ul>
+                <li><strong>Email address</strong> — used for account creation, authentication, and communication such as password resets.</li>
+                <li><strong>Password</strong> — securely hashed before storage; we never store or have access to your plain-text password.</li>
+                <li><strong>Apple ID token</strong> — if you choose to sign in with Apple, we receive a unique identifier and, if you allow it, your email address. We do not receive your Apple ID password.</li>
+            </ul>
+
+            <h3>Home Profile Information</h3>
+            <ul>
+                <li>Home address</li>
+                <li>Home type (e.g., single-family, apartment, condo)</li>
+                <li>Year built, square footage, number of bedrooms and bathrooms</li>
+                <li>Home features (e.g., pool, HVAC system type)</li>
+                <li>Yard size and pet types</li>
+                <li>Household size and family name</li>
+            </ul>
+
+            <h3>Task and Maintenance Data</h3>
+            <ul>
+                <li>Tasks and maintenance records you create, including titles, descriptions, schedules, and completion history</li>
+                <li>Checklist data for seasonal and routine maintenance</li>
+                <li>Notification preferences for task reminders</li>
+            </ul>
+
+            <h3>Warranty Information</h3>
+            <ul>
+                <li>Product names, purchase dates, and expiration dates</li>
+                <li>Uploaded warranty documents and photos</li>
+            </ul>
+
+            <h3>Receipt Data</h3>
+            <ul>
+                <li>Store names, purchase amounts, and dates</li>
+                <li>Scanned receipt images captured through the camera</li>
+            </ul>
+
+            <h3>Service Contact Information</h3>
+            <ul>
+                <li>Names, phone numbers, email addresses, and company names of service providers you save in the app</li>
+                <li>Service records and history</li>
+            </ul>
+
+            <h3>Home Project Details</h3>
+            <ul>
+                <li>Project names, descriptions, and budgets</li>
+                <li>Contractor quotes (amounts, contractor details, notes)</li>
+                <li>Project photos</li>
+            </ul>
+
+            <h3>Household Member Information (Premium)</h3>
+            <ul>
+                <li>Names, roles, and avatar color preferences for family members added to your household</li>
+                <li>Task assignments and completion data per household member</li>
+            </ul>
+        </section>
+
+        <!-- 3. How We Use Your Information -->
+        <section class="policy-section">
+            <h2>3. How We Use Your Information</h2>
+            <p>We use the information we collect solely to provide and improve the HomeFitly experience. Specifically, we use your data to:</p>
+            <ul>
+                <li><strong>Provide core app functionality</strong> — create and manage your account, display your home profile, schedule and track maintenance tasks, store warranties and receipts, and manage home projects.</li>
+                <li><strong>Personalize recommendations</strong> — suggest relevant maintenance tasks and schedules based on your home type, features, location, and lifestyle preferences.</li>
+                <li><strong>Send notifications</strong> — deliver task reminders, warranty expiration alerts, and other notifications you have opted into through Apple Push Notification Service.</li>
+                <li><strong>Enable family collaboration</strong> — allow Premium household members to share tasks, view assignments, and track household activity.</li>
+                <li><strong>Sync data across devices</strong> — for Premium subscribers, synchronize your data securely so you can access it from multiple Apple devices.</li>
+                <li><strong>Provide customer support</strong> — respond to your inquiries and resolve issues when you contact us.</li>
+                <li><strong>Process authentication</strong> — verify your identity when you sign in and facilitate password resets.</li>
+            </ul>
+            <p>We do <strong>not</strong> use your data for advertising, and we do <strong>not</strong> sell, rent, or trade your personal information to any third party.</p>
+        </section>
+
+        <!-- 4. How We Store Your Data -->
+        <section class="policy-section">
+            <h2>4. How We Store Your Data</h2>
+
+            <h3>On-Device Storage</h3>
+            <p>HomeFitly stores your data locally on your device using Apple's SwiftData framework. This means your core data remains on your iPhone or iPad and is protected by your device's built-in security features, including encryption at rest.</p>
+
+            <h3>Cloud Storage</h3>
+            <p>We use <a href="https://supabase.com" target="_blank" rel="noopener noreferrer">Supabase</a> as our cloud backend for authentication and data synchronization. Supabase infrastructure is hosted on Amazon Web Services (AWS). When you create an account or use Premium sync features, your data is transmitted to and stored on Supabase servers.</p>
+            <p>Premium subscribers who enable cross-device sync have their data stored both locally on each device and in the Supabase cloud backend. Free-tier users primarily rely on local, on-device storage with Supabase used for authentication.</p>
+        </section>
+
+        <!-- 5. Third-Party Services -->
+        <section class="policy-section">
+            <h2>5. Third-Party Services</h2>
+            <p>HomeFitly integrates with a limited number of third-party services, each necessary for core functionality. We do not use any advertising SDKs or third-party analytics platforms.</p>
+            <ul>
+                <li><strong>Supabase</strong> — provides authentication (email/password and Apple Sign-In), cloud database storage, and real-time data synchronization. Supabase processes your account credentials and synced app data. <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase Privacy Policy</a>.</li>
+                <li><strong>Apple StoreKit</strong> — handles in-app purchase and subscription transactions. Payment information is managed entirely by Apple; HomeFitly never receives or stores your credit card or payment details. <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple Privacy Policy</a>.</li>
+                <li><strong>Apple Push Notification Service (APNs)</strong> — delivers task reminders, warranty expiration alerts, and other notifications to your device. Notification content is processed through Apple's infrastructure.</li>
+            </ul>
+            <p>We do not share your personal data with any other third parties. No data brokers, advertisers, or analytics companies receive information from HomeFitly.</p>
+        </section>
+
+        <!-- 6. Apple Subscriptions -->
+        <section class="policy-section">
+            <h2>6. Apple Subscriptions</h2>
+            <p>HomeFitly offers a Premium subscription that unlocks additional features, including cross-device sync, household family management, and expanded storage.</p>
+            <ul>
+                <li><strong>Monthly plan:</strong> $4.99 per month</li>
+                <li><strong>Annual plan:</strong> $49.99 per year</li>
+            </ul>
+            <p>All subscription billing is handled entirely by Apple through the App Store. HomeFitly does not collect, process, or store any payment information such as credit card numbers or billing addresses. Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current billing period. You can manage or cancel your subscription in your Apple ID account settings.</p>
+            <p>For billing inquiries or refund requests, please contact <a href="https://support.apple.com" target="_blank" rel="noopener noreferrer">Apple Support</a> directly.</p>
+        </section>
+
+        <!-- 7. Photos and Camera Access -->
+        <section class="policy-section">
+            <h2>7. Photos and Camera Access</h2>
+            <p>HomeFitly requests access to your device camera for the following purposes:</p>
+            <ul>
+                <li><strong>Document and receipt scanning</strong> — capture images of receipts, warranty documents, and other paperwork for storage within the app.</li>
+                <li><strong>Project photos</strong> — photograph home improvement projects to track progress.</li>
+            </ul>
+            <p>Camera access is requested only when you initiate a scanning or photo capture action. You can deny or revoke camera permissions at any time through your device's Settings app.</p>
+            <p>Photos and scanned images are stored locally on your device. For Premium subscribers with sync enabled, these images may also be uploaded to Supabase cloud storage to enable cross-device access. Images are transmitted over encrypted HTTPS connections.</p>
+        </section>
+
+        <!-- 8. Data Retention -->
+        <section class="policy-section">
+            <h2>8. Data Retention</h2>
+            <p>HomeFitly retains your data for as long as your account is active and you choose to keep it. We do not impose automatic deletion timelines on your content.</p>
+            <ul>
+                <li><strong>Individual items:</strong> You can delete any individual task, warranty, receipt, project, contact, or other record at any time from within the app. Deleted items are removed from local storage and, if applicable, from the cloud backend.</li>
+                <li><strong>Account data:</strong> All data associated with your account is retained until you choose to delete your account. Upon account deletion, all data is permanently removed from both local storage and our cloud servers.</li>
+                <li><strong>Authentication records:</strong> Basic authentication logs maintained by Supabase are subject to Supabase's own data retention policies.</li>
+            </ul>
+        </section>
+
+        <!-- 9. Data Security -->
+        <section class="policy-section">
+            <h2>9. Data Security</h2>
+            <p>We implement multiple layers of security to protect your information:</p>
+            <ul>
+                <li><strong>Encryption in transit:</strong> All data transmitted between the app and our servers uses HTTPS (TLS encryption), ensuring your information cannot be intercepted during transfer.</li>
+                <li><strong>Database security:</strong> Our Supabase backend enforces Row Level Security (RLS) policies, which ensure that each user can only access their own data. No user can query, view, or modify another user's records.</li>
+                <li><strong>Password hashing:</strong> Your password is cryptographically hashed before storage. We never store or log plain-text passwords.</li>
+                <li><strong>On-device protection:</strong> Local data stored via SwiftData benefits from Apple's built-in device encryption and security features.</li>
+            </ul>
+            <p>While we take reasonable measures to protect your data, no method of electronic storage or transmission is 100% secure. We encourage you to use a strong, unique password for your HomeFitly account and to keep your device software up to date.</p>
+        </section>
+
+        <!-- 10. Your Privacy Choices -->
+        <section class="policy-section">
+            <h2>10. Your Privacy Choices</h2>
+            <p>You have control over your data and how HomeFitly operates on your device:</p>
+            <ul>
+                <li><strong>Notification preferences:</strong> You can customize which notifications you receive within the app's settings, or disable notifications entirely through your device's Settings app.</li>
+                <li><strong>Camera access:</strong> You can grant or revoke camera permissions at any time in your device's Settings under HomeFitly.</li>
+                <li><strong>Data access:</strong> All data you enter into HomeFitly is visible and accessible to you within the app at all times.</li>
+                <li><strong>Data export:</strong> If you need a copy of your data, contact us at <a href="mailto:support@homefitly.com">support@homefitly.com</a> and we will assist you.</li>
+                <li><strong>Data deletion:</strong> You can delete individual records within the app or delete your entire account (see Section 11 below).</li>
+                <li><strong>Account management:</strong> You can update your email address or reset your password from within the app settings.</li>
+            </ul>
+        </section>
+
+        <!-- 11. Account and Data Deletion -->
+        <section class="policy-section">
+            <h2>11. Account and Data Deletion</h2>
+            <p>You can delete your HomeFitly account and all associated data at any time. Account deletion is available directly within the app:</p>
+            <ul>
+                <li>Open HomeFitly and navigate to <strong>Settings</strong>.</li>
+                <li>Select the option to delete your account.</li>
+                <li>Confirm the deletion when prompted.</li>
+            </ul>
+            <p>Upon account deletion:</p>
+            <ul>
+                <li>All personal data stored in the cloud (Supabase) is permanently deleted.</li>
+                <li>All locally stored data on the device is removed.</li>
+                <li>Your authentication credentials are revoked and deleted.</li>
+                <li>This action is irreversible. We cannot recover your data after deletion.</li>
+            </ul>
+            <p>If you are unable to delete your account through the app, you can request deletion by emailing <a href="mailto:support@homefitly.com">support@homefitly.com</a> from the email address associated with your account. You may also visit our <a href="/account-deletion">Account Deletion</a> page for additional instructions.</p>
+            <p>Please note that deleting your HomeFitly account does not automatically cancel an active Apple subscription. You must cancel your subscription separately through your Apple ID account settings to avoid further charges.</p>
+        </section>
+
+        <!-- 12. Children's Privacy -->
+        <section class="policy-section">
+            <h2>12. Children's Privacy</h2>
+            <p>HomeFitly is not directed at children under the age of 13, and we do not knowingly collect personal information from children under 13. You must be at least 13 years old to create a HomeFitly account.</p>
+            <p>HomeFitly's Premium family features allow account holders (parents or guardians) to create household member profiles for family members, including children. These profiles are managed entirely by the parent or guardian account holder. Children do not have independent accounts, cannot sign in on their own, and their profiles contain only the information the parent chooses to enter (name, role, and avatar color).</p>
+            <p>If we learn that we have inadvertently collected personal information from a child under 13 without parental consent, we will delete that information promptly. If you believe a child under 13 has provided us with personal information, please contact us at <a href="mailto:support@homefitly.com">support@homefitly.com</a>.</p>
+        </section>
+
+        <!-- 13. Changes to This Policy -->
+        <section class="policy-section">
+            <h2>13. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make material changes, we will:</p>
+            <ul>
+                <li>Update the "Effective Date" at the top of this page.</li>
+                <li>Notify you through the app or via email for significant changes that affect how your data is collected or used.</li>
+            </ul>
+            <p>We encourage you to review this Privacy Policy periodically. Your continued use of HomeFitly after changes are posted constitutes your acceptance of the updated policy.</p>
+        </section>
+
+        <!-- 14. Contact Us -->
+        <section class="policy-section">
+            <h2>14. Contact Us</h2>
+            <p>If you have questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact us:</p>
+            <div class="contact-box">
+                <p><strong>HomeFitly</strong></p>
+                <p>Email: <a href="mailto:support@homefitly.com">support@homefitly.com</a></p>
+            </div>
+            <p style="margin-top: 16px;">We aim to respond to all privacy-related inquiries within 30 days.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <nav class="footer-links">
+                <a href="/help">Help Center</a>
+                <a href="/terms">Terms of Use</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/account-deletion">Account Deletion</a>
+            </nav>
+            <p class="footer-copy">&copy; 2025 HomeFitly. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
