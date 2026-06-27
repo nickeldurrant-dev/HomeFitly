@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>HomeFitly - Redirecting...</title>
+  <script>
+    // Redirect to homepage with all params preserved
+    var dest = '/';
+    if (window.location.search) {
+      dest += window.location.search;
+    }
+    if (window.location.hash) {
+      dest += window.location.hash;
+    }
+    window.location.replace(dest);
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>
