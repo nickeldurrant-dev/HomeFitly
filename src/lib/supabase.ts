@@ -96,7 +96,8 @@ if (!isSupabaseConfigured) {
       auth: {
         autoRefreshToken: true,
         persistSession: true,
-        detectSessionInUrl: true
+        detectSessionInUrl: true,
+        flowType: 'implicit'
       },
       global: {
         headers: {
