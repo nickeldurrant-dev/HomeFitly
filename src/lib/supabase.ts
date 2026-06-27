@@ -96,8 +96,7 @@ if (!isSupabaseConfigured) {
       auth: {
         autoRefreshToken: true,
         persistSession: true,
-        detectSessionInUrl: true,
-        flowType: 'pkce'
+        detectSessionInUrl: true
       },
       global: {
         headers: {

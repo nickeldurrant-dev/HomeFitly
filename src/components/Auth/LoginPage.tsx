@@ -53,7 +53,15 @@ const LoginPage: React.FC<LoginPageProps> = ({ onSuccess, onSwitchToSignup }) =>
           error: error.message,
           attempts: loginAttempts + 1
         });
-        setError(error.message);
+        // Provide user-friendly messages for common errors
+        const msg = error.message?.toLowerCase() || '';
+        if (msg.includes('type error') || msg === 'typeerror') {
+          setError('Unable to connect to the server. Please check your internet connection and try again.');
+        } else if (msg.includes('invalid login credentials')) {
+          setError('Invalid email or password. Please try again.');
+        } else {
+          setError(error.message);
+        }
       } else {
         setLoginAttempts(0);
         SecurityManager.logSecurityEvent('login_success', { email: sanitizedEmail });

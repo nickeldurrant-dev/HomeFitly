@@ -82,11 +82,19 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) =
       });
 
       if (error) {
-        SecurityManager.logSecurityEvent('signup_failed', { 
-          email: sanitizedData.email, 
-          error: error.message 
+        SecurityManager.logSecurityEvent('signup_failed', {
+          email: sanitizedData.email,
+          error: error.message
         });
-        setError(error.message);
+        // Provide user-friendly messages for common errors
+        const msg = error.message?.toLowerCase() || '';
+        if (msg.includes('type error') || msg === 'typeerror') {
+          setError('Unable to connect to the server. Please check your internet connection and try again.');
+        } else if (msg.includes('already registered') || msg.includes('already been registered')) {
+          setError('An account with this email already exists. Please sign in instead.');
+        } else {
+          setError(error.message);
+        }
       } else {
         SecurityManager.logSecurityEvent('signup_success', { email: sanitizedData.email });
         onSuccess();
