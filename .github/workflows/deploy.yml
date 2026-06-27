@@ -30,12 +30,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Create env file
+        run: |
+          cat > .env << 'ENVEOF'
+          VITE_SUPABASE_URL=https://ahuuloxcpdcjciaqstok.supabase.co
+          VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFodXVsb3hjcGRjamNpYXFzdG9rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyNzIyOTIsImV4cCI6MjA5NTg0ODI5Mn0.3Bq0ckjwlXxEOzuPsqn_WOjuCb6NW3BaCmZdqD8JeY4
+          VITE_GOOGLE_MAPS_API_KEY=AIzaSyCeyfVFiBCKD11_te_HzvSPK3HVljX0VD8
+          ENVEOF
+          sed -i 's/^          //' .env
+
       - name: Build
         run: npm run build
-        env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-          VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
