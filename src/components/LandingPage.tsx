@@ -230,7 +230,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
-                  Up to 10 tasks
+                  Unlimited tasks
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
