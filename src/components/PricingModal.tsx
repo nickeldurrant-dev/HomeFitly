@@ -34,13 +34,15 @@ const PricingModal: React.FC<PricingModalProps> = ({
 
   const premiumProduct = getPremiumProduct();
   const features = [
-    'Unlimited tasks and checklists',
-    'Smart reminders & notifications',
-    'Advanced warranty tracking',
-    'Cloud document storage',
-    'Priority customer support',
-    'Export data functionality',
-    'Custom categories & tags'
+    'Unlimited tasks and projects',
+    'Unlimited warranties, contacts, receipts, and ideas',
+    'Family household management with task assignment and rotation',
+    'Kid task approval workflows',
+    'Receipt and document scanning',
+    'Warranty tracking with expiration alerts',
+    'Contractor quote comparison',
+    'Advanced task recommendations',
+    'Priority support'
   ];
 
   return (

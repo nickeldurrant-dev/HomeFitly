@@ -283,7 +283,7 @@
                 HomeFitly is a home maintenance and management application designed to help homeowners stay on top of tasks, warranties, projects, and household organization. We built HomeFitly with a privacy-first mindset: we do not serve advertisements, we do not embed analytics tracking SDKs, and we never sell your personal data to third parties.
             </p>
             <p>
-                This policy applies to the HomeFitly mobile application available on the Apple App Store and any associated services. If you have questions about this policy, you can reach us at <a href="mailto:support@homefitly.com">support@homefitly.com</a>.
+                This policy applies to the HomeFitly mobile applications available on the Apple App Store and Google Play, our web application, and any associated services. If you have questions about this policy, you can reach us at <a href="mailto:support@homefitly.com">support@homefitly.com</a>.
             </p>
         </section>
 
@@ -355,9 +355,9 @@
             <ul>
                 <li><strong>Provide core app functionality</strong> — create and manage your account, display your home profile, schedule and track maintenance tasks, store warranties and receipts, and manage home projects.</li>
                 <li><strong>Personalize recommendations</strong> — suggest relevant maintenance tasks and schedules based on your home type, features, location, and lifestyle preferences.</li>
-                <li><strong>Send notifications</strong> — deliver task reminders, warranty expiration alerts, and other notifications you have opted into through Apple Push Notification Service.</li>
+                <li><strong>Send notifications</strong> — deliver task reminders, warranty expiration alerts, and other notifications you have opted into through your device's push notification service (Apple Push Notification Service on iOS, Firebase Cloud Messaging on Android).</li>
                 <li><strong>Enable family collaboration</strong> — allow Premium household members to share tasks, view assignments, and track household activity.</li>
-                <li><strong>Sync data across devices</strong> — for Premium subscribers, synchronize your data securely so you can access it from multiple Apple devices.</li>
+                <li><strong>Sync data across devices</strong> — for Premium subscribers, synchronize your data securely so you can access it across your devices.</li>
                 <li><strong>Provide customer support</strong> — respond to your inquiries and resolve issues when you contact us.</li>
                 <li><strong>Process authentication</strong> — verify your identity when you sign in and facilitate password resets.</li>
             </ul>
@@ -369,7 +369,7 @@
             <h2>4. How We Store Your Data</h2>
 
             <h3>On-Device Storage</h3>
-            <p>HomeFitly stores your data locally on your device using Apple's SwiftData framework. This means your core data remains on your iPhone or iPad and is protected by your device's built-in security features, including encryption at rest.</p>
+            <p>HomeFitly stores your data locally on your device using secure on-device storage. This means your core data remains on your phone, tablet, or computer and is protected by your device's built-in security features, including encryption at rest.</p>
 
             <h3>Cloud Storage</h3>
             <p>We use <a href="https://supabase.com" target="_blank" rel="noopener noreferrer">Supabase</a> as our cloud backend for authentication and data synchronization. Supabase infrastructure is hosted on Amazon Web Services (AWS). When you create an account or use Premium sync features, your data is transmitted to and stored on Supabase servers.</p>
@@ -382,22 +382,22 @@
             <p>HomeFitly integrates with a limited number of third-party services, each necessary for core functionality. We do not use any advertising SDKs or third-party analytics platforms.</p>
             <ul>
                 <li><strong>Supabase</strong> — provides authentication (email/password and Apple Sign-In), cloud database storage, and real-time data synchronization. Supabase processes your account credentials and synced app data. <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase Privacy Policy</a>.</li>
-                <li><strong>Apple StoreKit</strong> — handles in-app purchase and subscription transactions. Payment information is managed entirely by Apple; HomeFitly never receives or stores your credit card or payment details. <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple Privacy Policy</a>.</li>
-                <li><strong>Apple Push Notification Service (APNs)</strong> — delivers task reminders, warranty expiration alerts, and other notifications to your device. Notification content is processed through Apple's infrastructure.</li>
+                <li><strong>Apple StoreKit and Google Play Billing</strong> — handle in-app purchase and subscription transactions. Payment information is managed entirely by Apple or Google; HomeFitly never receives or stores your credit card or payment details. <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple Privacy Policy</a> · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.</li>
+                <li><strong>Push notification services</strong> — deliver task reminders, warranty expiration alerts, and other notifications to your device (Apple Push Notification Service on iOS, Firebase Cloud Messaging on Android). Notification content is processed through Apple or Google infrastructure.</li>
             </ul>
             <p>We do not share your personal data with any other third parties. No data brokers, advertisers, or analytics companies receive information from HomeFitly.</p>
         </section>
 
-        <!-- 6. Apple Subscriptions -->
+        <!-- 6. Premium Subscriptions -->
         <section class="policy-section">
-            <h2>6. Apple Subscriptions</h2>
+            <h2>6. Premium Subscriptions</h2>
             <p>HomeFitly offers a Premium subscription that unlocks additional features, including cross-device sync, household family management, and expanded storage.</p>
             <ul>
                 <li><strong>Monthly plan:</strong> $4.99 per month</li>
                 <li><strong>Annual plan:</strong> $49.99 per year</li>
             </ul>
-            <p>All subscription billing is handled entirely by Apple through the App Store. HomeFitly does not collect, process, or store any payment information such as credit card numbers or billing addresses. Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current billing period. You can manage or cancel your subscription in your Apple ID account settings.</p>
-            <p>For billing inquiries or refund requests, please contact <a href="https://support.apple.com" target="_blank" rel="noopener noreferrer">Apple Support</a> directly.</p>
+            <p>All subscription billing is handled entirely by Apple through the App Store or by Google through Google Play, depending on your device. HomeFitly does not collect, process, or store any payment information such as credit card numbers or billing addresses. Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current billing period. On iPhone or iPad, you can manage or cancel your subscription in your Apple ID account settings. On Android, you can manage or cancel in the Google Play Store under Payments &amp; subscriptions.</p>
+            <p>For billing inquiries or refund requests, please contact <a href="https://support.apple.com" target="_blank" rel="noopener noreferrer">Apple Support</a> or <a href="https://support.google.com/googleplay" target="_blank" rel="noopener noreferrer">Google Play Support</a> directly.</p>
         </section>
 
         <!-- 7. Photos and Camera Access -->
@@ -431,7 +431,7 @@
                 <li><strong>Encryption in transit:</strong> All data transmitted between the app and our servers uses HTTPS (TLS encryption), ensuring your information cannot be intercepted during transfer.</li>
                 <li><strong>Database security:</strong> Our Supabase backend enforces Row Level Security (RLS) policies, which ensure that each user can only access their own data. No user can query, view, or modify another user's records.</li>
                 <li><strong>Password hashing:</strong> Your password is cryptographically hashed before storage. We never store or log plain-text passwords.</li>
-                <li><strong>On-device protection:</strong> Local data stored via SwiftData benefits from Apple's built-in device encryption and security features.</li>
+                <li><strong>On-device protection:</strong> Local data stored on your device benefits from built-in device encryption and security features.</li>
             </ul>
             <p>While we take reasonable measures to protect your data, no method of electronic storage or transmission is 100% secure. We encourage you to use a strong, unique password for your HomeFitly account and to keep your device software up to date.</p>
         </section>
@@ -464,10 +464,11 @@
                 <li>All personal data stored in the cloud (Supabase) is permanently deleted.</li>
                 <li>All locally stored data on the device is removed.</li>
                 <li>Your authentication credentials are revoked and deleted.</li>
+                <li>Note: encrypted backups may retain data for up to 90 days before being purged.</li>
                 <li>This action is irreversible. We cannot recover your data after deletion.</li>
             </ul>
             <p>If you are unable to delete your account through the app, you can request deletion by emailing <a href="mailto:support@homefitly.com">support@homefitly.com</a> from the email address associated with your account. You may also visit our <a href="/account-deletion">Account Deletion</a> page for additional instructions.</p>
-            <p>Please note that deleting your HomeFitly account does not automatically cancel an active Apple subscription. You must cancel your subscription separately through your Apple ID account settings to avoid further charges.</p>
+            <p>Please note that deleting your HomeFitly account does not automatically cancel an active subscription. You must cancel your subscription separately to avoid further charges: on iPhone or iPad, use your Apple ID account settings; on Android, use the Google Play Store under Payments &amp; subscriptions.</p>
         </section>
 
         <!-- 12. Children's Privacy -->
@@ -497,7 +498,7 @@
                 <p><strong>HomeFitly</strong></p>
                 <p>Email: <a href="mailto:support@homefitly.com">support@homefitly.com</a></p>
             </div>
-            <p style="margin-top: 16px;">We aim to respond to all privacy-related inquiries within 30 days.</p>
+            <p style="margin-top: 16px;">We aim to respond to general inquiries within 2 business days. For formal privacy or data requests, we respond within 30 days as required by applicable law.</p>
         </section>
     </main>
 
@@ -505,8 +506,9 @@
         <div class="footer-inner">
             <nav class="footer-links">
                 <a href="/help">Help Center</a>
-                <a href="/terms">Terms of Use</a>
+                <a href="mailto:support@homefitly.com">Contact Support</a>
                 <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Use</a>
                 <a href="/account-deletion">Account Deletion</a>
             </nav>
             <p class="footer-copy">&copy; 2025 HomeFitly. All rights reserved.</p>

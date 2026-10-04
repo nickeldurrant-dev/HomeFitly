@@ -294,7 +294,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) =
         {/* Footer */}
         <div className="text-center mt-8">
           <p className="text-sm text-gray-500">
-            🔒 Your data is encrypted and secure. By creating an account, you agree to our Terms of Service and Privacy Policy
+            🔒 Your data is encrypted and secure. By creating an account, you agree to our Terms of Use and Privacy Policy
           </p>
         </div>
       </div>

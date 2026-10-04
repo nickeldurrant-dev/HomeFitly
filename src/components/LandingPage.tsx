@@ -238,6 +238,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
+                  1 warranty, 5 contacts, 1 project
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
+                  10 receipts, 3 project ideas
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
                   Community support
                 </li>
               </ul>
@@ -261,30 +269,43 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
 
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
-                <div className="text-4xl font-bold text-gray-900 mb-4">$4.99<span className="text-lg text-gray-500">/month</span></div>
+                <div className="text-4xl font-bold text-gray-900 mb-1">$4.99<span className="text-lg text-gray-500">/month</span></div>
+                <p className="text-gray-500 text-sm mb-4">or $49.99/year, save about 17%</p>
                 <p className="text-gray-600">Everything you need for home management</p>
               </div>
 
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
-                  Unlimited tasks & checklists
+                  Unlimited tasks and projects
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
-                  Smart reminders & notifications
+                  Unlimited warranties, contacts, receipts, ideas
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
-                  Advanced warranty tracking
+                  Family management with task assignment
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
-                  Premium DIY guides
+                  Kid task approval workflows
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
-                  Cloud document storage
+                  Receipt and document scanning
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
+                  Warranty tracking with expiration alerts
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
+                  Contractor quote comparison
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
+                  Advanced task recommendations
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
@@ -314,13 +335,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <button className="bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition-colors font-medium flex items-center space-x-3">
-              <Smartphone className="h-6 w-6" />
-              <div className="text-left">
-                <div className="text-xs text-gray-300">Download on the</div>
-                <div className="text-lg font-semibold">App Store</div>
-              </div>
-            </button>
             <button
               onClick={() => alert('iOS app launching soon! Sign up to be notified when it\'s available.')}
               className="bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition-colors font-medium flex items-center space-x-3"
@@ -349,7 +363,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
             >
               <Monitor className="h-6 w-6" />
               <div className="text-left">
-                <div className="text-xs text-brand-500">Or use the</div>
+                <div className="text-xs text-brand-500">Open the</div>
                 <div className="text-lg font-semibold">Web App</div>
               </div>
             </button>
@@ -425,7 +439,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
                 <li><button className="text-gray-400 hover:text-white transition-colors">Features</button></li>
                 <li><button className="text-gray-400 hover:text-white transition-colors">Pricing</button></li>
                 <li><button className="text-gray-400 hover:text-white transition-colors">Mobile App</button></li>
-                <li><button className="text-gray-400 hover:text-white transition-colors">Integrations</button></li>
               </ul>
             </div>
 
