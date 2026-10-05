@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, CheckSquare, Shield, Lightbulb, Hammer, Download, Smartphone, Calendar, FileText, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Home, CheckSquare, Shield, Lightbulb, Hammer, Smartphone, Calendar, FileText, Facebook, Twitter, Instagram } from 'lucide-react';
 
 const LandingPage: React.FC = () => {
   const features = [
@@ -98,15 +98,6 @@ const LandingPage: React.FC = () => {
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Get maintenance suggestions tailored to your home, organize and compare contractor quotes alongside your projects, and find every home record in seconds. Share responsibilities with your household so everyone helps keep your home running beautifully.
             </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
-              <button
-                onClick={() => scrollToSection('download')}
-                className="bg-white text-gray-700 px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors font-semibold text-lg border border-gray-200 flex items-center space-x-2">
-                <Download className="h-5 w-5" />
-                <span>Download App</span>
-              </button>
-            </div>
 
             {/* Hero Image/Demo */}
             <div className="relative max-w-4xl mx-auto">
