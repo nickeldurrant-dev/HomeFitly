@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, CheckSquare, Shield, Lightbulb, Hammer, ArrowRight, Download, Smartphone, Calendar, FileText, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Home, CheckSquare, Shield, Lightbulb, Hammer, Download, Smartphone, Calendar, FileText, Facebook, Twitter, Instagram } from 'lucide-react';
 
 const LandingPage: React.FC = () => {
   const features = [
@@ -83,14 +83,6 @@ const LandingPage: React.FC = () => {
               </a>
             </nav>
 
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={() => scrollToSection('download')}
-                className="bg-brand-600 text-white px-6 py-2 rounded-lg hover:bg-brand-700 transition-colors font-medium"
-              >
-                Get Started Free
-              </button>
-            </div>
           </div>
         </div>
       </header>
@@ -108,13 +100,6 @@ const LandingPage: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
-              <button
-                onClick={() => scrollToSection('download')}
-                className="bg-brand-600 text-white px-8 py-4 rounded-xl hover:bg-brand-700 transition-all font-semibold text-lg flex items-center space-x-2 shadow-lg hover:shadow-xl"
-              >
-                <span>Get Started Free</span>
-                <ArrowRight className="h-5 w-5" />
-              </button>
               <button
                 onClick={() => scrollToSection('download')}
                 className="bg-white text-gray-700 px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors font-semibold text-lg border border-gray-200 flex items-center space-x-2">
@@ -272,13 +257,6 @@ const LandingPage: React.FC = () => {
                   Community support
                 </li>
               </ul>
-
-              <button
-                onClick={() => scrollToSection('download')}
-                className="w-full bg-white text-brand-700 border-2 border-brand-600 py-3 px-6 rounded-lg hover:bg-brand-50 transition-colors font-medium mt-auto"
-              >
-                Get Started Free
-              </button>
             </div>
 
             {/* Premium Plan */}
@@ -328,13 +306,6 @@ const LandingPage: React.FC = () => {
                   Priority support
                 </li>
               </ul>
-
-              <button
-                onClick={() => scrollToSection('download')}
-                className="w-full bg-brand-600 text-white py-3 px-6 rounded-lg hover:bg-brand-700 transition-colors font-medium mt-auto"
-              >
-                Get Started
-              </button>
             </div>
           </div>
 
@@ -434,21 +405,8 @@ const LandingPage: React.FC = () => {
             Ready to Take Your Home From Idea to Done?
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Start organizing your home today. Your future self will thank you.
+            HomeFitly for iPhone is coming soon to the App Store.
           </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <button
-              onClick={() => scrollToSection('download')}
-              className="bg-brand-600 text-white px-8 py-4 rounded-xl hover:bg-brand-700 transition-all font-semibold text-lg flex items-center space-x-2 shadow-lg hover:shadow-xl"
-            >
-              <span>Get Started Today</span>
-              <ArrowRight className="h-5 w-5" />
-            </button>
-            <p className="text-gray-400 text-sm">
-              No setup fees • Cancel anytime • Instant access
-            </p>
-          </div>
         </div>
       </section>
 
