@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, CheckSquare, Shield, Lightbulb, Hammer, ArrowRight, Download, Smartphone, Monitor, Crown, Calendar, FileText } from 'lucide-react';
+import { Home, CheckSquare, Shield, Lightbulb, Hammer, ArrowRight, Download, Smartphone, Monitor, Calendar, FileText, Facebook, Twitter, Instagram } from 'lucide-react';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -17,7 +17,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
     {
       icon: Hammer,
       title: 'Plan Projects',
-      description: 'Turn ideas into real projects. Outline the work, gather contractor quotes, and track every step until it is done.',
+      description: 'Turn ideas into real projects. Outline the work, organize and compare contractor quotes, and track every step until it is done.',
       accent: 'brand'
     },
     {
@@ -46,6 +46,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
     }
   ];
 
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -56,6 +60,33 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
               <Home className="h-8 w-8 text-brand-600" />
               <span className="text-2xl font-bold text-gray-900">HomeFitly</span>
             </div>
+
+            <nav className="hidden md:flex items-center space-x-8">
+              <button
+                onClick={() => scrollToSection('features')}
+                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+              >
+                Features
+              </button>
+              <button
+                onClick={() => scrollToSection('how-it-works')}
+                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+              >
+                How It Works
+              </button>
+              <button
+                onClick={() => scrollToSection('pricing')}
+                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+              >
+                Pricing
+              </button>
+              <a
+                href="/help"
+                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+              >
+                Help
+              </a>
+            </nav>
 
             <div className="flex items-center space-x-4">
               <button
@@ -84,7 +115,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
               <span className="text-clay-600 block">from idea to done.</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Save the inspiration you find, plan renovations and gather quotes, and never miss routine maintenance. HomeFitly keeps your ideas, your projects, and your home&apos;s upkeep in one organized place.
+              Get maintenance suggestions tailored to your home, organize and compare contractor quotes alongside your projects, and find every home record in seconds. Share responsibilities with your household so everyone helps keep your home running beautifully.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
@@ -95,7 +126,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
                 <span>Get Started Free</span>
                 <ArrowRight className="h-5 w-5" />
               </button>
-              <button className="bg-white text-gray-700 px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors font-semibold text-lg border border-gray-200 flex items-center space-x-2">
+              <button
+                onClick={() => scrollToSection('download')}
+                className="bg-white text-gray-700 px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors font-semibold text-lg border border-gray-200 flex items-center space-x-2">
                 <Download className="h-5 w-5" />
                 <span>Download App</span>
               </button>
@@ -103,7 +136,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
 
             {/* Hero Image/Demo */}
             <div className="relative max-w-4xl mx-auto">
-              <div className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-200">
+              <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+                <p className="text-xs font-medium uppercase tracking-wider text-gray-400 text-center mb-6">Sample home</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="bg-gradient-to-r from-clay-50 to-clay-100 rounded-xl p-6 border border-clay-200">
                     <Lightbulb className="h-8 w-8 text-clay-600 mb-3" />
@@ -131,7 +165,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      <section id="features" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -161,7 +195,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-white">
+      <section id="how-it-works" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -197,7 +231,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
               <div className="bg-brand-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl font-bold text-brand-600">3</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Stay on Maintenance</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Stay on Top of Maintenance</h3>
               <p className="text-gray-600">
                 Get smart reminders and schedules tailored to your home, so nothing important ever slips.
               </p>
@@ -207,7 +241,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
       </section>
 
       {/* Pricing Preview */}
-      <section className="py-20 bg-white">
+      <section id="pricing" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -220,7 +254,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Free Plan */}
-            <div className="bg-white rounded-2xl p-8 border-2 border-gray-200">
+            <div className="bg-white rounded-2xl p-8 border-2 border-gray-200 flex flex-col h-full">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Free</h3>
                 <div className="text-4xl font-bold text-gray-900 mb-4">$0<span className="text-lg text-gray-500">/month</span></div>
@@ -238,53 +272,67 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
+                  3 warranties, 5 contacts, 1 project
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
+                  10 receipts, 3 project ideas
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
                   Community support
                 </li>
               </ul>
 
               <button
                 onClick={onGetStarted}
-                className="w-full bg-gray-100 text-gray-700 py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors font-medium"
+                className="w-full bg-white text-brand-700 border-2 border-brand-600 py-3 px-6 rounded-lg hover:bg-brand-50 transition-colors font-medium mt-auto"
               >
                 Get Started Free
               </button>
             </div>
 
             {/* Premium Plan */}
-            <div className="bg-gradient-to-br from-brand-50 to-clay-100 rounded-2xl p-8 border-2 border-brand-600 relative">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-clay-600 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center space-x-1">
-                  <Crown className="h-4 w-4" />
-                  <span>Most Popular</span>
-                </span>
-              </div>
-
+            <div className="bg-gradient-to-br from-brand-50 to-clay-100 rounded-2xl p-8 border-2 border-brand-600 relative flex flex-col h-full">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
-                <div className="text-4xl font-bold text-gray-900 mb-4">$4.99<span className="text-lg text-gray-500">/month</span></div>
+                <div className="text-4xl font-bold text-gray-900 mb-1">$4.99<span className="text-lg text-gray-500">/month</span></div>
+                <p className="text-gray-500 text-sm mb-4">or $49.99/year, save about 17%</p>
                 <p className="text-gray-600">Everything you need for home management</p>
               </div>
 
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
-                  Unlimited tasks & checklists
+                  Unlimited tasks and projects
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
-                  Smart reminders & notifications
+                  Unlimited warranties, contacts, receipts, ideas
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
-                  Advanced warranty tracking
+                  Family management with task assignment
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
-                  Premium DIY guides
+                  Kid task approval workflows
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
-                  Cloud document storage
+                  Receipt and document scanning
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
+                  Warranty tracking with expiration alerts
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
+                  Contractor quote comparison
+                </li>
+                <li className="flex items-center text-gray-600">
+                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
+                  Advanced task recommendations
                 </li>
                 <li className="flex items-center text-gray-600">
                   <CheckSquare className="h-5 w-5 text-brand-600 mr-3" />
@@ -294,53 +342,99 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
 
               <button
                 onClick={onGetStarted}
-                className="w-full bg-brand-600 text-white py-3 px-6 rounded-lg hover:bg-brand-700 transition-colors font-medium"
+                className="w-full bg-brand-600 text-white py-3 px-6 rounded-lg hover:bg-brand-700 transition-colors font-medium mt-auto"
               >
                 Get Started
               </button>
             </div>
           </div>
+
+          <p className="text-center text-sm text-gray-500 mt-8">
+            Select Premium to start your subscription. You can cancel anytime from your app store settings.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Common Questions
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            <details className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+              <summary className="font-semibold text-gray-900 cursor-pointer">
+                What&apos;s included in the free plan?
+              </summary>
+              <p className="text-gray-600 mt-3">
+                Unlimited tasks, a home profile, basic reminders, plus 3 warranties, 5 contacts, 1 project, 10 receipts, and 3 project ideas.
+              </p>
+            </details>
+
+            <details className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+              <summary className="font-semibold text-gray-900 cursor-pointer">
+                When will the mobile apps be available?
+              </summary>
+              <p className="text-gray-600 mt-3">
+                Our iOS and Android apps are coming soon. The web app is available now and your data will sync when the mobile apps launch.
+              </p>
+            </details>
+
+            <details className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+              <summary className="font-semibold text-gray-900 cursor-pointer">
+                Can I share tasks with family?
+              </summary>
+              <p className="text-gray-600 mt-3">
+                Yes, Premium includes family household management with task assignment and rotation, plus kid task approval workflows.
+              </p>
+            </details>
+
+            <details className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+              <summary className="font-semibold text-gray-900 cursor-pointer">
+                How do subscriptions work?
+              </summary>
+              <p className="text-gray-600 mt-3">
+                Premium is $4.99/month or $49.99/year, managed through your app store. Cancel anytime.
+              </p>
+            </details>
+          </div>
         </div>
       </section>
 
       {/* App Download Section */}
-      <section className="py-20 bg-gradient-to-r from-brand-700 to-brand-800">
+      <section id="download" className="py-20 bg-gradient-to-r from-brand-700 to-brand-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-4">
             Take HomeFitly Everywhere
           </h2>
           <p className="text-xl text-brand-100 mb-8 max-w-2xl mx-auto">
-            Download our mobile app to manage your home maintenance on the go. Available for iOS and Android.
+            Download our mobile app to manage your home maintenance on the go. Coming soon to iOS and Android. Join the waitlist below to be notified.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <button className="bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition-colors font-medium flex items-center space-x-3">
-              <Smartphone className="h-6 w-6" />
-              <div className="text-left">
-                <div className="text-xs text-gray-300">Download on the</div>
-                <div className="text-lg font-semibold">App Store</div>
-              </div>
-            </button>
             <button
-              onClick={() => alert('iOS app launching soon! Sign up to be notified when it\'s available.')}
-              className="bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition-colors font-medium flex items-center space-x-3"
+              onClick={onGetStarted}
+              className="bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition-colors font-medium flex items-center space-x-3 relative"
             >
               <Smartphone className="h-6 w-6" />
               <div className="text-left">
-                <div className="text-xs text-gray-300">Download on the</div>
                 <div className="text-lg font-semibold">App Store</div>
               </div>
+              <span className="absolute -top-2.5 -right-2.5 bg-clay-600 text-white text-xs font-medium px-2.5 py-1 rounded-full">Coming Soon</span>
             </button>
 
             <button
-              onClick={() => alert('Android app launching soon! Sign up to be notified when it\'s available.')}
-              className="bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition-colors font-medium flex items-center space-x-3"
+              onClick={onGetStarted}
+              className="bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition-colors font-medium flex items-center space-x-3 relative"
             >
               <Smartphone className="h-6 w-6" />
               <div className="text-left">
-                <div className="text-xs text-gray-300">Get it on</div>
                 <div className="text-lg font-semibold">Google Play</div>
               </div>
+              <span className="absolute -top-2.5 -right-2.5 bg-clay-600 text-white text-xs font-medium px-2.5 py-1 rounded-full">Coming Soon</span>
             </button>
 
             <button
@@ -349,7 +443,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
             >
               <Monitor className="h-6 w-6" />
               <div className="text-left">
-                <div className="text-xs text-brand-500">Or use the</div>
+                <div className="text-xs text-brand-500">Open the</div>
                 <div className="text-lg font-semibold">Web App</div>
               </div>
             </button>
@@ -400,21 +494,21 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <span className="sr-only">Facebook</span>
-                  <div className="w-6 h-6 bg-gray-600 rounded"></div>
+                  <Facebook className="w-6 h-6" />
                 </button>
                 <button
                   onClick={() => window.open('https://twitter.com/homefitly', '_blank')}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <span className="sr-only">Twitter</span>
-                  <div className="w-6 h-6 bg-gray-600 rounded"></div>
+                  <Twitter className="w-6 h-6" />
                 </button>
                 <button
                   onClick={() => window.open('https://instagram.com/homefitly', '_blank')}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <span className="sr-only">Instagram</span>
-                  <div className="w-6 h-6 bg-gray-600 rounded"></div>
+                  <Instagram className="w-6 h-6" />
                 </button>
               </div>
             </div>
@@ -422,10 +516,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
             <div>
               <h3 className="text-white font-semibold mb-4">Product</h3>
               <ul className="space-y-2">
-                <li><button className="text-gray-400 hover:text-white transition-colors">Features</button></li>
-                <li><button className="text-gray-400 hover:text-white transition-colors">Pricing</button></li>
-                <li><button className="text-gray-400 hover:text-white transition-colors">Mobile App</button></li>
-                <li><button className="text-gray-400 hover:text-white transition-colors">Integrations</button></li>
+                <li><button onClick={() => scrollToSection('features')} className="text-gray-400 hover:text-white transition-colors">Features</button></li>
+                <li><button onClick={() => scrollToSection('pricing')} className="text-gray-400 hover:text-white transition-colors">Pricing</button></li>
+                <li><button onClick={() => scrollToSection('download')} className="text-gray-400 hover:text-white transition-colors">Mobile App</button></li>
               </ul>
             </div>
 
@@ -443,7 +536,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center">
             <p className="text-gray-400">
-              © 2025 HomeFitly. All rights reserved. Made with ❤️ for homeowners everywhere.
+              © 2026 HomeFitly. All rights reserved. Made with ❤️ for homeowners everywhere.
             </p>
           </div>
         </div>
