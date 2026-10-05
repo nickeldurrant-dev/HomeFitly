@@ -6,9 +6,10 @@ import { SecurityManager } from '../../utils/security';
 interface SignupPageProps {
   onSuccess: () => void;
   onSwitchToLogin: () => void;
+  onBackToHome?: () => void;
 }
 
-const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) => {
+const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin, onBackToHome }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -119,12 +120,21 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) =
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-brand-50 to-clay-100 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
+        {/* Back to home */}
+        {onBackToHome && (
+          <button
+            onClick={onBackToHome}
+            className="text-sm text-brand-600 hover:text-brand-700 font-medium transition-colors mb-6"
+          >
+            ← Back to home
+          </button>
+        )}
         {/* Logo and Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center space-x-2 mb-4">
-            <Home className="h-8 w-8 text-blue-600" />
+            <Home className="h-8 w-8 text-brand-600" />
             <span className="text-2xl font-bold text-gray-900">HomeFitly</span>
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Create your account</h1>
@@ -153,7 +163,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) =
                     value={formData.firstName}
                     onChange={(e) => handleInputChange('firstName', SecurityManager.sanitizeInput(e.target.value))}
                     required
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                     placeholder="First name"
                   />
                 </div>
@@ -161,15 +171,14 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) =
 
               <div>
                 <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                  Last name
+                  Last name (optional)
                 </label>
                 <input
                   id="lastName"
                   type="text"
                   value={formData.lastName}
                   onChange={(e) => handleInputChange('lastName', SecurityManager.sanitizeInput(e.target.value))}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                   placeholder="Last name"
                 />
               </div>
@@ -187,7 +196,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) =
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', SecurityManager.sanitizeInput(e.target.value))}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                   placeholder="Enter your email"
                 />
               </div>
@@ -205,12 +214,13 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) =
                   value={formData.password}
                   onChange={(e) => handleInputChange('password', e.target.value)}
                   required
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                   placeholder="Create a password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
@@ -230,12 +240,13 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) =
                   value={formData.confirmPassword}
                   onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
                   required
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                   placeholder="Confirm your password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
@@ -244,28 +255,26 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) =
             </div>
 
             {/* Password Requirements */}
-            {formData.password && (
-              <div className="space-y-2">
-                <p className="text-sm font-medium text-gray-700">Password requirements:</p>
-                {passwordRequirements.map((req, index) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <div className={`w-4 h-4 rounded-full flex items-center justify-center ${
-                      req.met ? 'bg-green-100' : 'bg-gray-100'
-                    }`}>
-                      {req.met && <Check className="h-3 w-3 text-green-600" />}
-                    </div>
-                    <span className={`text-sm ${req.met ? 'text-green-600' : 'text-gray-500'}`}>
-                      {req.text}
-                    </span>
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-gray-700">Password requirements:</p>
+              {passwordRequirements.map((req, index) => (
+                <div key={index} className="flex items-center space-x-2">
+                  <div className={`w-4 h-4 rounded-full flex items-center justify-center ${
+                    req.met ? 'bg-green-100' : 'bg-gray-100'
+                  }`}>
+                    {req.met && <Check className="h-3 w-3 text-green-600" />}
                   </div>
-                ))}
-              </div>
-            )}
+                  <span className={`text-sm ${req.met ? 'text-green-600' : 'text-gray-500'}`}>
+                    {req.text}
+                  </span>
+                </div>
+              ))}
+            </div>
 
             <button
               type="submit"
               disabled={isLoading || !passwordRequirements.every(req => req.met)}
-              className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              className="w-full bg-brand-600 text-white py-3 px-4 rounded-lg hover:bg-brand-700 focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
             >
               {isLoading ? (
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
@@ -276,6 +285,10 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) =
                 </>
               )}
             </button>
+
+            <p className="text-sm text-gray-500 text-center">
+              After signing up, you'll set up your home profile so we can personalize your maintenance plan.
+            </p>
           </form>
 
           <div className="mt-6 text-center">
@@ -283,7 +296,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) =
               Already have an account?{' '}
               <button
                 onClick={onSwitchToLogin}
-                className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                className="text-brand-600 hover:text-brand-700 font-medium transition-colors"
               >
                 Sign in
               </button>
@@ -294,7 +307,14 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess, onSwitchToLogin }) =
         {/* Footer */}
         <div className="text-center mt-8">
           <p className="text-sm text-gray-500">
-            🔒 Your data is encrypted and secure. By creating an account, you agree to our Terms of Service and Privacy Policy
+            🔒 Your data is encrypted and secure. By creating an account, you agree to our{' '}
+            <a href="/terms" className="text-brand-600 hover:text-brand-700 underline transition-colors">
+              Terms of Use
+            </a>{' '}
+            and{' '}
+            <a href="/privacy" className="text-brand-600 hover:text-brand-700 underline transition-colors">
+              Privacy Policy
+            </a>
           </p>
         </div>
       </div>
