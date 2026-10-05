@@ -6,14 +6,17 @@ import { SecurityManager } from '../../utils/security';
 interface LoginPageProps {
   onSuccess: () => void;
   onSwitchToSignup: () => void;
+  onBackToHome?: () => void;
 }
 
-const LoginPage: React.FC<LoginPageProps> = ({ onSuccess, onSwitchToSignup }) => {
+const LoginPage: React.FC<LoginPageProps> = ({ onSuccess, onSwitchToSignup, onBackToHome }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [resetMessage, setResetMessage] = useState('');
+  const [isSendingReset, setIsSendingReset] = useState(false);
   const [loginAttempts, setLoginAttempts] = useState(0);
   const [isBlocked, setIsBlocked] = useState(false);
 
@@ -80,6 +83,34 @@ const LoginPage: React.FC<LoginPageProps> = ({ onSuccess, onSwitchToSignup }) =>
     }
   };
 
+  const handleForgotPassword = async () => {
+    setError('');
+    setResetMessage('');
+    if (!email.trim()) {
+      setError('Please enter your email address first so we can send the reset link.');
+      return;
+    }
+    if (!SecurityManager.isValidEmail(email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+    setIsSendingReset(true);
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(
+        SecurityManager.sanitizeInput(email)
+      );
+      if (error) {
+        setError(error.message);
+      } else {
+        setResetMessage('Password reset email sent. Check your inbox.');
+      }
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsSendingReset(false);
+    }
+  };
+
   // Reset block after 15 minutes
   React.useEffect(() => {
     if (isBlocked) {
@@ -93,12 +124,21 @@ const LoginPage: React.FC<LoginPageProps> = ({ onSuccess, onSwitchToSignup }) =>
   }, [isBlocked]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-brand-50 to-clay-100 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
+        {/* Back to home */}
+        {onBackToHome && (
+          <button
+            onClick={onBackToHome}
+            className="text-sm text-brand-600 hover:text-brand-700 font-medium transition-colors mb-6"
+          >
+            ← Back to home
+          </button>
+        )}
         {/* Logo and Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center space-x-2 mb-4">
-            <Home className="h-8 w-8 text-blue-600" />
+            <Home className="h-8 w-8 text-brand-600" />
             <span className="text-2xl font-bold text-gray-900">HomeFitly</span>
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome back</h1>
@@ -119,6 +159,12 @@ const LoginPage: React.FC<LoginPageProps> = ({ onSuccess, onSwitchToSignup }) =>
               </div>
             )}
 
+            {resetMessage && (
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <p className="text-green-800 text-sm">{resetMessage}</p>
+              </div>
+            )}
+
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                 Email address
@@ -132,7 +178,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onSuccess, onSwitchToSignup }) =>
                   onChange={(e) => setEmail(SecurityManager.sanitizeInput(e.target.value))}
                   required
                   disabled={isBlocked}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                   placeholder="Enter your email"
                 />
               </div>
@@ -151,15 +197,26 @@ const LoginPage: React.FC<LoginPageProps> = ({ onSuccess, onSwitchToSignup }) =>
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   disabled={isBlocked}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
                   placeholder="Enter your password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                </button>
+              </div>
+              <div className="flex justify-end mt-2">
+                <button
+                  type="button"
+                  onClick={handleForgotPassword}
+                  disabled={isSendingReset || isBlocked}
+                  className="text-sm text-brand-600 hover:text-brand-700 font-medium transition-colors disabled:opacity-50"
+                >
+                  {isSendingReset ? 'Sending...' : 'Forgot password?'}
                 </button>
               </div>
             </div>
@@ -167,7 +224,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onSuccess, onSwitchToSignup }) =>
             <button
               type="submit"
               disabled={isLoading || isBlocked}
-              className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              className="w-full bg-brand-600 text-white py-3 px-4 rounded-lg hover:bg-brand-700 focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
             >
               {isLoading ? (
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
@@ -187,7 +244,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onSuccess, onSwitchToSignup }) =>
               Don't have an account?{' '}
               <button
                 onClick={onSwitchToSignup}
-                className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                className="text-brand-600 hover:text-brand-700 font-medium transition-colors"
               >
                 Sign up
               </button>
