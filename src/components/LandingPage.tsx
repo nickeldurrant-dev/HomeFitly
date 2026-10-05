@@ -1,12 +1,7 @@
 import React from 'react';
-import { Home, CheckSquare, Shield, Lightbulb, Hammer, ArrowRight, Download, Smartphone, Monitor, Calendar, FileText, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Home, CheckSquare, Shield, Lightbulb, Hammer, ArrowRight, Download, Smartphone, Calendar, FileText, Facebook, Twitter, Instagram } from 'lucide-react';
 
-interface LandingPageProps {
-  onGetStarted: () => void;
-  onSignIn: () => void;
-}
-
-const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => {
+const LandingPage: React.FC = () => {
   const features = [
     {
       icon: Lightbulb,
@@ -90,13 +85,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
 
             <div className="flex items-center space-x-4">
               <button
-                onClick={onSignIn}
-                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
-              >
-                Sign In
-              </button>
-              <button
-                onClick={onGetStarted}
+                onClick={() => scrollToSection('download')}
                 className="bg-brand-600 text-white px-6 py-2 rounded-lg hover:bg-brand-700 transition-colors font-medium"
               >
                 Get Started Free
@@ -120,7 +109,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
               <button
-                onClick={onGetStarted}
+                onClick={() => scrollToSection('download')}
                 className="bg-brand-600 text-white px-8 py-4 rounded-xl hover:bg-brand-700 transition-all font-semibold text-lg flex items-center space-x-2 shadow-lg hover:shadow-xl"
               >
                 <span>Get Started Free</span>
@@ -285,7 +274,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
               </ul>
 
               <button
-                onClick={onGetStarted}
+                onClick={() => scrollToSection('download')}
                 className="w-full bg-white text-brand-700 border-2 border-brand-600 py-3 px-6 rounded-lg hover:bg-brand-50 transition-colors font-medium mt-auto"
               >
                 Get Started Free
@@ -341,7 +330,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
               </ul>
 
               <button
-                onClick={onGetStarted}
+                onClick={() => scrollToSection('download')}
                 className="w-full bg-brand-600 text-white py-3 px-6 rounded-lg hover:bg-brand-700 transition-colors font-medium mt-auto"
               >
                 Get Started
@@ -376,10 +365,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
 
             <details className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
               <summary className="font-semibold text-gray-900 cursor-pointer">
-                When will the mobile apps be available?
+                When will the app be available?
               </summary>
               <p className="text-gray-600 mt-3">
-                Our iOS and Android apps are coming soon. The web app is available now and your data will sync when the mobile apps launch.
+                HomeFitly launches first on iPhone and is coming soon to the App Store, with Android to follow after the iOS launch.
               </p>
             </details>
 
@@ -411,42 +400,29 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
             Take HomeFitly Everywhere
           </h2>
           <p className="text-xl text-brand-100 mb-8 max-w-2xl mx-auto">
-            Download our mobile app to manage your home maintenance on the go. Coming soon to iOS and Android. Join the waitlist below to be notified.
+            HomeFitly for iPhone is coming soon to the App Store, with Android to follow.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <button
-              onClick={onGetStarted}
-              className="bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition-colors font-medium flex items-center space-x-3 relative"
+            <div
+              className="bg-black text-white px-8 py-4 rounded-xl font-medium flex items-center space-x-3 relative cursor-default"
             >
               <Smartphone className="h-6 w-6" />
               <div className="text-left">
                 <div className="text-lg font-semibold">App Store</div>
               </div>
               <span className="absolute -top-2.5 -right-2.5 bg-clay-600 text-white text-xs font-medium px-2.5 py-1 rounded-full">Coming Soon</span>
-            </button>
+            </div>
 
-            <button
-              onClick={onGetStarted}
-              className="bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition-colors font-medium flex items-center space-x-3 relative"
+            <div
+              className="bg-black text-white px-8 py-4 rounded-xl font-medium flex items-center space-x-3 relative cursor-default"
             >
               <Smartphone className="h-6 w-6" />
               <div className="text-left">
                 <div className="text-lg font-semibold">Google Play</div>
               </div>
               <span className="absolute -top-2.5 -right-2.5 bg-clay-600 text-white text-xs font-medium px-2.5 py-1 rounded-full">Coming Soon</span>
-            </button>
-
-            <button
-              onClick={onGetStarted}
-              className="bg-white text-brand-700 px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors font-medium flex items-center space-x-3"
-            >
-              <Monitor className="h-6 w-6" />
-              <div className="text-left">
-                <div className="text-xs text-brand-500">Open the</div>
-                <div className="text-lg font-semibold">Web App</div>
-              </div>
-            </button>
+            </div>
           </div>
         </div>
       </section>
@@ -463,7 +439,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSignIn }) => 
 
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <button
-              onClick={onGetStarted}
+              onClick={() => scrollToSection('download')}
               className="bg-brand-600 text-white px-8 py-4 rounded-xl hover:bg-brand-700 transition-all font-semibold text-lg flex items-center space-x-2 shadow-lg hover:shadow-xl"
             >
               <span>Get Started Today</span>
