@@ -1,5 +1,17 @@
 import React from 'react';
-import { Home, CheckSquare, Shield, Lightbulb, Hammer, Smartphone, Calendar, FileText, Facebook, Twitter, Instagram } from 'lucide-react';
+import { CheckSquare, Shield, Lightbulb, Hammer, Smartphone, Calendar, FileText, Facebook, Twitter, Instagram } from 'lucide-react';
+
+// HomeFitly logo: H monogram with roofline crossbar
+const HomeFitlyLogo = ({ size = 32, variant = 'default' }: { size?: number; variant?: 'default' | 'white' }) => {
+  const bg = variant === 'white' ? '#FAF7F2' : '#2D5A3D';
+  const fg = variant === 'white' ? '#2D5A3D' : '#FAF7F2';
+  return (
+    <svg width={size} height={size} viewBox="0 0 72 72" fill="none" aria-label="HomeFitly logo">
+      <rect x="8" y="8" width="56" height="56" rx="16" fill={bg}/>
+      <path d="M22 50 V22 M50 50 V22 M22 36 L36 26 L50 36" stroke={fg} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+};
 
 const LandingPage: React.FC = () => {
   const features = [
@@ -52,7 +64,7 @@ const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Home className="h-8 w-8 text-brand-600" />
+              <HomeFitlyLogo size={32} />
               <span className="text-2xl font-bold text-gray-900">HomeFitly</span>
             </div>
 
@@ -407,7 +419,7 @@ const LandingPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-2 mb-4">
-                <Home className="h-8 w-8 text-brand-600" />
+                <HomeFitlyLogo size={32} variant="white" />
                 <span className="text-2xl font-bold text-white">HomeFitly</span>
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
