@@ -36,11 +36,35 @@ function App() {
   const { user, loading: authLoading, getFamilyName } = useAuth();
   const { isPremium, subscription, loading: subscriptionLoading } = useSubscription();
   
-  // App state
-  const [authMode, setAuthMode] = useState<'landing' | 'login' | 'signup' | 'success'>('landing');
+  // App state - initialize authMode from URL path for dedicated routes
+  const getInitialAuthMode = (): 'landing' | 'login' | 'signup' | 'success' => {
+    const path = window.location.pathname;
+    if (path === '/login') return 'login';
+    if (path === '/signup') return 'signup';
+    return 'landing';
+  };
+  const [authMode, setAuthMode] = useState<'landing' | 'login' | 'signup' | 'success'>(getInitialAuthMode);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [showPricingModal, setShowPricingModal] = useState(false);
+
+  // Sync authMode with URL for dedicated /login and /signup routes
+  const navigateToAuth = (mode: 'landing' | 'login' | 'signup') => {
+    setAuthMode(mode);
+    const path = mode === 'landing' ? '/' : `/${mode}`;
+    if (window.location.pathname !== path) {
+      window.history.pushState({}, document.title, path);
+    }
+  };
+
+  // Handle browser back/forward for auth routes
+  useEffect(() => {
+    const handlePopState = () => {
+      setAuthMode(getInitialAuthMode());
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Check for success parameter in URL
   useEffect(() => {
@@ -261,6 +285,7 @@ function App() {
       <SuccessPage 
         onContinue={() => {
           setAuthMode('landing');
+          window.history.replaceState({}, document.title, '/');
           setActiveTab('dashboard');
         }} 
       />
@@ -283,21 +308,23 @@ function App() {
         return (
           <LoginPage 
             onSuccess={handleAuthSuccess}
-            onSwitchToSignup={() => setAuthMode('signup')}
+            onSwitchToSignup={() => navigateToAuth('signup')}
+            onBackToHome={() => navigateToAuth('landing')}
           />
         );
       case 'signup':
         return (
           <SignupPage 
             onSuccess={handleAuthSuccess}
-            onSwitchToLogin={() => setAuthMode('login')}
+            onSwitchToLogin={() => navigateToAuth('login')}
+            onBackToHome={() => navigateToAuth('landing')}
           />
         );
       default:
         return (
           <LandingPage 
-            onGetStarted={() => setAuthMode('signup')}
-            onSignIn={() => setAuthMode('login')}
+            onGetStarted={() => navigateToAuth('signup')}
+            onSignIn={() => navigateToAuth('login')}
           />
         );
     }
