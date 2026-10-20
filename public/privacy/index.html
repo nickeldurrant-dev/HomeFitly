@@ -270,7 +270,7 @@
 
     <main>
         <h1 class="page-title">Privacy Policy</h1>
-        <span class="effective-date">Effective Date: June 27, 2025</span>
+        <span class="effective-date">Effective Date: October 20, 2026</span>
 
         <p class="intro-text">
             HomeFitly is committed to protecting your privacy. This Privacy Policy explains what information we collect, how we use it, how it is stored, and the choices you have regarding your data. By using HomeFitly, you agree to the practices described in this policy.
@@ -280,23 +280,25 @@
         <section class="policy-section">
             <h2>1. Introduction</h2>
             <p>
-                HomeFitly is a home maintenance and management application designed to help homeowners stay on top of tasks, warranties, projects, and household organization. We built HomeFitly with a privacy-first mindset: we do not serve advertisements, we do not embed analytics tracking SDKs, and we never sell your personal data to third parties.
+                HomeFitly is a home maintenance and management application designed to help homeowners stay on top of tasks, warranties, projects, and household organization. We built HomeFitly with a privacy-first mindset: we do not serve advertisements, we do not include advertising or third-party analytics SDKs, and we never sell your personal data to third parties. One exception to note: receipt scanning on Android uses Google's on-device text recognition (ML Kit), which sends Google limited diagnostic information, as described in Section 5.
             </p>
             <p>
-                This policy applies to the HomeFitly iOS mobile application and any associated services. HomeFitly is available as a native iOS app, with Android coming after the iOS launch. If you have questions about this policy, you can reach us at <a href="mailto:support@homefitly.com">support@homefitly.com</a>.
+                HomeFitly is operated by DataVerse Studios LLC. This policy applies to the HomeFitly apps for iPhone and iPad and for Android, the homefitly.com website, and the associated services. If you have questions about this policy, you can reach us using the contact details in Section 14.
             </p>
         </section>
 
         <!-- 2. Information We Collect -->
         <section class="policy-section">
             <h2>2. Information We Collect</h2>
-            <p>We collect information you provide directly when you create an account and use the app. We do not collect data passively through analytics or advertising frameworks.</p>
+            <p>Almost everything HomeFitly stores is information you enter yourself. We do not use advertising or analytics frameworks to collect data about you. On Android, receipt scanning with Google ML Kit sends Google the limited diagnostic information described in Section 5.</p>
 
             <h3>Account Information</h3>
             <ul>
                 <li><strong>Email address</strong> — used for account creation, authentication, and communication such as password resets.</li>
                 <li><strong>Password</strong> — securely hashed before storage; we never store or have access to your plain-text password.</li>
-                <li><strong>Apple ID token</strong> — if you choose to sign in with Apple, we receive a unique identifier and, if you allow it, your email address. We do not receive your Apple ID password.</li>
+                <li><strong>Sign in with Apple (iPhone and iPad, optional)</strong> — if you choose to sign in with Apple, we receive a unique identifier and, if you allow it, your email address or a private relay address. We do not receive your Apple ID password.</li>
+                <li><strong>Account identifier</strong> — each HomeFitly account has a unique ID. It links your synced records and your membership to your account.</li>
+                <li><strong>Age group</strong> — when you create an account, we ask your birth month and year and keep only your age group (12, 13 to 17, or adult; for age 12 we also keep the month you turn 13). We do not store your birth date. Accounts for children under 12 are not available, and a 12-year-old's account needs a parent's consent (see Section 12).</li>
             </ul>
 
             <h3>Home Profile Information</h3>
@@ -309,11 +311,18 @@
                 <li>Household size and family name</li>
             </ul>
 
+            <h3>Website and Support</h3>
+            <ul>
+                <li><strong>Launch waitlist</strong> — if you sign up on our website, we store your email address and your choice of iPhone or Android in Supabase so we can send the launch notice you requested. You can ask to leave the waitlist and have this information deleted by emailing <a href="mailto:support@homefitly.com">support@homefitly.com</a>.</li>
+                <li><strong>Website visits</strong> — GitHub Pages hosts this website and logs visitors' IP addresses for security, including when visitors are not signed into GitHub. See Section 5.</li>
+                <li><strong>Support requests</strong> — when you contact us, we receive your contact details and the information you choose to include so we can respond. Please do not send passwords or identity-verification documents to HomeFitly support.</li>
+            </ul>
+
             <h3>Task and Maintenance Data</h3>
             <ul>
                 <li>Tasks and maintenance records you create, including titles, descriptions, schedules, and completion history</li>
                 <li>Checklist data for seasonal and routine maintenance</li>
-                <li>Notification preferences for task reminders</li>
+                <li>Reminder preferences</li>
             </ul>
 
             <h3>Warranty Information</h3>
@@ -346,6 +355,12 @@
                 <li>Names, roles, and avatar color preferences for family members added to your household</li>
                 <li>Task assignments and completion data per household member</li>
             </ul>
+
+            <h3>Membership Records</h3>
+            <ul>
+                <li><strong>Subscriptions</strong> — if you subscribe, we store the store's purchase identifiers (an App Store transaction ID or a Google Play purchase token), the product, its status and its expiry, so one membership works on both iPhone and Android with the same HomeFitly account. To match a purchase to your account, your account ID is attached to App Store purchases, and a one-way hash of it is sent to Google Play with Android purchases.</li>
+                <li><strong>Complimentary memberships</strong> — if HomeFitly grants your account complimentary Premium (for example, for support or app review), we keep a record of the grant, its end date, and who granted or revoked it.</li>
+            </ul>
         </section>
 
         <!-- 3. How We Use Your Information -->
@@ -354,11 +369,13 @@
             <p>We use the information we collect solely to provide and improve the HomeFitly experience. Specifically, we use your data to:</p>
             <ul>
                 <li><strong>Provide core app functionality</strong> — create and manage your account, display your home profile, schedule and track maintenance tasks, store warranties and receipts, and manage home projects.</li>
-                <li><strong>Personalize recommendations</strong> — suggest relevant maintenance tasks and schedules based on your home type, features, location, and lifestyle preferences.</li>
-                <li><strong>Send notifications</strong> — deliver task reminders, warranty expiration alerts, and other notifications you have opted into through your device's push notification service (Apple Push Notification Service on iOS, Firebase Cloud Messaging on Android).</li>
+                <li><strong>Personalize recommendations</strong> — suggest relevant maintenance tasks and schedules based on the home details you enter (such as home type, features and, if you choose, your address) and your lifestyle preferences. HomeFitly does not use your device's location.</li>
+                <li><strong>Show reminders</strong> — task reminders and other reminders you turn on are scheduled on your device as local notifications. HomeFitly does not send push notifications from a server.</li>
                 <li><strong>Enable family collaboration</strong> — allow Premium household members to share tasks, view assignments, and track household activity.</li>
-                <li><strong>Sync data across devices</strong> — for Premium subscribers, synchronize your data securely so you can access it across your devices.</li>
+                <li><strong>Sync data across devices</strong> — for Premium members, synchronize your data securely so you can access it across your devices, on iPhone and Android.</li>
+                <li><strong>Verify memberships</strong> — confirm your subscription with Apple or Google, or a complimentary membership, so Premium works on every device where you sign in to the same HomeFitly account.</li>
                 <li><strong>Provide customer support</strong> — respond to your inquiries and resolve issues when you contact us.</li>
+                <li><strong>Send a requested launch notice</strong> — use your website waitlist email and platform choice to notify you when HomeFitly launches for that platform.</li>
                 <li><strong>Process authentication</strong> — verify your identity when you sign in and facilitate password resets.</li>
             </ul>
             <p>We do <strong>not</strong> use your data for advertising, and we do <strong>not</strong> sell, rent, or trade your personal information to any third party.</p>
@@ -369,11 +386,11 @@
             <h2>4. How We Store Your Data</h2>
 
             <h3>On-Device Storage</h3>
-            <p>HomeFitly stores your data locally on your device using secure on-device storage. This means your core data remains on your phone, tablet, or computer and is protected by your device's built-in security features, including encryption at rest.</p>
+            <p>HomeFitly stores your data locally on your device using secure on-device storage. This means your core data remains on your phone or tablet and is protected by your device's built-in security features, including encryption at rest.</p>
 
             <h3>Cloud Storage</h3>
             <p>We use <a href="https://supabase.com" target="_blank" rel="noopener noreferrer">Supabase</a> as our cloud backend for authentication and data synchronization. Supabase infrastructure is hosted on Amazon Web Services (AWS). When you create an account or use Premium sync features, your data is transmitted to and stored on Supabase servers.</p>
-            <p>Premium subscribers who enable cross-device sync have their data stored both locally on each device and in the Supabase cloud backend. Free-tier users primarily rely on local, on-device storage with Supabase used for authentication.</p>
+            <p>Premium members who use sync have their data stored both locally on each device and in the Supabase cloud backend. Free-tier users primarily rely on local, on-device storage with Supabase used for authentication.</p>
         </section>
 
         <!-- 5. Third-Party Services -->
@@ -381,22 +398,23 @@
             <h2>5. Third-Party Services</h2>
             <p>HomeFitly integrates with a limited number of third-party services, each necessary for core functionality. We do not use any advertising SDKs or third-party analytics platforms.</p>
             <ul>
-                <li><strong>Supabase</strong> — provides authentication (email/password and Apple Sign-In), cloud database storage, and real-time data synchronization. Supabase processes your account credentials and synced app data. <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase Privacy Policy</a>.</li>
-                <li><strong>Apple StoreKit and Google Play Billing</strong> — handle in-app purchase and subscription transactions. Payment information is managed entirely by Apple or Google; HomeFitly never receives or stores your credit card or payment details. <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple Privacy Policy</a> · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.</li>
-                <li><strong>Push notification services</strong> — deliver task reminders, warranty expiration alerts, and other notifications to your device (Apple Push Notification Service on iOS, Firebase Cloud Messaging on Android). Notification content is processed through Apple or Google infrastructure.</li>
+                <li><strong>Supabase</strong> — provides authentication (email/password, and Sign in with Apple on iPhone and iPad), cloud database storage, private file storage, and data synchronization. Supabase processes your account credentials and synced app data. <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase Privacy Policy</a>.</li>
+                <li><strong>GitHub Pages</strong> — hosts homefitly.com and records visitor IP addresses for security. <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection" target="_blank" rel="noopener noreferrer">GitHub Pages data collection</a> · <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a>.</li>
+                <li><strong>Apple App Store and Google Play Billing</strong> — handle in-app purchase and subscription transactions. Payment information is managed entirely by Apple or Google; HomeFitly never receives or stores your credit card or payment details. Our server checks your purchase with Apple or Google to confirm your membership. <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple Privacy Policy</a> · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.</li>
+                <li><strong>Google ML Kit text recognition (Android)</strong> — reads receipt text on your device. When it is used, Google receives limited diagnostic and usage information: device model and operating system, app package and version, performance and error information, technical details of the request (such as image format and size), and a device identifier. <a href="https://developers.google.com/ml-kit/android-data-disclosure" target="_blank" rel="noopener noreferrer">Google's ML Kit data disclosure</a>.</li>
+                <li><strong>Sign in with Apple (iPhone and iPad, optional)</strong> — Apple shares your Apple ID identifier and, if you allow it, your email address or a private relay address with HomeFitly.</li>
+                <li><strong>Kids Web Services (KWS), from Epic Games</strong> — confirms that a parent is an adult before a 12-year-old's account can be created. HomeFitly sends KWS the parent's account email address, the child's country or region, the parent's language and a random one-time reference code. The reference code isn't anonymous: in our records it links the verification to the parent's request, the invitation and the parent's account. KWS's own terms and privacy policy apply to the verification. <a href="https://www.kidswebservices.com/" target="_blank" rel="noopener">Kids Web Services</a>.</li>
             </ul>
-            <p>We do not share your personal data with any other third parties. No data brokers, advertisers, or analytics companies receive information from HomeFitly.</p>
+            <p>HomeFitly uses these providers to operate the service. We do not share your information with data brokers or advertisers.</p>
         </section>
 
-        <!-- 6. Premium Subscriptions -->
+        <!-- 6. Premium Memberships -->
         <section class="policy-section">
-            <h2>6. Premium Subscriptions</h2>
-            <p>HomeFitly offers a Premium subscription that unlocks additional features, including cross-device sync, household family management, and expanded storage.</p>
-            <ul>
-                <li><strong>Monthly plan:</strong> $4.99 per month</li>
-                <li><strong>Annual plan:</strong> $49.99 per year</li>
-            </ul>
-            <p>All subscription billing is handled entirely by Apple through the App Store or by Google through Google Play, depending on your device. HomeFitly does not collect, process, or store any payment information such as credit card numbers or billing addresses. Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current billing period. On iPhone or iPad, you can manage or cancel your subscription in your Apple ID account settings. On Android, you can manage or cancel in the Google Play Store under Payments &amp; subscriptions.</p>
+            <h2>6. Premium Memberships</h2>
+            <p>HomeFitly offers a Premium subscription that unlocks additional features, including cross-device sync, household family management, and expanded storage. One Premium membership works on iPhone and Android when you sign in with the same HomeFitly account.</p>
+            <p>Premium is currently offered in the United States only, as a monthly plan (USD 4.99 per month) or an annual plan (USD 49.99 per year), with no free trial. The App Store or Google Play shows the price before you subscribe.</p>
+            <p>All subscription billing is handled entirely by Apple through the App Store or by Google through Google Play, depending on where you subscribed. HomeFitly does not collect, process, or store any payment information such as credit card numbers or billing addresses. Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current billing period. On iPhone or iPad, you can manage or cancel your subscription in your Apple ID account settings. On Android, you can manage or cancel in the Google Play Store under Payments &amp; subscriptions.</p>
+            <p>HomeFitly may occasionally grant a complimentary membership, for example for support or app review. A complimentary membership is not a store subscription: it has an end date, is not billed, and has nothing to cancel in a store.</p>
             <p>For billing inquiries or refund requests, please contact <a href="https://support.apple.com" target="_blank" rel="noopener noreferrer">Apple Support</a> or <a href="https://support.google.com/googleplay" target="_blank" rel="noopener noreferrer">Google Play Support</a> directly.</p>
         </section>
 
@@ -409,17 +427,20 @@
                 <li><strong>Project photos</strong> — photograph home improvement projects to track progress.</li>
             </ul>
             <p>Camera access is requested only when you initiate a scanning or photo capture action. You can deny or revoke camera permissions at any time through your device's Settings app.</p>
-            <p>Photos and scanned images are stored locally on your device. For Premium subscribers with sync enabled, these images may also be uploaded to Supabase cloud storage to enable cross-device access. Images are transmitted over encrypted HTTPS connections.</p>
+            <p>Receipt text is recognized on your device: on iPhone and iPad with Apple's built-in Vision framework, and on Android with Google ML Kit (see Section 5). A photo is stored only if you save it.</p>
+            <p>Photos and scanned images are stored locally on your device. For Premium members with sync, these images may also be uploaded to private Supabase cloud storage to enable cross-device access. Images are transmitted over encrypted HTTPS connections.</p>
         </section>
 
         <!-- 8. Data Retention -->
         <section class="policy-section">
             <h2>8. Data Retention</h2>
-            <p>HomeFitly retains your data for as long as your account is active and you choose to keep it. We do not impose automatic deletion timelines on your content.</p>
+            <p>Except for the children’s information and consent-record schedule in Section 12, HomeFitly retains your account data while your account is active and you choose to keep it.</p>
             <ul>
                 <li><strong>Individual items:</strong> You can delete any individual task, warranty, receipt, project, contact, or other record at any time from within the app. Deleted items are removed from local storage and, if applicable, from the cloud backend.</li>
-                <li><strong>Account data:</strong> All data associated with your account is retained until you choose to delete your account. Upon account deletion, all data is permanently removed from both local storage and our cloud servers.</li>
+                <li><strong>Account data:</strong> All data associated with your account, including subscription and complimentary-membership records, is retained until you choose to delete your account. Upon account deletion, your data is removed from our cloud servers and from the device you delete from, as described in Section 11, with the exceptions listed there (a minimal consent record for a 12-year-old's account, and protected recovery backups made before 12-year-old accounts were introduced).</li>
                 <li><strong>Authentication records:</strong> Basic authentication logs maintained by Supabase are subject to Supabase's own data retention policies.</li>
+                <!-- Approved 2026-10-20 (durations and this wording); the cleanup is active since 2026-10-20 (gate 2 met). Publish with this page. -->
+                <li><strong>Children's information and consent records:</strong> information about 12-year-olds and their parents' consent is kept only as long as needed for the purposes described in Section 12, and then deleted on the schedule set out there. It is never kept indefinitely.</li>
             </ul>
         </section>
 
@@ -428,8 +449,8 @@
             <h2>9. Data Security</h2>
             <p>We implement multiple layers of security to protect your information:</p>
             <ul>
-                <li><strong>Encryption in transit:</strong> All data transmitted between the app and our servers uses HTTPS (TLS encryption), ensuring your information cannot be intercepted during transfer.</li>
-                <li><strong>Database security:</strong> Our Supabase backend enforces Row Level Security (RLS) policies, which ensure that each user can only access their own data. No user can query, view, or modify another user's records.</li>
+                <li><strong>Encryption in transit:</strong> Data transmitted between the app and our servers uses HTTPS (TLS encryption) to protect information in transit.</li>
+                <li><strong>Database security:</strong> Our Supabase backend enforces Row Level Security (RLS) policies. Your account can access only its own records and, if you join a household, the shared household information that household's rules allow (such as the household's member list, shared tasks and their completion history). Other users cannot query, view, or modify your personal records, and the app cannot change membership records.</li>
                 <li><strong>Password hashing:</strong> Your password is cryptographically hashed before storage. We never store or log plain-text passwords.</li>
                 <li><strong>On-device protection:</strong> Local data stored on your device benefits from built-in device encryption and security features.</li>
             </ul>
@@ -441,10 +462,10 @@
             <h2>10. Your Privacy Choices</h2>
             <p>You have control over your data and how HomeFitly operates on your device:</p>
             <ul>
-                <li><strong>Notification preferences:</strong> You can customize which notifications you receive within the app's settings, or disable notifications entirely through your device's Settings app.</li>
+                <li><strong>Reminders:</strong> You can choose which reminders you receive within the app's settings, or turn notifications off entirely through your device's Settings app.</li>
                 <li><strong>Camera access:</strong> You can grant or revoke camera permissions at any time in your device's Settings under HomeFitly.</li>
                 <li><strong>Data access:</strong> All data you enter into HomeFitly is visible and accessible to you within the app at all times.</li>
-                <li><strong>Data export:</strong> If you need a copy of your data, contact us at <a href="mailto:support@homefitly.com">support@homefitly.com</a> and we will assist you.</li>
+                <li><strong>Data export:</strong> On Android, you can export your home as PDF, CSV or JSON from the app's Settings. On any device, you can also contact us at <a href="mailto:support@homefitly.com">support@homefitly.com</a> for a copy of your data.</li>
                 <li><strong>Data deletion:</strong> You can delete individual records within the app or delete your entire account (see Section 11 below).</li>
                 <li><strong>Account management:</strong> You can update your email address or reset your password from within the app settings.</li>
             </ul>
@@ -453,20 +474,25 @@
         <!-- 11. Account and Data Deletion -->
         <section class="policy-section">
             <h2>11. Account and Data Deletion</h2>
-            <p>You can delete your HomeFitly account and all associated data at any time. Account deletion is available directly within the app:</p>
+            <p>You can delete your HomeFitly account and its data at any time, with the limited exceptions below. Account deletion is available directly within the app:</p>
             <ul>
-                <li>Open HomeFitly and navigate to <strong>Settings</strong>.</li>
-                <li>Select the option to delete your account.</li>
-                <li>Confirm the deletion when prompted.</li>
+                <li><strong>iPhone and iPad:</strong> open the <strong>More</strong> tab, tap <strong>Settings</strong>, then <strong>Delete Account</strong> in the Account section, and confirm.</li>
+                <li><strong>Android:</strong> open the <strong>More</strong> tab, tap <strong>Your account</strong>, then <strong>Delete account</strong>, and confirm.</li>
             </ul>
             <p>Upon account deletion:</p>
             <ul>
-                <li>All personal data stored in the cloud (Supabase) is permanently deleted.</li>
-                <li>All locally stored data on the device is removed.</li>
+                <li>Your personal data stored in the cloud (Supabase) is permanently deleted, including your private files, your membership records and your age-group record, except as described under "What we keep" below.</li>
+                <li>The app removes your account's data from the device you delete from. Copies on other devices where you're signed in aren't removed by our servers; they may stay on those devices until you sign out of HomeFitly there or remove the app.</li>
                 <li>Your authentication credentials are revoked and deleted.</li>
-                <li>Note: encrypted backups may retain data for up to 90 days before being purged.</li>
+                <li><strong>Household owners:</strong> If you own a household, deleting your account also deletes that household, its member list and pending invitations, and every task you created, including tasks shared with the household, together with their completion history (including completions other members recorded on those tasks). Completions you recorded on tasks other members created are deleted too. Other members keep their own accounts and the tasks they created themselves.</li>
                 <li>This action is irreversible. We cannot recover your data after deletion.</li>
             </ul>
+            <p><strong>What we keep:</strong></p>
+            <ul>
+                <li>If a parent gave verified consent for a 12-year-old's account, a minimal record of that consent is kept for 12 months from when the consent ended, then deleted (Section 12). While the child's account still exists, it stays linked to that account through the parent's device entry; if the parent's account is deleted, it no longer names the parent's account.</li>
+                <li>Encrypted recovery backups made before HomeFitly accepted any 12-year-old's account may still contain data from accounts that existed when they were made. They are kept securely and deleted when they're no longer needed for recovery (Section 8). These backups predate the introduction of 12-year-old accounts.</li>
+            </ul>
+            <p><strong>A 12-year-old's account:</strong> the parent who gave consent can delete it in the app (Family → Children's own devices → Delete child's account). This removes the child's account, their files and what they added; the profile the parent manages stays.</p>
             <p>If you are unable to delete your account through the app, you can request deletion by emailing <a href="mailto:support@homefitly.com">support@homefitly.com</a> from the email address associated with your account. You may also visit our <a href="/account-deletion">Account Deletion</a> page for additional instructions.</p>
             <p>Please note that deleting your HomeFitly account does not automatically cancel an active subscription. You must cancel your subscription separately to avoid further charges: on iPhone or iPad, use your Apple ID account settings; on Android, use the Google Play Store under Payments &amp; subscriptions.</p>
         </section>
@@ -474,9 +500,31 @@
         <!-- 12. Children's Privacy -->
         <section class="policy-section">
             <h2>12. Children's Privacy</h2>
-            <p>HomeFitly is not directed at children under the age of 13, and we do not knowingly collect personal information from children under 13. You must be at least 13 years old to create a HomeFitly account.</p>
-            <p>HomeFitly's Premium family features allow account holders (parents or guardians) to create household member profiles for family members, including children. These profiles are managed entirely by the parent or guardian account holder. Children do not have independent accounts, cannot sign in on their own, and their profiles contain only the information the parent chooses to enter (name, role, and avatar color).</p>
-            <p>If we learn that we have inadvertently collected personal information from a child under 13 without parental consent, we will delete that information promptly. If you believe a child under 13 has provided us with personal information, please contact us at <a href="mailto:support@homefitly.com">support@homefitly.com</a>.</p>
+            <p>HomeFitly is designed for households, and people of all ages, including children, may use it. You must be at least 13 years old to create a HomeFitly account, except 12-year-olds whose parent has given consent and been verified as described below. HomeFitly is not directed primarily at children, shows no ads and includes no analytics.</p>
+            <p><strong>Availability:</strong> we're introducing accounts for 12-year-olds with a parent's consent. Until the option appears in HomeFitly, no 12-year-old can create an account, and the parts of this section about a 12-year-old's account describe how it works once it's available.</p>
+            <ul>
+                <li><strong>Using HomeFitly without an account:</strong> anyone, including children, can use HomeFitly on their own device without an account. What they enter stays on that device and is not sent to HomeFitly. On Android, automatic receipt text recognition runs only after the person confirms they are 13 or older; for younger children the photo is kept and the details are typed in.</li>
+                <li><strong>Age question:</strong> before an account is created, we ask for a birth month and year, keep only the age group, and remember the answer on that device.</li>
+                <li><strong>Children aged 12:</strong> a parent or guardian who has a HomeFitly account can let their 12-year-old use HomeFitly on the child's own device. First, the parent creates an invitation for a profile they manage and gives their consent in HomeFitly. The consent screen says what we collect from the child and what the child can do. Then the parent confirms they are an adult through Kids Web Services (KWS), a parent-verification service from Epic Games. KWS verifies that the parent is an adult; it does not collect consent for HomeFitly. For this, HomeFitly sends KWS the parent's account email address, the child's country or region, the parent's language and a random reference code. KWS's own terms and privacy policy apply to the verification; for example, KWS may keep a one-way hash of a verified parent's email so the parent doesn't have to verify again, and the parent can opt out of that. HomeFitly receives back only the verification result, a transaction reference and the parent's email address, which it uses to match the result to the parent's request.</li>
+                <li><strong>What a 12-year-old's account collects:</strong> only after both steps can the child create an account. We then collect the child's email address and password, their age group and the month they turn 13, and the task completions they send for the parent's approval. A 12-year-old's account sees only the household tasks assigned to them or to everyone. It can't add notes or photos, can't make purchases or exports, shows no ads and includes no analytics. Premium features come from the parent's own membership.</li>
+                <li><strong>Parent controls:</strong> the parent who gave consent can turn off the child's access, or delete the child's account and what the child added, at any time in HomeFitly (Family → Children's own devices). When access is turned off, the child's device stops syncing and removes the household's shared data. Deleting the child's account keeps the profile the parent manages.</li>
+                <!-- Approved 2026-10-20 (durations, minimal record and this wording); the cleanup is active since 2026-10-20 (gate 2 met). Publish with this page. -->
+                <li><strong>How long we keep a 12-year-old's information and consent records:</strong> we keep this information only for the purposes below, and then delete it:
+                    <ul>
+                        <li><em>The child's account</em> (email address, password, age group, the month they turn 13, task completions, and the parent link and consent status that let the parent see and manage the child's device): kept while the account is active, so the child can use it. It is deleted when the parent or the child deletes the account. If the parent turns off access, the account and what the child added are deleted after 30 days (the parent can also delete it sooner); an account that has become an ordinary account at 13 by then is not deleted. From the month after the child's 13th-birthday month, the account becomes an ordinary account and parental consent is no longer needed; 30 days later, the records that prove the consent are removed from the account (the parent's link to the account and what the parent sees are unchanged).</li>
+                        <li><em>The child's country or region and the parent's language:</em> used only for the parent's verification request. They are removed once verification succeeds, fails or expires.</li>
+                        <li><em>Invitations that were never used:</em> invitations expire after 7 days and are deleted 30 days after they expire or are replaced.</li>
+                        <li><em>Consent records</em> (consent text version and scope, when consent was given and the parent verified, the verification reference, and the consent history): for an account that was created, they are removed 30 days after the account becomes an ordinary account at 13, or deleted 30 days after access was turned off and the account was deleted. An invitation the child never used is deleted 30 days after it expired or was replaced. For a consent that was verified, we then keep only a minimal record for 12 months from when the consent ended (when access was turned off, the child turned 13, the invitation expired or was replaced unused, or the parent's account was deleted), so we can answer questions from the parent or a regulator about whether consent was given, and then delete it. The minimal record contains when consent was given and verified, the consent text version, the verification reference, the parent's account, and when and why the consent ended. It is not anonymous: while the child's account still exists and the parent can still see it in HomeFitly, the record remains connected to that account through the parent's device entry. If the parent's account is deleted, the record no longer names the parent's account.</li>
+                        <li><em>Verification requests and notices from KWS:</em> request records are deleted after 7 days (they exist to limit repeated emails), and records of processed KWS notices after 30 days (they exist to block replayed notices).</li>
+                        <li><em>When deletion happens:</em> the periods above are when information becomes due for deletion. Deletion runs automatically every hour. Each run handles a limited amount and records its outcome; anything a run doesn't finish, and any run that fails, is picked up by a later run. So information is normally deleted within a few hours after it becomes due. It can take longer if our hosting service is interrupted or if there is an unusually large amount to delete at once; it is then deleted as soon as the service is running again. <!-- Matches Backend/ops/CHILD-RETENTION-SCHEDULE.md (hourly runs, 25 accounts and 90 seconds per run, failed runs retried by the next run, counts logged). No guaranteed deadline and no human monitoring is promised. --></li>
+                        <li><em>Backups:</em> encrypted backups that contain information about 12-year-olds are kept for up to 30 days. If a backup is ever restored, the same deletion schedule is applied again before it is used. Encrypted backups made before HomeFitly introduced 12-year-old accounts may contain information entered by earlier account holders; we keep these backups protected for recovery until we decide to delete them. <!-- Verified 20 Oct (Codex): production has zero child invitations, consent history and age-12 rows; the two known encrypted production backups predate the consent schema, and the encrypted pre-retention backup was taken with zero production child rows. --></li>
+                        <li><em>Server logs:</em> kept by our hosting provider, Supabase, for a short period under its own policy.</li>
+                    </ul>
+                </li>
+                <li><strong>Children under 12:</strong> can't have an account. A parent can manage a household profile for them, with no login of its own and containing only the information the parent chooses to enter (name, role, and avatar color).</li>
+                <li><strong>Teens (13 to 17):</strong> teens can create their own account. In a household, a parent can give them child-level permissions, such as seeing only the tasks assigned to them and having their completions approved.</li>
+            </ul>
+            <p>If we learn that we have collected personal information from a child under 13 without the consent described above, we will delete that information promptly. If you believe this has happened, please contact us at <a href="mailto:support@homefitly.com">support@homefitly.com</a>.</p>
         </section>
 
         <!-- 13. Changes to This Policy -->
@@ -495,10 +543,12 @@
             <h2>14. Contact Us</h2>
             <p>If you have questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact us:</p>
             <div class="contact-box">
-                <p><strong>HomeFitly</strong></p>
+                <p><strong>HomeFitly</strong>, operated by DataVerse Studios LLC</p>
+                <p>Mailing address:<br>5900 Balcones Dr Ste 100<br>Austin, TX 78731-4298<br>United States</p>
+                <p>Telephone: <a href="tel:+12145517986">+1 214 551 7986</a></p>
                 <p>Email: <a href="mailto:support@homefitly.com">support@homefitly.com</a></p>
             </div>
-            <p style="margin-top: 16px;">We aim to respond to general inquiries within 2 business days. For formal privacy or data requests, we respond within 30 days as required by applicable law.</p>
+            <p style="margin-top: 16px;">We aim to respond to general inquiries within 2 business days. For formal privacy or data requests, we respond within 30 days.</p>
         </section>
     </main>
 
