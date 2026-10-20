@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Account recovery · HomeFitly</title>
+  <link rel="icon" href="/favicon.ico" />
+</head>
+<body>
+  <main>
+    <div class="brand">HomeFitly</div>
+    <h1 id="title">Opening your secure link…</h1>
+    <p id="message" role="status">Please wait while we verify your link.</p>
+    <form id="password-form" hidden>
+      <label for="password">New password</label>
+      <input id="password" type="password" autocomplete="new-password" minlength="8" required />
+      <label for="confirmation">Confirm new password</label>
+      <input id="confirmation" type="password" autocomplete="new-password" minlength="8" required />
+      <p id="error" role="alert"></p>
+      <button id="save" type="submit">Save new password</button>
+    </form>
+    <footer><a href="homefitly://">Open HomeFitly</a><a href="/help/">Get help</a></footer>
+    <noscript><p>Please enable JavaScript to complete account recovery.</p></noscript>
+  </main>
+  <script type="module" src="/src/auth/callback.ts"></script>
+</body>
+</html>
