@@ -427,7 +427,7 @@
                 <li>Reminder preferences and app settings</li>
                 <li>Your membership records: store purchase records used to verify a subscription, and any complimentary membership and its history</li>
                 <li>Your age-group record</li>
-                <!-- 1.0.3 AGE-ASSURANCE CANDIDATE: publish only when migrations 012 and 015 are applied, store-age-signal is deployed, the 015 retention job is enabled and scheduled, and builds with age assurance ship. Not published. -->
+                <!-- 1.0.3 AGE-ASSURANCE CANDIDATE: merge at PRODUCTION-ROLLOUT-012-016.md step A2, i.e. after 012 and 015 are applied and store-age retention is enabled with an automatic apply run proven (A1), and BEFORE store-age-signal is deployed or builds with age assurance ship. Not published. -->
                 <li>App store age-range answers stored for your account</li>
             </ul>
             <p><strong>Children aged 12:</strong> a parent who gave consent can delete their 12-year-old's account in the app (Family &rarr; Children's own devices &rarr; Delete child's account). Accounts for 12-year-olds are being introduced; until the option appears in HomeFitly, no 12-year-old can create an account.</p>
@@ -480,7 +480,7 @@
                 <li>Account data is deleted from our servers, and the app removes it from the device you delete from. Copies on other devices where you're signed in aren't removed by our servers; they may stay on those devices until you sign out of HomeFitly there or remove the app.</li>
                 <li>Deletion is permanent and cannot be undone</li>
                 <li>If a parent gave verified consent for a 12-year-old's account, a minimal record of that consent (when it was given and verified, the consent text version, the verification reference, the parent's account, and when and why it ended) is kept for 12 months from when the consent ended, then deleted. If the parent's account is deleted, the record no longer names the parent's account.</li>
-                <!-- 1.0.3 AGE-ASSURANCE CANDIDATE: publish only when migrations 012 and 015 are applied, store-age-signal is deployed, the 015 retention job is enabled and scheduled, and builds with age assurance ship. Not published. -->
+                <!-- 1.0.3 AGE-ASSURANCE CANDIDATE: merge at PRODUCTION-ROLLOUT-012-016.md step A2, i.e. after 012 and 015 are applied and store-age retention is enabled with an automatic apply run proven (A1), and BEFORE store-age-signal is deployed or builds with age assurance ship. Not published. -->
                 <li>If a parent withdrew an app store approval for HomeFitly, a minimal record of the withdrawal and the app installation's reference (no account details) is kept for 12 months after the last account on that installation is removed, and at least 12 months after the withdrawal, so the withdrawal keeps applying on that installation. Then it is deleted.</li>
                 <li>Encrypted recovery backups made before HomeFitly accepted any 12-year-old's account may still contain data from accounts that existed when they were made. They are kept securely and deleted when they're no longer needed for recovery. These backups predate the introduction of 12-year-old accounts.</li>
             </ul>
