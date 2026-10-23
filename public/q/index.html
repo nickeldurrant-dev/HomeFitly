@@ -1,0 +1,119 @@
+<!doctype html>
+<!--
+  HomeFitly quote reply page (Request Quotes, 1.1 candidate). NOT PUBLISHED.
+  Served at https://homefitly.com/q ; the private token is the URL FRAGMENT
+  (/q#<token>), which browsers never send to the server or in a Referer. The
+  script removes it from the address bar before loading any third-party code.
+  Production endpoint and public site key are configured in this held copy.
+  Validate live backend, privacy, cleanup and anti-bot before publication. homefitly.com is on GitHub Pages, which does NOT apply
+  _headers; see "Hosting and headers" in website/q/README.md for what still holds.
+-->
+<html lang="en" data-functions-url="https://ahuuloxcpdcjciaqstok.supabase.co/functions/v1" data-turnstile-sitekey="0x4AAAAAAFha-JkT_1dUb-_0">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; connect-src https://ahuuloxcpdcjciaqstok.supabase.co; img-src 'self' blob:; style-src 'self'; form-action 'none'; base-uri 'none'">
+  <title>Quote request · HomeFitly</title>
+  <link rel="stylesheet" href="q.css">
+  <script type="module" src="q.js"></script>
+</head>
+<body>
+  <header class="top"><span class="brand">HomeFitly</span><span class="sub">Quote request</span></header>
+  <main id="app" aria-live="polite">
+    <p class="muted" id="loading">Loading the request…</p>
+
+    <section id="closed" hidden>
+      <h1>This request is closed</h1>
+      <p>This link isn't active anymore. The homeowner may have closed the request, or the link may have expired or been replaced.</p>
+      <p id="closed-contact" hidden>The homeowner's preferred contact: <strong id="closed-contact-value"></strong></p>
+    </section>
+
+    <section id="request" hidden>
+      <h1 id="title"></h1>
+      <p class="privacy">HomeFitly doesn't include the homeowner's street address or last name in this request. The description and photos are the homeowner's own, so they may still show details like these. If you need to see the job, ask for a site visit below and the homeowner will contact you directly. Only reply here about this job.</p>
+      <h2>The job</h2>
+      <p id="job-text" class="job"></p>
+      <dl id="job-facts"></dl>
+      <div id="photos" class="photos"></div>
+      <p class="muted" id="expires"></p>
+
+      <div id="previous" class="card" hidden>
+        <h2>Your current answer</h2>
+        <ul id="previous-lines"></ul>
+        <p class="muted">You can update it below. The homeowner will see that it was updated.</p>
+      </div>
+
+      <h2>Your answer</h2>
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" data-kind="quote" aria-selected="true">Send a quote</button>
+        <button type="button" role="tab" data-kind="site_visit" aria-selected="false">Ask for a site visit</button>
+        <button type="button" role="tab" data-kind="decline" aria-selected="false">Decline</button>
+      </div>
+
+      <form id="form" novalidate>
+        <fieldset data-for="quote site_visit decline">
+          <label>Company name <span class="opt" data-opt="site_visit decline">(optional)</span><input name="company_name" maxlength="120" autocomplete="organization"></label>
+        </fieldset>
+        <fieldset data-for="quote site_visit">
+          <label>Your name<input name="contact_name" maxlength="120" autocomplete="name"></label>
+          <label>Phone<input name="phone" maxlength="40" inputmode="tel" autocomplete="tel"></label>
+          <label>Email<input name="email" maxlength="254" inputmode="email" autocomplete="email"></label>
+          <p class="hint">Add at least one so the homeowner can reach you.</p>
+        </fieldset>
+        <fieldset data-for="quote">
+          <div class="toggle">
+            <label><input type="radio" name="price_mode" value="total" checked> Total price</label>
+            <label><input type="radio" name="price_mode" value="range"> Price range</label>
+          </div>
+          <label data-mode="total">Total price (USD)<input name="price_total" inputmode="decimal" placeholder="6450"></label>
+          <div data-mode="range" class="row" hidden>
+            <label>Low (USD)<input name="price_low" inputmode="decimal"></label>
+            <label>High (USD)<input name="price_high" inputmode="decimal"></label>
+          </div>
+          <label>What the price includes<textarea name="price_includes" maxlength="500" rows="3" placeholder="Materials and labor, tear-out and haul-off"></textarea></label>
+          <label>Materials included?
+            <select name="materials_included"><option value="">Not specified</option><option value="yes">Yes</option><option value="no">No</option></select></label>
+          <div class="row">
+            <label>Deposit (USD) <span class="opt">(optional)</span><input name="deposit_amount" inputmode="decimal"></label>
+            <label>or deposit % <span class="opt">(optional)</span><input name="deposit_percent" inputmode="decimal"></label>
+          </div>
+          <div class="row">
+            <label>Earliest start <span class="opt">(optional)</span><input type="date" name="earliest_start"></label>
+            <label>Duration in days <span class="opt">(optional)</span><input name="duration_days" inputmode="numeric"></label>
+          </div>
+          <label>Warranty <span class="opt">(optional)</span><input name="warranty_terms" maxlength="500"></label>
+          <label>Payment terms <span class="opt">(optional)</span><input name="payment_terms" maxlength="500"></label>
+          <label>Quote valid until <span class="opt">(optional)</span><input type="date" name="valid_until"></label>
+          <label>Estimate PDF <span class="opt">(optional, one file, up to 5 MB; only the homeowner can see it)</span><input type="file" name="pdf" accept="application/pdf"></label>
+        </fieldset>
+        <fieldset data-for="site_visit">
+          <label>A time that works<input name="visit_time_0" maxlength="80" placeholder="Tuesday morning"></label>
+          <label>Another time <span class="opt">(optional)</span><input name="visit_time_1" maxlength="80"></label>
+          <label>Another time <span class="opt">(optional)</span><input name="visit_time_2" maxlength="80"></label>
+        </fieldset>
+        <fieldset data-for="decline">
+          <label>Reason <span class="opt">(optional)</span>
+            <select name="decline_reason"><option value="booked">Booked out</option><option value="too_small">Job too small</option><option value="outside_area">Outside my area</option><option value="other" selected>Other</option></select></label>
+        </fieldset>
+        <fieldset data-for="quote site_visit decline">
+          <label>Notes <span class="opt">(optional, no links)</span><textarea name="notes" maxlength="500" rows="3"></textarea></label>
+        </fieldset>
+        <div id="turnstile"></div>
+        <p id="form-error" class="error" role="alert" hidden></p>
+        <button type="submit" id="submit">Send</button>
+      </form>
+    </section>
+
+    <section id="done" hidden>
+      <h1>Sent</h1>
+      <p>Your answer was saved, and the homeowner will see it in HomeFitly. Here's what you sent:</p>
+      <ul id="done-lines"></ul>
+      <p>You can update your answer with this same link until the request closes.</p>
+      <button type="button" id="again">Update my answer</button>
+    </section>
+  </main>
+  <footer class="foot">HomeFitly doesn't verify businesses. This page only shows what the homeowner chose to share. <a href="https://homefitly.com/privacy" rel="noreferrer">Privacy</a></footer>
+</body>
+</html>
