@@ -505,8 +505,8 @@ const LandingPage: React.FC = () => {
             <div className="bg-gradient-to-br from-brand-50 to-clay-100 rounded-2xl p-8 border-2 border-brand-600 relative flex flex-col h-full">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
-                <div className="text-4xl font-bold text-gray-900 mb-1">$4.99<span className="text-lg text-gray-500">/month</span></div>
-                <p className="text-brand-800 font-semibold text-lg mb-4">or $49.99/year <span className="text-brand-600 font-medium text-sm">save about 17%</span></p>
+                <div className="text-4xl font-bold text-gray-900 mb-1">$9.99<span className="text-lg text-gray-500">/month</span></div>
+                <p className="text-brand-800 font-semibold text-lg mb-4">or $99.99/year <span className="text-brand-600 font-medium text-sm">save about 17%</span></p>
                 <p className="text-gray-600">Everything in Free, plus:</p>
               </div>
 
@@ -552,7 +552,7 @@ const LandingPage: React.FC = () => {
           </div>
 
           <p className="text-center text-sm text-gray-500 mt-8">
-            Subscriptions will be available inside the app at launch.
+            The store shows your price before you subscribe.
           </p>
         </div>
       </section>
@@ -573,7 +573,7 @@ const LandingPage: React.FC = () => {
             />
             <FaqItem
               q="When will the app be available?"
-              a="HomeFitly launches first on iPhone and is coming soon to the App Store, with Android to follow after the iOS launch."
+              a="Google Play has published HomeFitly for Android. The iPhone app is awaiting App Store review."
             />
             <FaqItem
               q="Can I share tasks with family?"
@@ -581,7 +581,7 @@ const LandingPage: React.FC = () => {
             />
             <FaqItem
               q="How do subscriptions work?"
-              a="Premium is $4.99/month or $49.99/year, managed through your app store. Cancel anytime. Subscriptions will be available inside the app at launch."
+              a="Premium is $9.99/month or $99.99/year, managed through your app store. Cancel anytime. The store shows your price before you subscribe."
             />
           </div>
         </div>
