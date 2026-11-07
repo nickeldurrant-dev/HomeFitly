@@ -1,7 +1,7 @@
 {
-  "name": "HomeFitly - Complete Home Management",
+  "name": "HomeFitly | Home Maintenance App",
   "short_name": "HomeFitly",
-  "description": "The complete home management platform for homeowners",
+  "description": "Plan recurring upkeep, set reminders, and see what is due on your home maintenance calendar.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -21,19 +21,8 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["productivity", "utilities"],
-  "screenshots": [
-    {
-      "src": "/screenshot-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "/screenshot-desktop.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    }
+  "categories": [
+    "productivity",
+    "utilities"
   ]
 }
