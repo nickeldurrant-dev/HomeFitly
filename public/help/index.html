@@ -187,7 +187,7 @@
       line-height: 1.7;
     }
     .help-card .card-body p { margin-bottom: 8px; }
-    .help-card .card-body ul { padding-left: 18px; margin-bottom: 8px; }
+    .help-card .card-body ul, .help-card .card-body ol { padding-left: 18px; margin-bottom: 8px; }
     .help-card .card-body li { margin-bottom: 4px; }
 
     /* icon color helpers */
@@ -303,6 +303,12 @@
   <p>Welcome to the HomeFitly Help Center. Find answers to common questions, learn how to get the most out of your home maintenance companion, or reach out to our support team.</p>
 </section>
 
+<section class="section" aria-labelledby="downloads">
+  <h2 class="section-title" id="downloads">Download HomeFitly</h2>
+  <p><strong>Android:</strong> <a href="https://play.google.com/store/apps/details?id=com.homefitly.app">Get HomeFitly on Google Play</a>.</p>
+  <p><strong>iPhone and iPad:</strong> For help finding or reinstalling HomeFitly, <a href="mailto:support@homefitly.com">email HomeFitly support</a>.</p>
+</section>
+
 <!-- ========== HELP TOPICS ========== -->
 <section class="section">
   <h2 class="section-title">Help Topics</h2>
@@ -312,7 +318,7 @@
 
     <!-- Getting Started -->
     <div class="help-card">
-      <details>
+      <details id="getting-started" open>
         <summary>
           <span class="icon-circle ic-blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
@@ -320,13 +326,11 @@
           Getting Started
         </summary>
         <div class="card-body">
-          <p>New to HomeFitly? Here's how to get up and running:</p>
-          <ul>
-            <li><strong>Continue as a guest</strong> to keep home records on this device, or create an account using your email address or sign in with Apple.</li>
-            <li><strong>Set up your home profile</strong> by entering your address, home type, size, and key features (e.g., pool, garden, HVAC system).</li>
-            <li><strong>Get personalized tasks</strong> &mdash; HomeFitly automatically generates a maintenance schedule tailored to your home and lifestyle.</li>
-            <li>Browse the <strong>Task Catalog</strong> to add additional tasks that matter to you.</li>
-          </ul>
+          <ol>
+            <li><strong>Open HomeFitly.</strong> Choose <strong>Continue as Guest</strong> to keep records on this device. If you sign in, use the method you used to create your account.</li>
+            <li><strong>Start with one job.</strong> In Maintenance, add a task or browse suggested tasks. Choose the area it belongs to, such as heating and cooling.</li>
+            <li><strong>Set a due date and repeat schedule.</strong> Enable notifications if you want reminder alerts, then check the maintenance calendar for what’s due.</li>
+          </ol>
         </div>
       </details>
     </div>
@@ -503,7 +507,7 @@
     <!-- Premium Subscription -->
     <div class="help-card">
       <details>
-        <summary>
+        <summary id="membership">
           <span class="icon-circle ic-yellow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 12h14l3-12-5.5 6L12 2l-4.5 8L2 4z"/><path d="M5 16l-1.5 6h17L19 16"/></svg>
           </span>
@@ -520,7 +524,7 @@
             <li>Kid task approval workflows</li>
             <li>Priority support</li>
           </ul>
-          <p><strong>Pricing:</strong> $9.99/month or $99.99/year (save over 15% with annual billing).</p>
+          <p><strong>Pricing:</strong> U.S. pricing is $9.99/month or $99.99/year. Check your app store for the price in your region.</p>
           <p>Open <em>More &gt; Settings</em> and tap your <strong>Free Plan</strong> or <strong>HomeFitly Premium</strong> card to open <strong>Membership</strong>. Choose <strong>See Premium plans</strong> when available and review the current price and billing period in the app-store plan picker.</p>
         </div>
       </details>
@@ -631,7 +635,7 @@
       <details class="faq-item">
         <summary>What's included in Premium?</summary>
         <div class="faq-answer">
-          Premium adds cloud sync, all 13 checklists, unlimited projects, warranties, contacts, receipts and ideas, family household management with task assignment and rotation, kid task approval workflows, and priority support. Tasks, receipt scanning, warranty alerts, quote comparison and recommendations are also available free within the free plan's record limits. It's available for $9.99/month or $99.99/year; check the app-store plan picker for the current price and billing period.
+          Premium adds cloud sync, all 13 checklists, unlimited projects, warranties, contacts, receipts and ideas, family household management with task assignment and rotation, kid task approval workflows, and priority support. Tasks, receipt scanning, warranty alerts, quote comparison and recommendations are also available free within the free plan's record limits. Check the app-store plan picker for the current price and billing period.
         </div>
       </details>
 

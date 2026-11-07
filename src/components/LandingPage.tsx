@@ -1,680 +1,162 @@
-import React, { useState } from 'react';
-import { CheckSquare, Shield, Lightbulb, Hammer, Calendar, FileText, Facebook, Twitter, Instagram, Bell, Check, ChevronDown } from 'lucide-react';
+import { Bell, CalendarDays, Home, Play } from 'lucide-react';
 
-// HomeFitly logo: H monogram with roofline crossbar
-const HomeFitlyLogo = ({ size = 32, variant = 'default' }: { size?: number; variant?: 'default' | 'white' }) => {
-  const bg = variant === 'white' ? '#FAF7F2' : '#2D5A3D';
-  const fg = variant === 'white' ? '#2D5A3D' : '#FAF7F2';
+const googlePlayUrl = 'https://play.google.com/store/apps/details?id=com.homefitly.app';
+
+const features = [
+  { icon: Bell, title: 'Set recurring reminders', description: 'Set a schedule for the jobs you do again and again, from changing filters to testing smoke alarms.' },
+  { icon: Home, title: 'Organize upkeep by area', description: 'Group tasks by the parts of your home you care for, like the kitchen, yard, or heating and cooling system.' },
+  { icon: CalendarDays, title: 'See what’s coming up', description: 'Use the maintenance calendar to see what’s due and plan your next weekend of home care.' },
+];
+
+const steps = [
+  { title: 'Install and open HomeFitly', description: 'Choose Continue as Guest to start with records stored on this device.' },
+  { title: 'Add one maintenance task', description: 'Choose an area of your home and start with a job you already do, like changing your air filter.' },
+  { title: 'Choose when it repeats', description: 'Set a due date and reminder. Allow notifications on your device if you want reminder alerts.' },
+];
+
+const supportLinks = [
+  { label: 'Help Center', href: '/help/' },
+  { label: 'Contact support', href: 'mailto:support@homefitly.com' },
+  { label: 'Privacy Policy', href: '/privacy/' },
+  { label: 'Terms of Use', href: '/terms/' },
+  { label: 'Account & data deletion', href: '/account-deletion/' },
+];
+
+const focus = 'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-800';
+const container = 'mx-auto max-w-6xl px-5 sm:px-8';
+
+function Brand() {
   return (
-    <svg width={size} height={size} viewBox="0 0 72 72" fill="none" aria-label="HomeFitly logo">
-      <rect x="8" y="8" width="56" height="56" rx="16" fill={bg}/>
-      <path d="M22 50 V22 M50 50 V22 M22 36 L36 26 L50 36" stroke={fg} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
+    <a href="/" className={`inline-flex min-h-11 items-center gap-1.5 rounded font-bold text-brand-800 ${focus}`}>
+      <svg width="36" height="36" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+        <rect x="8" y="8" width="56" height="56" rx="16" fill="#2D5A3D" />
+        <path d="M22 50 V22 M50 50 V22 M22 36 L36 26 L50 36" stroke="#FAF7F2" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      HomeFitly
+    </a>
   );
-};
+}
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
-
-// ---------- Waitlist form ----------
-type Platform = 'iphone' | 'android';
-
-const WaitlistForm: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
-  const [email, setEmail] = useState('');
-  const [platform, setPlatform] = useState<Platform>('iphone');
-  const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
-  const [errorMsg, setErrorMsg] = useState('');
-
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const trimmed = email.trim().toLowerCase();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
-      setErrorMsg('Please enter a valid email address.');
-      setStatus('error');
-      return;
-    }
-    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-      setErrorMsg('Something went wrong. Please try again later.');
-      setStatus('error');
-      return;
-    }
-    setStatus('sending');
-    setErrorMsg('');
-    try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal',
-        },
-        body: JSON.stringify({ email: trimmed, platform }),
-      });
-      if (res.ok || res.status === 409) {
-        // 409 = already on the list (unique email); treat as success
-        setStatus('done');
-      } else {
-        const text = await res.text();
-        throw new Error(text || `Request failed (${res.status})`);
-      }
-    } catch (err) {
-      setErrorMsg('Something went wrong. Please try again.');
-      setStatus('error');
-    }
-  };
-
-  if (status === 'done') {
-    return (
-      <div className="bg-brand-50 border border-brand-200 rounded-2xl px-6 py-5 flex items-start space-x-3 max-w-xl mx-auto">
-        <span className="bg-brand-600 rounded-full p-1.5 mt-0.5 shrink-0">
-          <Check className="h-4 w-4 text-white" />
-        </span>
-        <div className="text-left">
-          <p className="font-semibold text-brand-800">You&apos;re on the list!</p>
-          <p className="text-brand-700 text-sm mt-1">We&apos;ll email you when HomeFitly launches.</p>
-        </div>
-      </div>
-    );
-  }
-
+function DownloadLink() {
   return (
-    <form onSubmit={submit} className="max-w-xl mx-auto">
-      <div className={`flex flex-col ${compact ? 'sm:flex-row' : 'sm:flex-row'} gap-3`}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@example.com"
-          aria-label="Email address"
-          className="flex-1 rounded-xl border border-gray-300 bg-white px-5 py-3.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent text-base"
-          disabled={status === 'sending'}
-        />
-        <button
-          type="submit"
-          disabled={status === 'sending'}
-          className="bg-brand-700 hover:bg-brand-800 disabled:opacity-60 text-white font-semibold px-8 py-3.5 rounded-xl transition-colors flex items-center justify-center space-x-2"
-        >
-          <Bell className="h-5 w-5" />
-          <span>{status === 'sending' ? 'Joining...' : 'Notify Me'}</span>
-        </button>
-      </div>
-      <div className="flex items-center justify-center gap-2 mt-4" role="group" aria-label="Choose your platform">
-        <span className="text-sm text-gray-500 mr-1">I use:</span>
-        {(['iphone', 'android'] as Platform[]).map((p) => (
-          <button
-            key={p}
-            type="button"
-            onClick={() => setPlatform(p)}
-            aria-pressed={platform === p}
-            className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
-              platform === p
-                ? 'bg-brand-700 border-brand-700 text-white'
-                : 'bg-white border-gray-300 text-gray-600 hover:border-brand-600 hover:text-brand-700'
-            }`}
-          >
-            {p === 'iphone' ? 'iPhone' : 'Android'}
-          </button>
-        ))}
-      </div>
-      {status === 'error' && (
-        <p className="text-red-600 text-sm mt-3" role="alert">{errorMsg}</p>
-      )}
-    </form>
+    <a href={googlePlayUrl} className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 py-3 font-semibold text-white hover:bg-brand-800 ${focus}`}>
+      <Play className="size-4" aria-hidden="true" />
+      Get it on Google Play
+    </a>
   );
-};
+}
 
-// ---------- iPhone mockup frames ----------
-const PhoneFrame: React.FC<{ children: React.ReactNode; label: string }> = ({ children, label }) => (
-  <div className="flex flex-col items-center">
-    <div className="w-[270px] rounded-[2.8rem] bg-gray-900 p-[10px] shadow-xl">
-      <div className="rounded-[2.3rem] overflow-hidden bg-cream relative" style={{ backgroundColor: '#FAF7F2' }}>
-        {/* Dynamic island */}
-        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-24 h-6 bg-gray-900 rounded-full z-10" />
-        {/* Status bar */}
-        <div className="flex justify-between items-center px-7 pt-3 pb-1 text-[11px] font-semibold text-gray-900">
-          <span>9:41</span>
-          <span className="flex items-center gap-1">
-            <span className="w-4 h-2.5 bg-gray-900 rounded-[3px] inline-block" />
-          </span>
-        </div>
-        <div className="px-4 pb-5 pt-1 min-h-[380px]">
-          {children}
-        </div>
-        {/* Home indicator */}
-        <div className="flex justify-center pb-2">
-          <div className="w-28 h-1 bg-gray-900/80 rounded-full" />
-        </div>
-      </div>
-    </div>
-    <p className="text-sm font-medium text-gray-600 mt-4 text-center max-w-[240px]">{label}</p>
-  </div>
-);
-
-const MockupSchedule = () => (
-  <div>
-    <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">Maintenance</p>
-    <h4 className="text-lg font-bold text-gray-900 mb-3">This month</h4>
-    {[
-      { task: 'Change HVAC filter', due: 'Due Oct 12', color: 'bg-clay-100 text-clay-700' },
-      { task: 'Clean gutters', due: 'Due Oct 20', color: 'bg-brand-100 text-brand-700' },
-      { task: 'Test smoke detectors', due: 'Due Oct 28', color: 'bg-brand-100 text-brand-700' },
-    ].map((t, i) => (
-      <div key={i} className="bg-white rounded-xl p-3 mb-2.5 shadow-sm border border-gray-100 flex items-center gap-3">
-        <span className="w-5 h-5 rounded-md border-2 border-brand-600 shrink-0" />
-        <div className="flex-1 min-w-0">
-          <p className="text-[13px] font-semibold text-gray-900 truncate">{t.task}</p>
-          <span className={`inline-block text-[10px] font-medium px-2 py-0.5 rounded-full mt-1 ${t.color}`}>{t.due}</span>
-        </div>
-      </div>
-    ))}
-    <div className="bg-brand-700 rounded-xl p-3 mt-1 text-center">
-      <p className="text-white text-[13px] font-semibold">+ 4 more scheduled</p>
-    </div>
-  </div>
-);
-
-const MockupQuotes = () => (
-  <div>
-    <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">Project</p>
-    <h4 className="text-lg font-bold text-gray-900 mb-3">Fence Installation</h4>
-    {[
-      { name: 'ReMade Fence', price: '$8,500', best: true },
-      { name: 'Titan Fence', price: '$9,200', best: false },
-      { name: 'Top Rail', price: '$7,800', best: false },
-    ].map((q, i) => (
-      <div key={i} className={`rounded-xl p-3 mb-2.5 border ${q.best ? 'bg-white border-brand-600 shadow-sm' : 'bg-white border-gray-100 shadow-sm'}`}>
-        <div className="flex items-center justify-between">
-          <p className="text-[13px] font-semibold text-gray-900">{q.name}</p>
-          <p className="text-[15px] font-bold text-brand-700">{q.price}</p>
-        </div>
-        {q.best && <span className="inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full mt-1.5 bg-brand-100 text-brand-700">Best value</span>}
-      </div>
-    ))}
-    <div className="bg-clay-600 rounded-xl p-3 mt-1 text-center">
-      <p className="text-white text-[13px] font-semibold">Compare quotes</p>
-    </div>
-  </div>
-);
-
-const MockupFamily = () => (
-  <div>
-    <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">Household</p>
-    <h4 className="text-lg font-bold text-gray-900 mb-3">Today&apos;s tasks</h4>
-    {[
-      { who: 'Andrew', task: 'Mow the lawn', done: true },
-      { who: 'Zeke', task: 'Water the plants', done: true },
-      { who: 'Mom', task: 'Review completed tasks', done: false },
-    ].map((t, i) => (
-      <div key={i} className="bg-white rounded-xl p-3 mb-2.5 shadow-sm border border-gray-100 flex items-center gap-3">
-        <span className={`w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 ${t.done ? 'bg-brand-100 text-brand-700' : 'bg-clay-100 text-clay-700'}`}>
-          {t.who[0]}
-        </span>
-        <div className="flex-1 min-w-0">
-          <p className="text-[11px] font-medium text-gray-500">{t.who}</p>
-          <p className={`text-[13px] font-semibold ${t.done ? 'text-gray-400 line-through' : 'text-gray-900'}`}>{t.task}</p>
-        </div>
-        {t.done
-          ? <span className="bg-brand-600 rounded-full p-1 shrink-0"><Check className="h-3.5 w-3.5 text-white" /></span>
-          : <span className="w-5 h-5 rounded-md border-2 border-gray-300 shrink-0" />}
-      </div>
-    ))}
-    <p className="text-[11px] text-gray-500 text-center mt-2">Everyone helps keep home running beautifully</p>
-  </div>
-);
-
-// ---------- FAQ item ----------
-const FaqItem: React.FC<{ q: string; a: string }> = ({ q, a }) => (
-  <details className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm group">
-    <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between">
-      {q}
-      <ChevronDown className="h-5 w-5 text-gray-400 shrink-0 ml-4 transition-transform group-open:rotate-180" />
-    </summary>
-    <p className="text-gray-600 mt-3">{a}</p>
-  </details>
-);
-
-// ---------- Main page ----------
-const LandingPage: React.FC = () => {
-  const features = [
-    {
-      icon: Lightbulb,
-      title: 'Capture Ideas',
-      description: 'Save inspiration the moment you find it. Photos, links, and notes for the home you are dreaming about, all in one place.',
-      accent: 'clay'
-    },
-    {
-      icon: Hammer,
-      title: 'Plan Projects',
-      description: 'Turn ideas into real projects. Outline the work, organize and compare contractor quotes, and track every step until it is done.',
-      accent: 'brand'
-    },
-    {
-      icon: CheckSquare,
-      title: 'Smart Task Management',
-      description: 'Never miss important home maintenance with smart scheduling and reminders tailored to your home.',
-      accent: 'brand'
-    },
-    {
-      icon: Shield,
-      title: 'Warranty Tracking',
-      description: 'Scan and store all your warranties. Get alerts before they expire so you never lose coverage.',
-      accent: 'brand'
-    },
-    {
-      icon: Calendar,
-      title: 'Maintenance Calendar',
-      description: 'Personalized maintenance schedules based on your home\u2019s age, type, and features.',
-      accent: 'brand'
-    },
-    {
-      icon: FileText,
-      title: 'Document Storage',
-      description: 'Securely store receipts, manuals, and important home documents in the cloud.',
-      accent: 'brand'
-    }
-  ];
-
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
+function MaintenancePreview() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <HomeFitlyLogo size={32} />
-              <span className="text-2xl font-bold text-gray-900">HomeFitly</span>
+    <figure className="rounded-3xl border border-brand-200 bg-white p-5 shadow-lg shadow-brand-800/5 sm:p-7">
+      <figcaption className="flex items-center gap-2 text-sm font-semibold text-brand-800">
+        <CalendarDays className="size-5" aria-hidden="true" />
+        Example maintenance schedule
+      </figcaption>
+      <p className="mt-3 text-2xl font-bold text-slate-900">Coming up at home</p>
+      <ul className="mt-4 divide-y divide-brand-100">
+        {[
+          { name: 'Change the air filter', area: 'Heating & cooling', date: 'This week' },
+          { name: 'Test smoke alarms', area: 'Home safety', date: 'Next week' },
+          { name: 'Clean the gutters', area: 'Exterior', date: 'Later this month' },
+        ].map(({ name, area, date }) => (
+          <li key={name} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 py-3">
+            <div>
+              <p className="font-semibold text-slate-900">{name}</p>
+              <p className="text-sm text-slate-600">{area}</p>
             </div>
+            <span className="rounded-full bg-clay-50 px-2.5 py-1 text-xs font-semibold text-[#783d27]">{date}</span>
+          </li>
+        ))}
+      </ul>
+    </figure>
+  );
+}
 
-            <nav className="hidden md:flex items-center space-x-8">
-              <button
-                onClick={() => scrollToSection('features')}
-                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
-              >
-                Features
-              </button>
-              <button
-                onClick={() => scrollToSection('how-it-works')}
-                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
-              >
-                How It Works
-              </button>
-              <button
-                onClick={() => scrollToSection('pricing')}
-                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
-              >
-                Pricing
-              </button>
-              <a
-                href="/help"
-                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
-              >
-                Help
-              </a>
-              <button
-                onClick={() => scrollToSection('notify')}
-                className="bg-brand-700 hover:bg-brand-800 text-white font-semibold px-5 py-2.5 rounded-xl transition-colors flex items-center space-x-2"
-              >
-                <Bell className="h-4 w-4" />
-                <span>Notify Me</span>
-              </button>
-            </nav>
-
-            {/* Mobile notify button */}
-            <button
-              onClick={() => scrollToSection('notify')}
-              className="md:hidden bg-brand-700 hover:bg-brand-800 text-white font-semibold px-4 py-2 rounded-xl transition-colors flex items-center space-x-1.5"
-            >
-              <Bell className="h-4 w-4" />
-              <span>Notify Me</span>
-            </button>
-          </div>
+export default function LandingPage() {
+  return (
+    <div className="min-h-screen bg-white text-slate-900">
+      <a href="#main" className={`sr-only z-10 rounded bg-white p-3 font-semibold focus:not-sr-only focus:absolute focus:left-4 focus:top-4 ${focus}`}>
+        Skip to content
+      </a>
+      <header className="border-b border-brand-100 bg-[#FAF7F2]">
+        <div className={`${container} flex min-h-16 flex-wrap items-center justify-between gap-x-4`}>
+          <Brand />
+          <nav aria-label="Main navigation" className="flex flex-wrap gap-x-4 text-sm font-semibold text-brand-800 sm:gap-x-7">
+            <a href="#how-it-works" className={`inline-flex min-h-11 items-center rounded hover:underline ${focus}`}>How it works</a>
+            <a href="/help/" className={`inline-flex min-h-11 items-center rounded hover:underline ${focus}`}>Help</a>
+          </nav>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-brand-50 to-clay-100 pt-16 pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <span className="inline-block bg-brand-700 text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
-              Coming soon for iPhone
-            </span>
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Your home,
-              <span className="text-clay-600 block">from idea to done.</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              HomeFitly keeps your home running beautifully. Get personalized maintenance reminders, organize projects, and share tasks with your household.
-            </p>
-            <div className="mb-14">
-              <button
-                onClick={() => scrollToSection('notify')}
-                className="bg-brand-700 hover:bg-brand-800 text-white text-lg font-semibold px-10 py-4 rounded-xl transition-colors inline-flex items-center space-x-2 shadow-lg"
-              >
-                <Bell className="h-5 w-5" />
-                <span>Notify Me at Launch</span>
-              </button>
-            </div>
-
-            {/* App preview: iPhone mockups */}
-            <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-10 md:gap-8">
-              <PhoneFrame label="A personalized maintenance schedule for your home">
-                <MockupSchedule />
-              </PhoneFrame>
-              <PhoneFrame label="Compare contractor quotes side by side">
-                <MockupQuotes />
-              </PhoneFrame>
-              <PhoneFrame label="Share tasks with the whole household">
-                <MockupFamily />
-              </PhoneFrame>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              One Place for Your Ideas, Projects, and Upkeep
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From the first spark of inspiration to the finished renovation, and every filter change in between.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              const isClay = feature.accent === 'clay';
-              return (
-                <div key={index} className="bg-white rounded-2xl p-8 border border-gray-100">
-                  <div className={`${isClay ? 'bg-clay-100' : 'bg-brand-100'} w-12 h-12 rounded-lg flex items-center justify-center mb-6`}>
-                    <Icon className={`h-6 w-6 ${isClay ? 'text-clay-600' : 'text-brand-600'}`} />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section id="how-it-works" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              How HomeFitly Works
-            </h2>
-            <p className="text-xl text-gray-600">
-              Get started in minutes and transform your home management
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="text-center">
-              <div className="bg-clay-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-bold text-clay-600">1</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Tell us about your home.</h3>
-              <p className="text-gray-600">
-                Add its type, age, and features.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-brand-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-bold text-brand-600">2</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Get your maintenance plan.</h3>
-              <p className="text-gray-600">
-                Review suggested tasks and reminders tailored to your home.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-brand-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-bold text-brand-600">3</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Manage everything together.</h3>
-              <p className="text-gray-600">
-                Save records, organize projects, and share responsibilities with your household.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Preview */}
-      <section id="pricing" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Simple, Transparent Pricing
-            </h2>
-            <p className="text-xl text-gray-600">
-              Start free, upgrade when you&apos;re ready
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Free Plan */}
-            <div className="bg-white rounded-2xl p-8 border-2 border-gray-200 flex flex-col h-full">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Free</h3>
-                <div className="text-4xl font-bold text-gray-900 mb-4">$0<span className="text-lg text-gray-500">/month</span></div>
-                <p className="text-gray-600">Perfect for getting started</p>
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Unlimited tasks
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Basic reminders
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Basic home profile
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  3 warranties, 5 contacts, 1 project
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  10 receipts, 3 project ideas
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Email support
-                </li>
-              </ul>
-            </div>
-
-            {/* Premium Plan */}
-            <div className="bg-gradient-to-br from-brand-50 to-clay-100 rounded-2xl p-8 border-2 border-brand-600 relative flex flex-col h-full">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
-                <div className="text-4xl font-bold text-gray-900 mb-1">$9.99<span className="text-lg text-gray-500">/month</span></div>
-                <p className="text-brand-800 font-semibold text-lg mb-4">or $99.99/year <span className="text-brand-600 font-medium text-sm">save about 17%</span></p>
-                <p className="text-gray-600">Everything in Free, plus:</p>
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Unlimited projects, warranties, contacts, receipts, and ideas
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Family management with task assignment
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Review and approve children&apos;s completed tasks
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Receipt and document scanning
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Warranty tracking with expiration alerts
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Contractor quote comparison
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Cross-device sync
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Advanced task recommendations
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <CheckSquare className="h-5 w-5 text-brand-600 mr-3 shrink-0" />
-                  Priority support
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <p className="text-center text-sm text-gray-500 mt-8">
-            The store shows your price before you subscribe.
-          </p>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Common Questions
-            </h2>
-          </div>
-
-          <div className="space-y-4">
-            <FaqItem
-              q="What\u2019s included in the free plan?"
-              a="Unlimited tasks, a home profile, basic reminders, plus 3 warranties, 5 contacts, 1 project, 10 receipts, and 3 project ideas."
-            />
-            <FaqItem
-              q="When will the app be available?"
-              a="Google Play has published HomeFitly for Android. The iPhone app is awaiting App Store review."
-            />
-            <FaqItem
-              q="Can I share tasks with family?"
-              a="Yes, Premium includes family household management with task assignment and rotation, plus review and approval of children\u2019s completed tasks."
-            />
-            <FaqItem
-              q="How do subscriptions work?"
-              a="Premium is $9.99/month or $99.99/year, managed through your app store. Cancel anytime. The store shows your price before you subscribe."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA: Notify me at launch */}
-      <section id="notify" className="py-24 bg-gradient-to-br from-brand-700 to-brand-800">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block bg-white/15 text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
-            Coming soon for iPhone
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Be first to know when HomeFitly launches
-          </h2>
-          <p className="text-xl text-brand-100 mb-10 max-w-2xl mx-auto">
-            Join the waitlist and we&apos;ll email you the moment HomeFitly hits the App Store.
-          </p>
-          <div className="bg-white/10 backdrop-blur rounded-2xl p-8 border border-white/15">
-            <WaitlistForm />
-          </div>
-          <p className="text-brand-200 text-sm mt-6">
-            No spam, ever. One email at launch, unsubscribe anytime.
-          </p>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 border-t border-gray-800 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-2 mb-4">
-                <HomeFitlyLogo size={32} variant="white" />
-                <span className="text-2xl font-bold text-white">HomeFitly</span>
-              </div>
-              <p className="text-gray-400 mb-4 max-w-md">
-                The complete home management platform that helps you maintain, protect, and improve your home with smart technology.
-              </p>
-              <div className="flex space-x-4">
-                <button
-                  onClick={() => window.open('https://facebook.com/homefitly', '_blank')}
-                  className="text-gray-400 hover:text-white transition-colors"
-                  aria-label="Facebook"
-                >
-                  <Facebook className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={() => window.open('https://twitter.com/homefitly', '_blank')}
-                  className="text-gray-400 hover:text-white transition-colors"
-                  aria-label="Twitter"
-                >
-                  <Twitter className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={() => window.open('https://instagram.com/homefitly', '_blank')}
-                  className="text-gray-400 hover:text-white transition-colors"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="w-6 h-6" />
-                </button>
-              </div>
-            </div>
-
+      <main id="main" tabIndex={-1}>
+        <section className="bg-[#FAF7F2]">
+          <div className={`${container} grid items-center gap-9 py-10 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:py-20`}>
             <div>
-              <h3 className="text-white font-semibold mb-4">Product</h3>
-              <ul className="space-y-2">
-                <li><button onClick={() => scrollToSection('features')} className="text-gray-400 hover:text-white transition-colors">Features</button></li>
-                <li><button onClick={() => scrollToSection('pricing')} className="text-gray-400 hover:text-white transition-colors">Pricing</button></li>
-                <li><button onClick={() => scrollToSection('notify')} className="text-gray-400 hover:text-white transition-colors">Notify Me</button></li>
-              </ul>
+              <p className="mb-3 text-sm font-bold tracking-wider text-brand-700 uppercase">Home maintenance app</p>
+              <h1 className="max-w-xl text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl">Keep up with your home’s maintenance</h1>
+              <p className="mt-4 max-w-lg text-lg leading-relaxed text-slate-700">Schedule recurring upkeep, set reminders, and see what’s due around your home in one calendar.</p>
+              <div className="mt-6"><DownloadLink /></div>
+              <a href="/help/#downloads" className={`mt-2 inline-flex min-h-11 items-center rounded text-sm font-medium text-brand-800 underline underline-offset-4 ${focus}`}>iPhone and iPad download help</a>
             </div>
-
-            <div>
-              <h3 className="text-white font-semibold mb-4">Support</h3>
-              <ul className="space-y-2">
-                <li><a href="/help" className="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="mailto:support@homefitly.com" className="text-gray-400 hover:text-white transition-colors">Contact Support</a></li>
-                <li><a href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Use</a></li>
-                <li><a href="/account-deletion" className="text-gray-400 hover:text-white transition-colors">Account Deletion</a></li>
-              </ul>
-            </div>
+            <MaintenancePreview />
           </div>
+        </section>
 
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-            <p className="text-gray-400">
-              &copy; 2026 HomeFitly. All rights reserved. Made with care for homeowners everywhere.
-            </p>
+        <section id="features" className={`${container} py-12 sm:py-16`}>
+          <h2 className="text-3xl font-bold tracking-tight">Make a plan for routine upkeep</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {features.map(({ icon: Icon, title, description }) => (
+              <div key={title} className="rounded-2xl border border-brand-200 bg-brand-50 p-5">
+                <Icon className="mb-3 size-6 text-brand-700" aria-hidden="true" />
+                <h3 className="text-lg font-bold">{title}</h3>
+                <p className="mt-2 leading-relaxed text-slate-700">{description}</p>
+              </div>
+            ))}
           </div>
+        </section>
+
+        <section id="how-it-works" className="bg-[#FAF7F2]">
+          <div className={`${container} py-12 sm:py-16`}>
+            <h2 className="text-3xl font-bold tracking-tight">Start with one task</h2>
+            <ol className="mt-6 grid list-decimal gap-6 pl-6 marker:font-bold marker:text-brand-800 md:grid-cols-3 md:gap-10">
+              {steps.map(({ title, description }) => (
+                <li key={title} className="pl-1">
+                  <h3 className="text-lg font-bold">{title}</h3>
+                  <p className="mt-2 leading-relaxed text-slate-700">{description}</p>
+                </li>
+              ))}
+            </ol>
+            <a href="/help/#getting-started" className={`mt-4 inline-flex min-h-11 items-center rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>Read the setup guide</a>
+          </div>
+        </section>
+
+        <section id="pricing" className={`${container} py-12 sm:py-16`}>
+          <h2 className="text-3xl font-bold tracking-tight">Start free, share upkeep when you’re ready</h2>
+          <p className="mt-3 max-w-2xl leading-relaxed text-slate-700">The free plan includes recurring tasks and reminders. HomeFitly Premium adds cloud sync and optional household task sharing where available. Check the app for current plan details.</p>
+          <a href="/help/#membership" className={`mt-3 inline-flex min-h-11 items-center rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>See membership details</a>
+        </section>
+
+        <section id="notify" className="border-y border-brand-200 bg-brand-50">
+          <div className={`${container} py-10`}>
+            <h2 className="text-2xl font-bold">Ready to plan your home’s upkeep?</h2>
+            <div className="mt-4"><DownloadLink /></div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="bg-[#FAF7F2]">
+        <div className={`${container} py-7`}>
+          <Brand />
+          <nav aria-label="Support and policies" className="mt-2">
+            <ul className="flex flex-wrap gap-x-6">
+              {supportLinks.map(({ label, href }) => (
+                <li key={href}><a href={href} className={`inline-flex min-h-11 items-center rounded text-sm font-medium text-brand-800 underline underline-offset-4 ${focus}`}>{label}</a></li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </footer>
     </div>
   );
-};
-
-export default LandingPage;
+}
