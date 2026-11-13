@@ -1,11 +1,14 @@
-import { Bell, CalendarDays, Home, Play } from 'lucide-react';
+import { Bell, ClipboardList, FolderOpen, LayoutGrid, Moon, Play, Users } from 'lucide-react';
 
 const googlePlayUrl = 'https://play.google.com/store/apps/details?id=com.homefitly.app';
 
 const features = [
   { icon: Bell, title: 'Set recurring reminders', description: 'Set a schedule for the jobs you do again and again, from changing filters to testing smoke alarms.' },
-  { icon: Home, title: 'Organize upkeep by area', description: 'Group tasks by the parts of your home you care for, like the kitchen, yard, or heating and cooling system.' },
-  { icon: CalendarDays, title: 'See what’s coming up', description: 'Use the maintenance calendar to see what’s due and plan your next weekend of home care.' },
+  { icon: ClipboardList, title: 'Make a checklist your own', description: 'Browse maintenance checklists and turn a suggestion into a task with its own due date and reminder.' },
+  { icon: FolderOpen, title: 'Keep home records together', description: 'Move projects from Ideas to Planning to Active, and keep receipts, warranties and service contacts close at hand.' },
+  { icon: Users, title: 'Share the household work', description: 'With Premium, assign existing tasks, review completions and follow shared points and history. Choose who has Owner, Admin or Member access.' },
+  { icon: Moon, title: 'Choose light or dark', description: 'Pick Light, Dark or System in Settings. System follows your phone’s appearance.' },
+  { icon: LayoutGrid, title: 'Keep tasks on your home screen', description: 'Add task widgets, an Owner household overview or an Owner/Admin approvals widget. What you see depends on your household access.' },
 ];
 
 const steps = [
@@ -46,29 +49,11 @@ function DownloadLink() {
   );
 }
 
-function MaintenancePreview() {
+function AppPreview() {
   return (
-    <figure className="rounded-3xl border border-brand-200 bg-white p-5 shadow-lg shadow-brand-800/5 sm:p-7">
-      <figcaption className="flex items-center gap-2 text-sm font-semibold text-brand-800">
-        <CalendarDays className="size-5" aria-hidden="true" />
-        Example maintenance schedule
-      </figcaption>
-      <p className="mt-3 text-2xl font-bold text-slate-900">Coming up at home</p>
-      <ul className="mt-4 divide-y divide-brand-100">
-        {[
-          { name: 'Change the air filter', area: 'Heating & cooling', date: 'This week' },
-          { name: 'Test smoke alarms', area: 'Home safety', date: 'Next week' },
-          { name: 'Clean the gutters', area: 'Exterior', date: 'Later this month' },
-        ].map(({ name, area, date }) => (
-          <li key={name} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 py-3">
-            <div>
-              <p className="font-semibold text-slate-900">{name}</p>
-              <p className="text-sm text-slate-600">{area}</p>
-            </div>
-            <span className="rounded-full bg-clay-50 px-2.5 py-1 text-xs font-semibold text-[#783d27]">{date}</span>
-          </li>
-        ))}
-      </ul>
+    <figure className="mx-auto w-full max-w-72">
+      <img src="/screenshots/home.png" width="1080" height="2400" alt="HomeFitly Home screen showing an air-filter task due today, warranty information and Family." className="h-auto w-full rounded-3xl border border-brand-200 shadow-lg shadow-brand-800/10" />
+      <figcaption className="mt-3 text-center text-sm text-slate-600">Actual Android app · example home records</figcaption>
     </figure>
   );
 }
@@ -84,6 +69,7 @@ export default function LandingPage() {
           <Brand />
           <nav aria-label="Main navigation" className="flex flex-wrap gap-x-4 text-sm font-semibold text-brand-800 sm:gap-x-7">
             <a href="#how-it-works" className={`inline-flex min-h-11 items-center rounded hover:underline ${focus}`}>How it works</a>
+            <a href="#downloads" className={`inline-flex min-h-11 items-center rounded hover:underline ${focus}`}>Download</a>
             <a href="/help/" className={`inline-flex min-h-11 items-center rounded hover:underline ${focus}`}>Help</a>
           </nav>
         </div>
@@ -93,18 +79,19 @@ export default function LandingPage() {
         <section className="bg-[#FAF7F2]">
           <div className={`${container} grid items-center gap-9 py-10 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:py-20`}>
             <div>
-              <p className="mb-3 text-sm font-bold tracking-wider text-brand-700 uppercase">Home maintenance app</p>
-              <h1 className="max-w-xl text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl">Keep up with your home’s maintenance</h1>
-              <p className="mt-4 max-w-lg text-lg leading-relaxed text-slate-700">Schedule recurring upkeep, set reminders, and see what’s due around your home in one calendar.</p>
+              <p className="mb-3 text-sm font-bold tracking-wider text-brand-700 uppercase">Now available on Google Play</p>
+              <h1 className="max-w-xl text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl">A little care for everything at home.</h1>
+              <p className="mt-4 max-w-lg text-lg leading-relaxed text-slate-700">Bring your tasks, home projects, receipts and warranties together. Plan what’s next, remember what’s due, and share the work with your household.</p>
               <div className="mt-6"><DownloadLink /></div>
-              <a href="/help/#downloads" className={`mt-2 inline-flex min-h-11 items-center rounded text-sm font-medium text-brand-800 underline underline-offset-4 ${focus}`}>iPhone and iPad download help</a>
+              <p className="mt-3 text-sm text-slate-600">Free to start · optional Premium subscription</p>
+              <a href="/help/#downloads" className={`mt-2 inline-flex min-h-11 items-center rounded text-sm font-medium text-brand-800 underline underline-offset-4 ${focus}`}>iPhone and iPad availability</a>
             </div>
-            <MaintenancePreview />
+            <AppPreview />
           </div>
         </section>
 
         <section id="features" className={`${container} py-12 sm:py-16`}>
-          <h2 className="text-3xl font-bold tracking-tight">Make a plan for routine upkeep</h2>
+          <h2 className="text-3xl font-bold tracking-tight">From everyday chores to your next project</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {features.map(({ icon: Icon, title, description }) => (
               <div key={title} className="rounded-2xl border border-brand-200 bg-brand-50 p-5">
@@ -112,6 +99,27 @@ export default function LandingPage() {
                 <h3 className="text-lg font-bold">{title}</h3>
                 <p className="mt-2 leading-relaxed text-slate-700">{description}</p>
               </div>
+            ))}
+          </div>
+          <p className="mt-5 max-w-3xl leading-relaxed text-slate-600">Owners can share full household access while one account manages the subscription. Admins manage shared Tasks and Family; Members participate without approval rights. Restricted child-phone connections are not open to new customers yet.</p>
+          <div className="mt-2 flex flex-wrap gap-x-6">
+            <a href="/help/#family" className={`inline-flex min-h-11 items-center rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>Family access explained</a>
+            <a href="/help/#widgets" className={`inline-flex min-h-11 items-center rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>Choose a widget</a>
+          </div>
+        </section>
+
+        <section aria-labelledby="app-screens" className={`${container} pb-12 sm:pb-16`}>
+          <h2 id="app-screens" className="text-3xl font-bold tracking-tight">Take a look inside</h2>
+          <p className="mt-3 text-slate-600">Actual Android screens from our Google Play listing, with example tasks and projects.</p>
+          <div className="mx-auto mt-7 grid max-w-2xl grid-cols-2 items-start gap-4 sm:gap-8">
+            {[
+              { file: 'tasks', title: 'Know what’s due', alt: 'HomeFitly Tasks with Today, Upcoming, Calendar and History views, and a task to replace the air filter.' },
+              { file: 'projects', title: 'Give your next idea a home', alt: 'HomeFitly Projects with Ideas, Planning, Active and Completed stages, and an entryway project idea.' },
+            ].map(({ file, title, alt }) => (
+              <figure key={file}>
+                <img src={`/screenshots/${file}.png`} width="1080" height="2400" loading="lazy" alt={alt} className="h-auto w-full rounded-2xl border border-brand-200" />
+                <figcaption className="mt-3 font-semibold text-brand-800">{title}</figcaption>
+              </figure>
             ))}
           </div>
         </section>
@@ -133,14 +141,19 @@ export default function LandingPage() {
 
         <section id="pricing" className={`${container} py-12 sm:py-16`}>
           <h2 className="text-3xl font-bold tracking-tight">Start free, share upkeep when you’re ready</h2>
-          <p className="mt-3 max-w-2xl leading-relaxed text-slate-700">The free plan includes recurring tasks and reminders. HomeFitly Premium adds cloud sync and optional household task sharing where available. Check the app for current plan details.</p>
+          <p className="mt-3 max-w-2xl leading-relaxed text-slate-700">The free plan includes unlimited tasks, recurring schedules and reminders, plus starter checklists and limited project, receipt, warranty and contact records. Premium adds cloud sync, expanded records, all 13 checklists and household task sharing.</p>
+          <p className="mt-3 font-semibold">Premium: $9.99/month or $99.99/year in the U.S.</p>
+          <p className="mt-2 text-sm text-slate-600">Optional, automatically renewing subscription. Review the price and billing period in Google Play before subscribing.</p>
           <a href="/help/#membership" className={`mt-3 inline-flex min-h-11 items-center rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>See membership details</a>
         </section>
 
-        <section id="notify" className="border-y border-brand-200 bg-brand-50">
+        <section id="downloads" className="border-y border-brand-200 bg-brand-50">
           <div className={`${container} py-10`}>
-            <h2 className="text-2xl font-bold">Ready to plan your home’s upkeep?</h2>
+            <span id="notify" />
+            <h2 className="text-2xl font-bold">Download HomeFitly for Android</h2>
+            <p className="mt-3 max-w-2xl leading-relaxed text-slate-700">Get the current public release directly from Google Play. If you already have HomeFitly, update the existing installation to keep using your saved home records.</p>
             <div className="mt-4"><DownloadLink /></div>
+            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-600">iPhone and iPad: the public App Store release is pending. Existing testers can update through TestFlight. <a href="/help/#downloads" className={`rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>Download help</a></p>
           </div>
         </section>
       </main>

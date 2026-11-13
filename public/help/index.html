@@ -306,7 +306,8 @@
 <section class="section" aria-labelledby="downloads">
   <h2 class="section-title" id="downloads">Download HomeFitly</h2>
   <p><strong>Android:</strong> <a href="https://play.google.com/store/apps/details?id=com.homefitly.app">Get HomeFitly on Google Play</a>.</p>
-  <p><strong>iPhone and iPad:</strong> For help finding or reinstalling HomeFitly, <a href="mailto:support@homefitly.com">email HomeFitly support</a>.</p>
+  <p><strong>iPhone and iPad:</strong> the public App Store release is pending. Existing testers can update HomeFitly through TestFlight. For download help, <a href="mailto:support@homefitly.com">email HomeFitly support</a>.</p>
+  <p>Already installed? Update HomeFitly through the store you used to install it. You do not need to uninstall it. The guidance below includes the current Android release and the latest iPhone/iPad test builds; labels can differ on older versions.</p>
 </section>
 
 <!-- ========== HELP TOPICS ========== -->
@@ -328,7 +329,7 @@
         <div class="card-body">
           <ol>
             <li><strong>Open HomeFitly.</strong> Choose <strong>Continue as Guest</strong> to keep records on this device. If you sign in, use the method you used to create your account.</li>
-            <li><strong>Start with one job.</strong> In Maintenance, add a task or browse suggested tasks. Choose the area it belongs to, such as heating and cooling.</li>
+            <li><strong>Start with one job.</strong> Open <strong>Tasks &gt; +</strong>, then choose <strong>Custom Task</strong> or browse the task catalog. Choose the area it belongs to, such as heating and cooling.</li>
             <li><strong>Set a due date and repeat schedule.</strong> Enable notifications if you want reminder alerts, then check the maintenance calendar for what’s due.</li>
           </ol>
         </div>
@@ -346,9 +347,9 @@
         </summary>
         <div class="card-body">
           <ul>
-            <li><strong>Signing in:</strong> Choose Sign In on the welcome screen. From guest mode, open <em>More &gt; Settings &gt; Account &gt; Sign In</em>, then choose Sign In on the welcome screen. Use the email and password you registered with, or Sign in with Apple if that's how you created your account.</li>
+            <li><strong>Signing in:</strong> Choose Sign In on the welcome screen. From guest mode on Android, open <em>More &gt; Sign in</em>. On iPhone or iPad, open <em>More &gt; Settings &gt; Account &gt; Sign In</em>. Use the email and password you registered with, or Sign in with Apple if that's how you created your account.</li>
             <li><strong>Forgot your password?</strong> Tap "Forgot Password" on the login screen. We'll send a reset link to your email.</li>
-            <li><strong>Managing your account:</strong> Open <em>More &gt; Settings &gt; Account</em> to view your signed-in account, sign out, or delete your account.</li>
+            <li><strong>Managing your account:</strong> On Android, open <em>More &gt; Your account</em>. On iPhone or iPad, open <em>More &gt; Settings &gt; Account</em>. You can view your signed-in account, sign out, or delete your account there.</li>
           </ul>
         </div>
       </details>
@@ -446,7 +447,7 @@
 
     <!-- Family Management -->
     <div class="help-card">
-      <details>
+      <details id="family">
         <summary>
           <span class="icon-circle ic-purple">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -456,24 +457,29 @@
         <div class="card-body">
           <ul>
             <li><strong>Setting up a household:</strong> Create a household, add profiles you manage and use household invitations for eligible people with their own accounts. A household invitation is different from the restricted family-device connection code described below. Do not give a child your account password.</li>
-            <li><strong>Invited family access in version 1.1.1:</strong> Family invitations give invited accounts access to shared Tasks and Family only, including invited managers. The owner keeps the full app. Projects, contractor search, quotes, receipts, warranties, contacts and private home records are not shared through a family invitation. A separate contractor quote link still shows only its own quote request and reply form.</li>
-            <li><strong>Assigning tasks:</strong> Assign tasks to specific family members so everyone knows their responsibilities.</li>
+            <li><strong>Owner:</strong> full household access, including tasks, projects, quotes, receipts, warranties, contacts and home records, plus task approval. More than one eligible adult can be an Owner. One original account continues to manage the subscription and Owner access.</li>
+            <li><strong>Admin:</strong> shared Tasks and Family, including assignment and approval. This role does not open the full household records. Choose trusted adults for this role.</li>
+            <li><strong>Member:</strong> shared Tasks and Family participation without approval rights. Read-only access cannot complete or approve tasks.</li>
+            <li><strong>Inviting an adult:</strong> use <strong>Invite someone with their own account</strong>. A normal household invitation does not grant full Owner access. Once the eligible adult has joined, the subscription manager can open <strong>Family &gt; Household access &amp; Owners</strong>, choose <strong>Make Owner</strong>, and confirm sharing the full household. The other Owner opens that household from their own account. Changing roles preserves existing tasks, points and history. Owner or Admin status alone does not grant parental consent authority for connected child devices.</li>
+            <li><strong>Contractors:</strong> a separate contractor quote link shows only its own quote request and reply form, not your Family or other household records.</li>
+            <li><strong>Quick assignment:</strong> open an existing task and tap <strong>Assign</strong>, or its current person label. Choose the person in the picker; use <strong>Undo</strong> if you change your mind. You do not need to recreate the task.</li>
+            <li><strong>Assign several existing tasks:</strong> in <strong>Family</strong>, choose a person&rsquo;s <strong>Assign tasks</strong> action, select the tasks, and confirm the assignment. On Android, Family is under <strong>More &gt; Family</strong>.</li>
             <li><strong>Task rotation:</strong> Set up automatic task rotation so chores are shared fairly among household members.</li>
-            <li><strong>Kid task approval (Premium):</strong> Enable approval mode for younger family members &mdash; their completed tasks come to you for review before being marked done.</li>
+            <li><strong>Reviewing completions:</strong> Owners and Admins can open pending approvals in Family or <strong>Review &amp; Approve</strong> on a task. Requests from a restricted connected family device always need approval, even when the task&rsquo;s ordinary Require Approval setting is off. Points are awarded when the request is approved. Refresh or reopen the app if a new request has not appeared yet.</li>
           </ul>
           <h3>Connected family devices</h3>
-          <p><strong>New family connections:</strong> this mode is not open for new connections yet. The following steps apply when <strong>Family devices</strong> is available for your account. Your existing parent-managed profiles, assignments and task history remain available.</p>
+          <p><strong>New family connections:</strong> this mode is not open for new connections yet. The following steps apply only when <strong>Connect phone</strong> is available for your account. Your existing parent-managed profiles, assignments and task history remain available.</p>
           <ol>
-            <li>From <strong>Family &gt; Family devices</strong>, select the profile you manage and its age group, <strong>13&ndash;17</strong> (connected devices start at age 13). Review the household people who can see shared activity, the privacy notice and the chore time zone. The time zone comes from your device setting, not GPS.</li>
+            <li>In <strong>Family</strong>, select the existing profile you manage and choose <strong>Connect phone</strong> (called <strong>Family devices</strong> in older versions). Select its age group, <strong>13&ndash;17</strong> (connected devices start at age 13). Review the household people who can see shared activity, the privacy notice and the chore time zone. The time zone comes from your device setting, not GPS.</li>
             <li>Confirm that you are the child&rsquo;s parent or legal guardian and separately agree to sharing their approved task activity and points within this household. Tap <strong>Save my consent</strong> on iPhone or iPad, or <strong>Record my consent</strong> on Android. The choices start unchecked.</li>
             <li>If verification is needed, tap <strong>Request parent verification</strong> on iPhone or iPad, or <strong>Send parent verification</strong> on Android, to request one email to your confirmed account address, then complete Epic&rsquo;s Kids Web Services verification. Sending the email does not finish verification. An eligible current verification can cover another profile only after you give separate permission for that profile.</li>
-            <li>Once ready, choose <strong>Create a connection code</strong> on iPhone or iPad, or <strong>Create a device code</strong> on Android. On the other device choose <strong>Join with a family code</strong> (iPhone/iPad) or <strong>Join family with a code</strong> (Android) and enter the code. A code can be used once and expires after 10 minutes. This creates a restricted connection, not another account; your child needs no email address or password and does not receive your account session.</li>
+            <li>Once ready, choose <strong>Create a connection code</strong> and privately share it with the intended device. On that device, open the family-code entry screen (<strong>Join your family</strong> on iPhone/iPad, or <strong>Join with a family code</strong> on Android) and enter the code. A code can be used once and expires after 10 minutes. This creates a restricted connection, not another account; your child needs no email address or password and does not receive your account session.</li>
             <li>The connected device must complete its applicable app-store age and update-permission checks before it shows shared information. Follow any displayed parent-approval request. If HomeFitly reports that a check needs approval, cannot be completed, or permission was withdrawn, shared information stays hidden until resolved.</li>
           </ol>
           <ul>
             <li><strong>What the connected device can do:</strong> view tasks assigned to its profile or to everyone, submit completion requests for your approval, and view the household&rsquo;s shared approved activity and points. It cannot manage accounts or membership, purchase, use contacts, contractors or maps, or add notes, photos or messages.</li>
             <li><strong>Who can see progress:</strong> the household people allowed to see Family activity, including other adults or children you allow to join, can see the profile&rsquo;s shared approved activity and points. People you add later can see it too. It is not public and is not shared with contractors. Other household members do not become the child&rsquo;s guardian.</li>
-            <li><strong>Stop a connection:</strong> in <strong>Family &gt; Family devices</strong>, disconnect a single device, or choose <strong>Withdraw consent and disconnect all</strong> (iPhone/iPad) or <strong>Stop device sharing</strong> (Android) to end this profile&rsquo;s connected access. Disconnecting alone does not delete previous activity.</li>
+            <li><strong>Stop a connection:</strong> open the profile&rsquo;s <strong>Connect phone</strong> controls in <strong>Family</strong> and disconnect a single device, or choose <strong>Withdraw consent and disconnect all</strong> (iPhone/iPad) or <strong>Stop device sharing</strong> (Android) to end this profile&rsquo;s connected access. Disconnecting alone does not delete previous activity.</li>
             <li><strong>Review or delete:</strong> choose <strong>Review shared information</strong> (iPhone/iPad) or <strong>Review shared data</strong> (Android). Both platforms also offer <strong>Delete shared activity</strong>. Deleting removes all synced completion history and points for this profile, including entries you recorded yourself, removes device submissions and disconnects devices. The profile and task definitions remain. Read the confirmation before continuing.</li>
             <li><strong>Rights after access ends:</strong> existing controls remain available if Premium or new connections are unavailable; the Family entry may say <strong>Manage existing family devices</strong>. The recent activity list is not a full export. For a fuller review or help, email <a href="mailto:support@homefitly.com">support@homefitly.com</a> from the parent account&rsquo;s email.</li>
             <li><strong>Offline devices and retention:</strong> stopping access blocks new server requests immediately, but a disconnected device cannot be erased remotely until it reconnects. Its cached snapshot expires within 24 hours; you can also clear HomeFitly&rsquo;s data on that device. See <a href="/privacy/#connected-family-retention">the family-data retention schedule</a> for activity and consent records.</li>
@@ -481,6 +487,33 @@
           <h3>Labelled sample household for app review</h3>
           <p>If HomeFitly has explicitly supplied an account with sample review access, the screen says <strong>Sample household for review</strong>. Its people, chores and points are fictional. Read the sample explanation and choose <strong>I understand I am using fictional sample data</strong> before continuing. This acknowledgement does not verify parenthood or give permission for a real child. Applicable app-store checks still apply to the connected device.</p>
           <p>Use only the supplied sample connection instructions. Sample access ends at the time shown and supports at most two devices over its lifetime; reconnecting does not extend it. <strong>Delete sample activity</strong> clears the demonstration&rsquo;s activity and disconnects its devices, while real household history stays unchanged. It does not delete the reviewer&rsquo;s account. See <a href="/privacy/#review-sample-retention">sample review data and retention</a>. Sample access is separate from opening new family connections to customers.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Appearance and Widgets -->
+    <div class="help-card">
+      <details id="appearance">
+        <summary>Light, Dark &amp; System appearance</summary>
+        <div class="card-body">
+          <p>Open <strong>More &gt; Settings &gt; Appearance</strong> and choose <strong>Light</strong>, <strong>Dark</strong> or <strong>System</strong>. System follows your phone&rsquo;s appearance. Changing the theme does not change your tasks, points or history.</p>
+        </div>
+      </details>
+    </div>
+    <div class="help-card">
+      <details id="widgets">
+        <summary>Home-screen widgets</summary>
+        <div class="card-body">
+          <p><strong>Android:</strong> touch and hold an empty area of your home screen, open <strong>Widgets</strong>, and find <strong>HomeFitly</strong>. Launcher labels can vary. Add a widget and resize it if your launcher allows.</p>
+          <p><strong>iPhone and iPad test builds:</strong> touch and hold the home screen, choose <strong>Edit &gt; Add Widget</strong> (or the + button), search for HomeFitly, choose a size and add it.</p>
+          <ul>
+            <li><strong>Tasks:</strong> <strong>HomeFitly &mdash; Today</strong> on Android, or <strong>HomeFitly Tasks</strong> on iPhone/iPad, shows available task information.</li>
+            <li><strong>Owners:</strong> <strong>Household overview</strong> shows today&rsquo;s tasks, projects and pending approvals for the household you have opened.</li>
+            <li><strong>Owners and Admins:</strong> the <strong>Approvals</strong> widget (<strong>Task approvals</strong> on iPhone/iPad) opens HomeFitly to review requests. Members do not receive approval controls.</li>
+            <li><strong>Connected family phones:</strong> <strong>HomeFitly &mdash; My tasks</strong> on Android, or <strong>My HomeFitly tasks</strong> on iPhone/iPad, uses the restricted device connection. New customer connections are not open yet. Without an eligible connection, the widget asks you to open HomeFitly and hides task names.</li>
+          </ul>
+          <p>Android task and role widgets open HomeFitly for the selected action. A connected family widget&rsquo;s completion action also opens the app to verify access and send the request; it still needs approval. The widget does not silently approve a task in the background.</p>
+          <p>Open HomeFitly after changing accounts, household access or tasks so the widget can refresh. Your phone controls widget update timing; changes may not appear instantly. A home-screen widget may be visible to anyone who can see that screen.</p>
         </div>
       </details>
     </div>
@@ -514,7 +547,7 @@
           Premium Subscription
         </summary>
         <div class="card-body">
-          <p><strong>Free plan includes:</strong> Unlimited tasks, recurring schedules, task history and recommendations, a home profile, reminders, and two starter checklists, plus up to 3 warranty records, 5 service contacts, 1 home project, 10 receipts, and 3 project ideas. Receipt scanning, warranty alerts and quote comparison are also available within the free plan's record limits.</p>
+          <p><strong>Free plan includes:</strong> Unlimited tasks, recurring schedules, task history and recommendations, a home profile, reminders, and two starter checklists, plus up to 3 warranty records, 5 service contacts, 1 active project, 10 receipts, and 3 project ideas. Receipt scanning and warranty alerts are also available within those limits. Free includes up to 2 manual quotes per project and the first contractor quote request.</p>
           <p><strong>Premium unlocks:</strong></p>
           <ul>
             <li>Unlimited projects, warranties, contacts, receipts, and ideas</li>
@@ -525,7 +558,7 @@
             <li>Priority support</li>
           </ul>
           <p><strong>Pricing:</strong> U.S. pricing is $9.99/month or $99.99/year. Check your app store for the price in your region.</p>
-          <p>Open <em>More &gt; Settings</em> and tap your <strong>Free Plan</strong> or <strong>HomeFitly Premium</strong> card to open <strong>Membership</strong>. Choose <strong>See Premium plans</strong> when available and review the current price and billing period in the app-store plan picker.</p>
+          <p>On Android, open <strong>More &gt; Explore Premium</strong> or <strong>Manage Premium</strong>. On iPhone or iPad, open <em>More &gt; Settings</em> and tap your <strong>Free Plan</strong> or <strong>HomeFitly Premium</strong> card to open <strong>Membership</strong>. Choose <strong>See Premium plans</strong> when available and review the current price and billing period in the app-store plan picker.</p>
         </div>
       </details>
     </div>
@@ -543,7 +576,7 @@
           <p>If you've previously purchased a Premium subscription and need to restore it on a new device or after reinstalling the app:</p>
           <ul>
             <li>Open HomeFitly and sign in with the same HomeFitly account used for your subscription.</li>
-            <li>Open <strong>More &gt; Settings</strong>, tap your plan card to open <strong>Membership</strong>, then choose <strong>Restore Purchases</strong>.</li>
+            <li>On Android, open <strong>More &gt; Explore Premium</strong> or <strong>Manage Premium</strong>, then choose <strong>Restore purchases</strong>. On iPhone or iPad, open <strong>More &gt; Settings</strong>, tap your plan card to open <strong>Membership</strong>, then choose <strong>Restore Purchases</strong>.</li>
             <li>HomeFitly checks the store purchase and your membership status. Follow the result shown in the app; if the check cannot finish, use the displayed retry option or contact support.</li>
           </ul>
           <p>Use the Apple ID or Google account that owns the subscription as well as the matching HomeFitly account. Complimentary and household access are shown separately from store subscriptions.</p>
@@ -603,10 +636,10 @@
           Account &amp; Data Deletion
         </summary>
         <div class="card-body">
-          <p>You can delete your account and all associated data at any time.</p>
+          <p>You can request account deletion from the app or by contacting support. The limited retention exceptions and effects on a shared household are explained on the Account Deletion page.</p>
           <ul>
-            <li><strong>From the app:</strong> Go to <em>More &gt; Settings &gt; Account &gt; Delete Account</em>. Follow the confirmation prompts to permanently delete your account.</li>
-            <li>This action removes all your data including your home profile, tasks, projects, receipts, and household information.</li>
+            <li><strong>From the app:</strong> on Android, open <strong>More &gt; Your account &gt; Delete account</strong>. On iPhone or iPad, open <strong>More &gt; Settings &gt; Account &gt; Delete Account</strong>. Read and follow the confirmation prompts.</li>
+            <li>Review the shared-household consequences before deleting the original subscription-managing account. Deleting an account does not cancel a store subscription.</li>
             <li>Account deletion is <strong>permanent and cannot be undone</strong>.</li>
           </ul>
           <p>For more information, visit our <a href="https://homefitly.com/account-deletion">Account Deletion page</a>.</p>
@@ -628,7 +661,7 @@
       <details class="faq-item">
         <summary>Is HomeFitly free to use?</summary>
         <div class="faq-answer">
-          Yes! The free plan includes unlimited tasks, recurring schedules, task history and recommendations, a home profile, reminders, and two starter checklists, plus up to 3 warranty records, 5 service contacts, 1 home project, 10 receipts, and 3 project ideas. Receipt scanning, warranty alerts and quote comparison are also available within these record limits. Premium adds cloud sync, more checklists, unlimited saved records and household features.
+          Yes! The free plan includes unlimited tasks, recurring schedules, task history and recommendations, a home profile, reminders, and two starter checklists, plus up to 3 warranty records, 5 service contacts, 1 active project, 10 receipts, and 3 project ideas. Receipt scanning and warranty alerts are also available within these limits, along with up to 2 manual quotes per project and the first contractor quote request. Premium adds cloud sync, more checklists, unlimited saved records and household features.
         </div>
       </details>
 
@@ -656,7 +689,7 @@
       <details class="faq-item">
         <summary>How do I delete my account and data?</summary>
         <div class="faq-answer">
-          You can delete your account from within the app by navigating to <em>More &gt; Settings &gt; Account &gt; Delete Account</em>. This removes your account and its cloud records, subject to the limited security and recovery exceptions in our <a href="/privacy/">Privacy Policy</a>. Deleting an account cannot be undone and does not cancel a store subscription. You can separately review or delete a connected profile&rsquo;s shared activity in <strong>Family &gt; Family devices</strong>. For more details, visit our <a href="https://homefitly.com/account-deletion">Account Deletion page</a>.
+          On Android, open <strong>More &gt; Your account &gt; Delete account</strong>. On iPhone or iPad, open <strong>More &gt; Settings &gt; Account &gt; Delete Account</strong>. This removes your account and its cloud records, subject to the limited security and recovery exceptions in our <a href="/privacy/">Privacy Policy</a>. Deleting an account cannot be undone and does not cancel a store subscription. You can separately review or delete a connected profile&rsquo;s shared activity through the managed profile&rsquo;s <strong>Connect phone</strong> controls in <strong>Family</strong>. For more details, visit our <a href="https://homefitly.com/account-deletion">Account Deletion page</a>.
         </div>
       </details>
 
@@ -694,5 +727,20 @@
   <p>&copy; 2026 HomeFitly. All rights reserved.</p>
 </footer>
 
+<script>
+  // Opening a Help deep link also opens its containing topic.
+  function openLinkedTopic() {
+    let id;
+    try { id = decodeURIComponent(window.location.hash.slice(1)); } catch { return; }
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    const topic = target.closest('details');
+    if (topic) topic.open = true;
+    target.scrollIntoView();
+  }
+  window.addEventListener('hashchange', openLinkedTopic);
+  openLinkedTopic();
+</script>
 </body>
 </html>

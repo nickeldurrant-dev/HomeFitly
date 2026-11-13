@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import LandingPage from './components/LandingPage';
 
-// HomeFitly marketing site. The product is the native iOS app;
+// HomeFitly marketing site. The products are the native iOS and Android apps;
 // this site is a landing page only. Legacy web app routes
 // (/login, /signup, /dashboard) redirect to the homepage.
 function App() {
