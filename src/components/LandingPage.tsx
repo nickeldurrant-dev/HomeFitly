@@ -1,5 +1,7 @@
 import { Bell, ClipboardList, FolderOpen, LayoutGrid, Moon, Play, Users } from 'lucide-react';
 
+const appStoreUrl = 'https://apps.apple.com/us/app/homefitly/id6774662613';
+
 const googlePlayUrl = 'https://play.google.com/store/apps/details?id=com.homefitly.app';
 
 const features = [
@@ -7,8 +9,8 @@ const features = [
   { icon: ClipboardList, title: 'Make a checklist your own', description: 'Browse maintenance checklists and turn a suggestion into a task with its own due date and reminder.' },
   { icon: FolderOpen, title: 'Keep home records together', description: 'Move projects from Ideas to Planning to Active, and keep receipts, warranties and service contacts close at hand.' },
   { icon: Users, title: 'Share the household work', description: 'With Premium, assign existing tasks, review completions and follow shared points and history. Choose who has Owner, Admin or Member access.' },
-  { icon: Moon, title: 'Choose light or dark', description: 'Pick Light, Dark or System in Settings. System follows your phone’s appearance.' },
-  { icon: LayoutGrid, title: 'Keep tasks on your home screen', description: 'Add task widgets, an Owner household overview or an Owner/Admin approvals widget. What you see depends on your household access.' },
+  { icon: Moon, title: 'Choose light or dark', description: 'On Android, pick Light, Dark or System in Settings. Appearance choices are also available in the newer iOS test build.' },
+  { icon: LayoutGrid, title: 'Keep tasks on your home screen', description: 'Add task widgets on iPhone, iPad or Android. Android also offers household overview and approval widgets based on your access.' },
 ];
 
 const steps = [
@@ -49,6 +51,14 @@ function DownloadLink() {
   );
 }
 
+function AppleDownloadLink() {
+  return (
+    <a href={appStoreUrl} className={`inline-flex min-h-12 items-center justify-center rounded-xl bg-slate-900 px-5 py-3 font-semibold text-white hover:bg-slate-700 ${focus}`}>
+      Download on the App Store
+    </a>
+  );
+}
+
 function AppPreview() {
   return (
     <figure className="mx-auto w-full max-w-72">
@@ -79,12 +89,12 @@ export default function LandingPage() {
         <section className="bg-[#FAF7F2]">
           <div className={`${container} grid items-center gap-9 py-10 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:py-20`}>
             <div>
-              <p className="mb-3 text-sm font-bold tracking-wider text-brand-700 uppercase">Now available on Google Play</p>
+              <p className="mb-3 text-sm font-bold tracking-wider text-brand-700 uppercase">Android available · iPhone and iPad rolling out</p>
               <h1 className="max-w-xl text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl">A little care for everything at home.</h1>
               <p className="mt-4 max-w-lg text-lg leading-relaxed text-slate-700">Bring your tasks, home projects, receipts and warranties together. Plan what’s next, remember what’s due, and share the work with your household.</p>
-              <div className="mt-6"><DownloadLink /></div>
+              <div className="mt-6 flex flex-wrap gap-3"><AppleDownloadLink /><DownloadLink /></div>
               <p className="mt-3 text-sm text-slate-600">Free to start · optional Premium subscription</p>
-              <a href="/help/#downloads" className={`mt-2 inline-flex min-h-11 items-center rounded text-sm font-medium text-brand-800 underline underline-offset-4 ${focus}`}>iPhone and iPad availability</a>
+              <a href="/help/#downloads" className={`mt-2 inline-flex min-h-11 items-center rounded text-sm font-medium text-brand-800 underline underline-offset-4 ${focus}`}>App Store release information</a>
             </div>
             <AppPreview />
           </div>
@@ -101,7 +111,7 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-          <p className="mt-5 max-w-3xl leading-relaxed text-slate-600">Owners can share full household access while one account manages the subscription. Admins manage shared Tasks and Family; Members participate without approval rights. Restricted child-phone connections are not open to new customers yet.</p>
+          <p className="mt-5 max-w-3xl leading-relaxed text-slate-600">On Android, multiple Owners can share full household access while one account manages the subscription. This option is in the newer iOS test build, not the current App Store release. Admins manage shared Tasks and Family; Members participate without approval rights. Restricted child-phone connections are not open to new customers yet.</p>
           <div className="mt-2 flex flex-wrap gap-x-6">
             <a href="/help/#family" className={`inline-flex min-h-11 items-center rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>Family access explained</a>
             <a href="/help/#widgets" className={`inline-flex min-h-11 items-center rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>Choose a widget</a>
@@ -143,17 +153,17 @@ export default function LandingPage() {
           <h2 className="text-3xl font-bold tracking-tight">Start free, share upkeep when you’re ready</h2>
           <p className="mt-3 max-w-2xl leading-relaxed text-slate-700">The free plan includes unlimited tasks, recurring schedules and reminders, plus starter checklists and limited project, receipt, warranty and contact records. Premium adds cloud sync, expanded records, all 13 checklists and household task sharing.</p>
           <p className="mt-3 font-semibold">Premium: $9.99/month or $99.99/year in the U.S.</p>
-          <p className="mt-2 text-sm text-slate-600">Optional, automatically renewing subscription. Review the price and billing period in Google Play before subscribing.</p>
+          <p className="mt-2 text-sm text-slate-600">Optional, automatically renewing subscription. Review the price and billing period in your app store before subscribing.</p>
           <a href="/help/#membership" className={`mt-3 inline-flex min-h-11 items-center rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>See membership details</a>
         </section>
 
         <section id="downloads" className="border-y border-brand-200 bg-brand-50">
           <div className={`${container} py-10`}>
             <span id="notify" />
-            <h2 className="text-2xl font-bold">Download HomeFitly for Android</h2>
-            <p className="mt-3 max-w-2xl leading-relaxed text-slate-700">Get the current public release directly from Google Play. If you already have HomeFitly, update the existing installation to keep using your saved home records.</p>
-            <div className="mt-4"><DownloadLink /></div>
-            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-600">iPhone and iPad: the public App Store release is pending. Existing testers can update through TestFlight. <a href="/help/#downloads" className={`rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>Download help</a></p>
+            <h2 className="text-2xl font-bold">Download HomeFitly</h2>
+            <p className="mt-3 max-w-2xl leading-relaxed text-slate-700">Get HomeFitly from the App Store in the United States or from Google Play. If you already have HomeFitly, update the existing installation to keep using your saved home records.</p>
+            <div className="mt-4 flex flex-wrap gap-3"><AppleDownloadLink /><DownloadLink /></div>
+            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-600">iPhone and iPad: version 1.1.1 has been released in the United States. Apple is still making the listing available; if it does not open yet, please try again later. Existing testers can continue using TestFlight. <a href="/help/#downloads" className={`rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>Download help</a></p>
           </div>
         </section>
       </main>
