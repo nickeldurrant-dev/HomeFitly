@@ -89,12 +89,12 @@ export default function LandingPage() {
         <section className="bg-[#FAF7F2]">
           <div className={`${container} grid items-center gap-9 py-10 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:py-20`}>
             <div>
-              <p className="mb-3 text-sm font-bold tracking-wider text-brand-700 uppercase">Android available · iPhone and iPad rolling out</p>
+              <p className="mb-3 text-sm font-bold tracking-wider text-brand-700 uppercase">Now on the App Store and Google Play</p>
               <h1 className="max-w-xl text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl">A little care for everything at home.</h1>
               <p className="mt-4 max-w-lg text-lg leading-relaxed text-slate-700">Bring your tasks, home projects, receipts and warranties together. Plan what’s next, remember what’s due, and share the work with your household.</p>
               <div className="mt-6 flex flex-wrap gap-3"><AppleDownloadLink /><DownloadLink /></div>
               <p className="mt-3 text-sm text-slate-600">Free to start · optional Premium subscription</p>
-              <a href="/help/#downloads" className={`mt-2 inline-flex min-h-11 items-center rounded text-sm font-medium text-brand-800 underline underline-offset-4 ${focus}`}>App Store release information</a>
+              <a href="/help/#downloads" className={`mt-2 inline-flex min-h-11 items-center rounded text-sm font-medium text-brand-800 underline underline-offset-4 ${focus}`}>iPhone and iPad download help</a>
             </div>
             <AppPreview />
           </div>
@@ -163,7 +163,7 @@ export default function LandingPage() {
             <h2 className="text-2xl font-bold">Download HomeFitly</h2>
             <p className="mt-3 max-w-2xl leading-relaxed text-slate-700">Get HomeFitly from the App Store in the United States or from Google Play. If you already have HomeFitly, update the existing installation to keep using your saved home records.</p>
             <div className="mt-4 flex flex-wrap gap-3"><AppleDownloadLink /><DownloadLink /></div>
-            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-600">iPhone and iPad: version 1.1.1 has been released in the United States. Apple is still making the listing available; if it does not open yet, please try again later. Existing testers can continue using TestFlight. <a href="/help/#downloads" className={`rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>Download help</a></p>
+            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-600">HomeFitly is available for iPhone and iPad on the U.S. App Store. Existing testers can continue using TestFlight. <a href="/help/#downloads" className={`rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>Download help</a></p>
           </div>
         </section>
       </main>
