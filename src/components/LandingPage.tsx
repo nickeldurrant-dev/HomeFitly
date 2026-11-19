@@ -94,6 +94,7 @@ export default function LandingPage() {
               <p className="mt-4 max-w-lg text-lg leading-relaxed text-slate-700">Bring your tasks, home projects, receipts and warranties together. Plan what’s next, remember what’s due, and share the work with your household.</p>
               <div className="mt-6 flex flex-wrap gap-3"><AppleDownloadLink /><DownloadLink /></div>
               <p className="mt-3 text-sm text-slate-600">Free to start · optional Premium subscription</p>
+              <p className="mt-3 max-w-lg text-sm leading-relaxed text-slate-700">New on Android: version 1.1.3 brings clearer task dates and approval states, simpler Family navigation, and clearer widget actions. The iPhone/iPad update is awaiting Apple review.</p>
               <a href="/help/#downloads" className={`mt-2 inline-flex min-h-11 items-center rounded text-sm font-medium text-brand-800 underline underline-offset-4 ${focus}`}>iPhone and iPad download help</a>
             </div>
             <AppPreview />
