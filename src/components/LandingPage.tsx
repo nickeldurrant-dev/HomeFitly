@@ -9,8 +9,8 @@ const features = [
   { icon: ClipboardList, title: 'Make a checklist your own', description: 'Browse maintenance checklists and turn a suggestion into a task with its own due date and reminder.' },
   { icon: FolderOpen, title: 'Keep home records together', description: 'Move projects from Ideas to Planning to Active, and keep receipts, warranties and service contacts close at hand.' },
   { icon: Users, title: 'Share the household work', description: 'With Premium, assign existing tasks, review completions and follow shared points and history. Choose who has Owner, Admin or Member access.' },
-  { icon: Moon, title: 'Choose light or dark', description: 'On Android, pick Light, Dark or System in Settings. Appearance choices are also available in the newer iOS test build.' },
-  { icon: LayoutGrid, title: 'Keep tasks on your home screen', description: 'Add task widgets on iPhone, iPad or Android. Android also offers household overview and approval widgets based on your access.' },
+  { icon: Moon, title: 'Choose light or dark', description: 'On iPhone, iPad and Android, pick Light, Dark or System in Settings.' },
+  { icon: LayoutGrid, title: 'Keep tasks on your home screen', description: 'Add task widgets on iPhone, iPad or Android, with household overview and approval widgets based on your access.' },
 ];
 
 const steps = [
@@ -94,7 +94,7 @@ export default function LandingPage() {
               <p className="mt-4 max-w-lg text-lg leading-relaxed text-slate-700">Bring your tasks, home projects, receipts and warranties together. Plan what’s next, remember what’s due, and share the work with your household.</p>
               <div className="mt-6 flex flex-wrap gap-3"><AppleDownloadLink /><DownloadLink /></div>
               <p className="mt-3 text-sm text-slate-600">Free to start · optional Premium subscription</p>
-              <p className="mt-3 max-w-lg text-sm leading-relaxed text-slate-700">New on Android: version 1.1.3 brings clearer task dates and approval states, simpler Family navigation, and clearer widget actions. The iPhone/iPad update is awaiting Apple review.</p>
+              <p className="mt-3 max-w-lg text-sm leading-relaxed text-slate-700">Now available on the App Store and Google Play: version 1.1.3 brings clearer task dates and approval states, simpler Family navigation, and clearer widget actions on iPhone, iPad and Android.</p>
               <a href="/help/#downloads" className={`mt-2 inline-flex min-h-11 items-center rounded text-sm font-medium text-brand-800 underline underline-offset-4 ${focus}`}>iPhone and iPad download help</a>
             </div>
             <AppPreview />
@@ -112,7 +112,7 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-          <p className="mt-5 max-w-3xl leading-relaxed text-slate-600">On Android, multiple Owners can share full household access while one account manages the subscription. This option is in the newer iOS test build, not the current App Store release. Admins manage shared Tasks and Family; Members participate without approval rights. Restricted child-phone connections are not open to new customers yet.</p>
+          <p className="mt-5 max-w-3xl leading-relaxed text-slate-600">On iPhone, iPad and Android, multiple Owners can share full household access while one account manages the subscription. Admins manage shared Tasks and Family; Members participate without approval rights. Restricted child-phone connections are not open to new customers yet.</p>
           <div className="mt-2 flex flex-wrap gap-x-6">
             <a href="/help/#family" className={`inline-flex min-h-11 items-center rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>Family access explained</a>
             <a href="/help/#widgets" className={`inline-flex min-h-11 items-center rounded font-semibold text-brand-800 underline underline-offset-4 ${focus}`}>Choose a widget</a>
